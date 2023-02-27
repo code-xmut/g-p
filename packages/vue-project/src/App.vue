@@ -11,6 +11,6 @@ const foo: IMyInterface = {
 
 <template>
 <div>
-  <h1>{{ foo }}</h1>
+  <h1 class=" text-purple-500 text-3xl">{{ foo }}</h1>
 </div>
 </template>
