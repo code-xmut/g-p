@@ -1,5 +1,9 @@
 <script setup lang="ts">
-
+withDefaults(defineProps<{
+  msg: string
+}>(), {
+  msg: 'About',
+})
 </script>
 
 <template>
