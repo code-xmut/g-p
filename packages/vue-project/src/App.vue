@@ -1,16 +1,19 @@
 <script setup lang="ts">
-import type { IMyInterface } from '@gp/types';
+import type { IMyInterface } from '@gp/types'
+import icon from '~/icons/icon.vue'
 
 const foo: IMyInterface = {
   id: 1,
   name: 'foo',
-  habits: ['eat', 'sleep', 'code']
+  habits: ['eat', 'sleep', 'code'],
 }
-
 </script>
 
 <template>
-<div>
-  <h1 class=" text-purple-500 text-3xl">{{ foo }}</h1>
-</div>
+  <div>
+    <h1 class=" text-purple-500 text-3xl">
+      {{ foo }}
+    </h1>
+    <icon />
+  </div>
 </template>
