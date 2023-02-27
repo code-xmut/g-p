@@ -3,8 +3,6 @@
 </script>
 
 <template>
-  <div id="vue">
-
-  </div>
+  <div id="vue" />
   <RouterView />
 </template>
