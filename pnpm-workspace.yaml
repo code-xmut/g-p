@@ -1,0 +1,9 @@
+packages:
+  # packages 目录下放你的项目
+  - 'packages/*'
+  # components 目录下放你的公用组件
+  - 'components/**'
+  # test 目录下的文件排除，通过!表示
+  - '!**/test/**'
+  # 你的其他文件目录， 比如通用api
+	- 'api/**'
