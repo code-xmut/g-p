@@ -1,9 +1,9 @@
 packages:
-  # packages 目录下放你的项目
+  # all packages in direct subdirs of packages/
   - 'packages/*'
-  # components 目录下放你的公用组件
+  # all packages in subdirs of components/
   - 'components/**'
-  # test 目录下的文件排除，通过!表示
+  # all packages in subdirs of components/
+  - 'types/**'
+  # exclude packages that are inside test directories
   - '!**/test/**'
-  # 你的其他文件目录， 比如通用api
-	- 'api/**'
