@@ -3,7 +3,7 @@ import Avatar from './Avatar.vue'
 </script>
 
 <template>
-  <div class="w-full max-w-xs bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+  <div class="w-full max-w-xs bg-white border border-gray-200 rounded-lg shadow dark:bg-[#1d1c23] dark:border-none">
     <a href="#">
       <img class="rounded-t-lg" src="../assets/images/image1.jpg" alt="product image">
     </a>
@@ -66,7 +66,7 @@ import Avatar from './Avatar.vue'
         <span class="text-3xl font-bold text-gray-900 dark:text-white">$599</span>
         <a
           href="#"
-          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#4dc98c] dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >加入购物车</a>
       </div>
     </div>

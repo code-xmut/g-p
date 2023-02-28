@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Navbar from './Navbar.vue'
-import Sidebar from './SideBar.vue'
+import Navbar from './Navbar/index.vue'
+import Sidebar from './SideBar/index.vue'
 </script>
 
 <template>
@@ -8,7 +8,7 @@ import Sidebar from './SideBar.vue'
     <header>
       <Navbar />
     </header>
-    <main>
+    <main class="dark:bg-[#131219]">
       <Sidebar />
     </main>
   </div>
