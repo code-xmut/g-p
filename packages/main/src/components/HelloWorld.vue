@@ -1,20 +1,9 @@
 <script setup lang="ts">
-import { useTitle } from '@vueuse/core'
-import { ref, watchEffect } from 'vue'
-
-const title = ref('Hello World')
-
-watchEffect(() => {
-  useTitle(title.value)
-})
-
-const changeTitle = () => {
-  title.value = title.value === 'Hello Vue 3' ? 'Hello World' : 'Hello Vue 3'
-}
+import Navbar from '../layouts/Navbar.vue'
 </script>
 
 <template>
-  <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" @click="changeTitle">
-    Change Title
-  </button>
+  <div>
+    <Navbar />
+  </div>
 </template>
