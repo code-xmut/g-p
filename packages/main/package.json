@@ -10,6 +10,8 @@
     "test:unit": "vitest --environment jsdom --root src/"
   },
   "dependencies": {
+    "@iconify-json/mdi": "^1.1.47",
+    "@iconify/vue": "^4.1.0",
     "@vueuse/core": "^9.13.0",
     "lodash-es": "^4.17.21",
     "qiankun": "^2.10.1",

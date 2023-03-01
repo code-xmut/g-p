@@ -1,10 +1,46 @@
 <script setup lang="ts">
 import { useDark, useToggle } from '@vueuse/core'
+import { computed } from 'vue'
+import { Icon } from '@iconify/vue'
 import SideItem from './SideItem.vue'
 import Card from '@/components/Card.vue'
 
 const isDark = useDark()
 const toggle = useToggle(isDark)
+
+const darkModeIcon = computed(() => {
+  return isDark.value ? 'mdi:weather-sunny' : 'mdi:weather-night'
+})
+
+const sidebar = computed(() => {
+  return [
+    {
+      icon: 'mdi:spa-outline',
+      name: 'Home',
+      href: '/',
+    },
+    {
+      icon: 'mdi:rocket',
+      name: 'Analytics',
+      href: '/analytics',
+    },
+    {
+      icon: 'mdi:robot-angry-outline',
+      name: 'Automation',
+      href: '/automation',
+    },
+    {
+      icon: 'mdi:radio-tower',
+      name: 'Security',
+      href: '/security',
+    },
+    {
+      icon: 'mdi:pig',
+      name: 'Settings',
+      href: '/settings',
+    },
+  ]
+})
 </script>
 
 <template>
@@ -15,15 +51,14 @@ const toggle = useToggle(isDark)
   >
     <div class=" h-5/6 px-3 py-4 rounded-2xl overflow-y-auto mt-20 bg-gray-50 dark:bg-[#1d1c23]">
       <ul class="space-y-2">
-        <li v-for="i in 6" :key="i">
-          <SideItem />
+        <li v-for="i in sidebar" :key="i.name">
+          <SideItem>
+            <Icon class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" :icon="i.icon" />
+          </SideItem>
         </li>
       </ul>
-      <div class="fixed bottom-28">
-        <label class="relative inline-flex items-center cursor-pointer">
-          <input type="checkbox" class="sr-only peer" @click="toggle()">
-          <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600" />
-        </label>
+      <div class="fixed bottom-28 left-1/2 -translate-x-[50%] cursor-pointer" @click="toggle()">
+        <Icon class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400" :icon="darkModeIcon" />
       </div>
     </div>
   </aside>
