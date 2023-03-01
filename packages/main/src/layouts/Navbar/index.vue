@@ -23,7 +23,7 @@ import Button from '@/components/base/Button.vue'
               id="default-search" type="search" class="block w-full min-w-[300px] p-3 pr-12 text-sm text-gray-900 border border-gray-300 rounded-full bg-gray-50
           dark:placeholder-gray-400 dark:text-white focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1" placeholder="Search Mockups, Logos..." required
             >
-            <Button class="absolute -right-7 bottom-0 rounded-3xl px-6 py-3">
+            <Button class="absolute -right-7 bottom-0 px-6 py-3" rounded="3xl">
               <template #icon>
                 <Icon class="w-6 h-6" icon="mdi:magnify" />
               </template>
