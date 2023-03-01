@@ -46,19 +46,29 @@ const sidebar = computed(() => {
 <template>
   <aside
     id="sidebar-multi-level-sidebar"
-    class="fixed top-0 left-5 z-40 w-16 h-screen transition-transform -translate-x-[140%] sm:translate-x-0"
+    class="fixed top-0 left-5 z-40 w-20 h-screen transition-transform -translate-x-[140%] sm:translate-x-0"
     aria-label="Sidebar"
   >
-    <div class=" h-5/6 px-3 py-4 rounded-2xl overflow-y-auto mt-20 bg-gray-50 dark:bg-[#1d1c23]">
-      <ul class="space-y-2">
-        <li v-for="i in sidebar" :key="i.name">
-          <SideItem>
-            <Icon class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" :icon="i.icon" />
-          </SideItem>
-        </li>
-      </ul>
-      <div class="fixed bottom-28 left-1/2 -translate-x-[50%] cursor-pointer" @click="toggle()">
-        <Icon class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400" :icon="darkModeIcon" />
+    <div class="h-full px-3 py-4 overflow-y-auto">
+      <div>
+        <img class="rounded-full" src="@/assets/images/image2.jpg" alt="">
+      </div>
+      <div class="h-4/5">
+        <ul class="h-full rounded-2xl space-y-2 mt-16 dark:bg-[#1d1c23]">
+          <li v-for="i in sidebar" :key="i.name">
+            <SideItem>
+              <Icon
+                class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 dark:group-hover:text-[#4dc98c]"
+                :icon="i.icon"
+              />
+            </SideItem>
+          </li>
+          <li @click="toggle()">
+            <div class="fixed bottom-28 left-1/2 -translate-x-[50%] cursor-pointer">
+              <Icon class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400" :icon="darkModeIcon" />
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
   </aside>
