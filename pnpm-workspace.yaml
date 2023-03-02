@@ -5,5 +5,7 @@ packages:
   - 'components/**'
   # all packages in subdirs of components/
   - 'types/**'
+  # serve
+  - 'serve/**'
   # exclude packages that are inside test directories
   - '!**/test/**'
