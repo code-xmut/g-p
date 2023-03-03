@@ -1,7 +1,14 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
+import { ref } from 'vue'
 import Button from '@/components/base/Button.vue'
 import Input from '@/components/base/Input.vue'
+
+const searchValue = ref('')
+
+const search = () => {
+  // console.log(searchValue.value)
+}
 </script>
 
 <template>
@@ -17,16 +24,14 @@ import Input from '@/components/base/Input.vue'
         </div>
       </div>
       <div id="navbar-cta" class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1">
-        <form>
-          <div class="relative">
-            <Input />
-            <Button class="absolute -right-7 bottom-0 px-6 py-3 rounded-3xl">
-              <template #icon>
-                <Icon class="w-6 h-6" icon="mdi:magnify" />
-              </template>
-            </Button>
-          </div>
-        </form>
+        <div class="relative">
+          <Input v-model:value="searchValue" />
+          <Button class="absolute -right-7 bottom-0 px-6 py-3 rounded-3xl" @click="search">
+            <template #icon>
+              <Icon class="w-6 h-6" icon="mdi:magnify" />
+            </template>
+          </Button>
+        </div>
       </div>
     </div>
   </nav>
