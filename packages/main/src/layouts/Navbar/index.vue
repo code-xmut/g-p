@@ -8,7 +8,7 @@ import Input from '@/components/base/Input.vue'
   <nav class="bg-white border-gray-200 px-2 pt-5 sm:px-4 dark:bg-[#131219] sm:pl-64">
     <div class="container flex flex-wrap items-center justify-between mx-auto">
       <div class="flex items-center md:order-2">
-        <Button />
+        <Button text="Get started" />
         <button data-collapse-toggle="navbar-cta" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-cta" aria-expanded="false">
           <Icon class="w-6 h-6" icon="mdi:menu" />
         </button>
@@ -20,7 +20,7 @@ import Input from '@/components/base/Input.vue'
         <form>
           <div class="relative">
             <Input />
-            <Button class="absolute -right-7 bottom-0 px-6 py-3" rounded="full">
+            <Button class="absolute -right-7 bottom-0 px-6 py-3 rounded-3xl">
               <template #icon>
                 <Icon class="w-6 h-6" icon="mdi:magnify" />
               </template>

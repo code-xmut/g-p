@@ -1,7 +1,7 @@
 <script setup lang="ts">
 withDefaults(
   defineProps<{
-    placeholder: string
+    placeholder?: string
   }>(),
   {
     placeholder: 'Search...',

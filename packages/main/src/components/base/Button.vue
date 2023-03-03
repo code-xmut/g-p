@@ -1,28 +1,44 @@
-@@ -1,24 +0,0 @@
 <script setup lang="ts">
-withDefaults(
+import { computed } from 'vue'
+
+const props = withDefaults(
   defineProps<{
-    text: string
-    rounded: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full'
+    text?: string
+    disabled?: boolean
+    type?: 'primary' | 'secondary' | 'danger' | 'success'
   }>(),
   {
-    text: 'Get started',
-    rounded: 'lg',
+    text: '',
+    disabled: false,
+    type: 'primary',
   },
 )
+
+const typeClass = computed(() => {
+  const classes = {
+    primary: 'bg-blue-500 hover:bg-blue-600 text-white',
+    secondary: 'bg-gray-200 hover:bg-gray-300 text-gray-700',
+    danger: 'bg-red-500 hover:bg-red-600 text-white',
+    success: 'bg-green-500 hover:bg-green-600 text-white',
+  }
+
+  return classes[props.type]
+})
 </script>
 
 <template>
   <button
-    v-bind="$attrs"
-    type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
-    focus:ring-blue-300 font-medium text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600
-    dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-    :class="[`rounded-${rounded}`]"
+    class="px-5 py-2.5 flex justify-center items-center font-medium rounded-lg focus:ring-4
+    focus:outline-none focus:ring-blue-300 dark:focus:ring-gray-800"
+    :class="[
+      typeClass,
+      { 'opacity-50 cursor-not-allowed': disabled },
+    ]"
+    :disabled="disabled"
   >
-    <slot v-if="$slots.icon" name="icon" />
-    <span v-else>
+    <span v-if="text !== ''">
       {{ text }}
     </span>
+    <slot v-if="$slots.icon" name="icon" />
   </button>
 </template>
