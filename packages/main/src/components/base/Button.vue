@@ -16,10 +16,10 @@ const props = withDefaults(
 
 const typeClass = computed(() => {
   const classes = {
-    primary: 'bg-blue-500 hover:bg-blue-600 text-white',
-    secondary: 'bg-gray-200 hover:bg-gray-300 text-gray-700',
-    danger: 'bg-red-500 hover:bg-red-600 text-white',
-    success: 'bg-green-500 hover:bg-green-600 text-white',
+    primary: 'bg-primary text-white',
+    secondary: 'bg-secondary text-gray-700',
+    danger: 'bg-danger text-white',
+    success: 'bg-success text-white',
   }
 
   return classes[props.type]
