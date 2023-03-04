@@ -1,19 +1,13 @@
 import { createApp } from 'vue'
-import router from './router'
-import './style.css'
 import App from './App.vue'
+import router from './router'
+import * as directives from '@/directives'
+import { registerDirectives } from '@/utils'
+import './style.css'
 
 const app = createApp(App)
 app.use(router)
+
+registerDirectives(app, directives)
+
 app.mount('#app')
-
-// registerMicroApps([
-//   {
-//     name: 'qiankun-sub-template',
-//     entry: 'http://localhost:8080/',
-//     container: '#vue',
-//     activeRule: '/about',
-//   },
-// ])
-
-// start()
