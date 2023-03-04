@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
+export interface Props {
+  text?: string
+  disabled?: boolean
+  type?: 'primary' | 'secondary' | 'danger' | 'success'
+  rounded?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full'
+}
+
 const props = withDefaults(
-  defineProps<{
-    text?: string
-    disabled?: boolean
-    type?: 'primary' | 'secondary' | 'danger' | 'success'
-    rounded?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full'
-  }>(),
+  defineProps<Props>(),
   {
     text: '',
     disabled: false,

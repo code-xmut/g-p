@@ -1,10 +1,12 @@
 <script setup lang="ts">
+export interface Props {
+  label?: string
+  placeholder?: string
+  value?: string
+}
+
 withDefaults(
-  defineProps<{
-    label?: string
-    placeholder?: string
-    value?: string
-  }>(),
+  defineProps<Props>(),
   {
     placeholder: 'Search...',
   },
