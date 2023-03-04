@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 .env.production
+.eslintcache
 
 # Editor directories and files
 .vscode/*
