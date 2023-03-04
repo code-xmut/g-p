@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
-import Button from '@/components/base/Button.vue'
-import Input from '@/components/base/Input.vue'
 </script>
 
 <template>
