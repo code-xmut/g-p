@@ -2,8 +2,8 @@
 import { useDark, useToggle } from '@vueuse/core'
 import { computed } from 'vue'
 import { Icon } from '@iconify/vue'
+import Main from '../Main/index.vue'
 import SideItem from './SideItem.vue'
-import Card from '@/components/Card.vue'
 
 const isDark = useDark()
 const toggle = useToggle(isDark)
@@ -73,9 +73,9 @@ const sidebar = computed(() => {
     </div>
   </aside>
 
-  <div class="p-4 sm:ml-64">
+  <main class="p-4 sm:ml-64">
     <div class="p-4 h-screen border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
-      <Card />
+      <Main />
     </div>
-  </div>
+  </main>
 </template>
