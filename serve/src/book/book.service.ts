@@ -1,13 +1,13 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import * as mongoose from 'mongoose';
+import { Model } from 'mongoose';
 import { Book } from './schemas/book.schema';
 
 @Injectable()
 export class BookService {
   constructor(
     @InjectModel(Book.name)
-    private bookModel: mongoose.Model<Book>,
+    private bookModel: Model<Book>,
   ) {}
 
   async findAll(): Promise<Book[]> {
