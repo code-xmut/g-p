@@ -11,6 +11,7 @@
     "test:unit": "vitest --environment jsdom --root src/"
   },
   "dependencies": {
+    "@iconify-json/logos": "^1.1.23",
     "@iconify-json/mdi": "^1.1.47",
     "@iconify/vue": "^4.1.0",
     "@vueuse/core": "^9.13.0",
