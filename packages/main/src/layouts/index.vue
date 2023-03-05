@@ -8,7 +8,7 @@ import Sidebar from './SideBar/index.vue'
     <header>
       <Navbar />
     </header>
-    <main class="dark:bg-[#131219]">
+    <main class="bg-white dark:bg-[#131219]">
       <Sidebar />
     </main>
   </div>
