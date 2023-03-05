@@ -3,3 +3,10 @@ export interface IMyInterface  {
   name: string;
   habits: string[]
 }
+
+export type User = {
+  id: number;
+  name: string;
+  username: string;
+  password: string;
+}
