@@ -9,7 +9,6 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('capalot')
     .setDescription('The capalot API description')
-    .setBasePath('api')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
