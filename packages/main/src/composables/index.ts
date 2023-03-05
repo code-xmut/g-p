@@ -1,3 +1,7 @@
 import useRequest from './useRequest'
+import useIsMobile from './isMobile'
 
-export default useRequest
+export {
+  useRequest,
+  useIsMobile,
+}
