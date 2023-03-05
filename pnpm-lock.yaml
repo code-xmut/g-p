@@ -70,6 +70,7 @@ importers:
 
   serve:
     specifiers:
+      '@gp/types': workspace:^1.0.0
       '@nestjs/cli': ^9.0.0
       '@nestjs/common': ^9.0.0
       '@nestjs/config': ^2.3.1
@@ -118,6 +119,7 @@ importers:
       reflect-metadata: 0.1.13
       rxjs: 7.8.0
     devDependencies:
+      '@gp/types': link:../types
       '@nestjs/cli': 9.2.0
       '@nestjs/schematics': 9.0.4_typescript@4.9.5
       '@nestjs/testing': 9.3.9_yqmogfxzeu633isbftgaoi4ho4
