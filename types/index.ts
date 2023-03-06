@@ -1,8 +1,12 @@
 import {
-  CreateUserDto
+  CreateUserDto,
+  LoginUserDto,
 } from './user';
 
-export type { CreateUserDto };
+export type { 
+  CreateUserDto,
+  LoginUserDto,
+};
 
 export interface IMyInterface  {
   id: number;
