@@ -12,17 +12,17 @@ const forms = computed(() => {
     {
       key: 'oldPassword',
       label: 'Old Password',
-      placeholder: 'Old Password',
+      i18nKey: 'recover.old_password',
     },
     {
       key: 'newPassword',
       label: 'New Password',
-      placeholder: 'New Password',
+      i18nKey: 'recover.new_password',
     },
     {
       key: 'confirmPassword',
       label: 'Confirm Password',
-      placeholder: 'Confirm Password',
+      i18nKey: 'recover.confirm_password',
     },
   ]
 })
@@ -41,12 +41,12 @@ const { submit } = submitter(async ({ form }) => {
 <template>
   <form @submit.prevent="submit">
     <div v-for="f in forms" :key="f.key">
-      <Input v-model:value="form[f.key]" :label="f.label" :placeholder="f.placeholder" class="w-72" />
+      <Input v-model:value="form[f.key]" :label="$t(f.i18nKey)" :placeholder="$t(f.i18nKey)" class="w-72" />
     </div>
     <Button
       class="btn btn-primary rounded-sm text-base w-72 mt-4"
       type="submit"
-      text="Recover"
+      :text="$t('recover.recover_btn')"
     />
   </form>
 </template>

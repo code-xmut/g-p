@@ -4,13 +4,13 @@ const email = ref('')
 
 <template>
   <h2 class="text-2xl font-semibold mb-1 text-[#37465B]">
-    Recover Password
+    {{ $t('recover.title') }}
   </h2>
   <p
     class="mb-6 mt-2 w-80 text-center text-sm text-gray-500"
   >
-    We will send you an email containing a password reset link
+    {{ $t('recover.description') }}
   </p>
   <RecoverPasswordForm />
-  <Link class="mt-4" text="Back to login" @click="$router.push({ name: 'login', query: { pattern: 'login' } })" />
+  <Link class="mt-4" :text="$t('recover.back_to_login')" @click="$router.push({ name: 'login', query: { pattern: 'login' } })" />
 </template>

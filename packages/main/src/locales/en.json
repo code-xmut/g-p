@@ -1,0 +1,37 @@
+{
+  "auth": {
+    "username": "username",
+    "password": "password",
+    "email": "email",
+    "other_login_ways": "or sign in with",
+    "by_facebook": "Facebook",
+    "by_google": "Google"
+  },
+  "register": {
+    "title": "Create your free account",
+    "for_free": "No credit card needed",
+    "email": "Email",
+    "register_btn": "Register account",
+    "already_have_account": "Already have an account?",
+    "go_to_login": "Log in",
+    "footer": "By creating an account you accept our",
+    "terms_and_policy": "Terms of Service"
+  },
+  "login": {
+    "title": "Log in",
+    "recover_password": "Forgot password?",
+    "confirm_email": "Confirm email",
+    "login_btn": "Log in",
+    "no_account": "Don't have an account?",
+    "register": "Create one"
+  },
+  "recover": {
+    "title": "Password recovery",
+    "sub_title": "Enter your email address and we'll send you a link to reset your password.",
+    "old_password": "Old password",
+    "new_password": "New password",
+    "confirm_password": "Confirm password",
+    "recover_btn": "Recover password",
+    "back_to_login": "Back to login"
+  }
+}

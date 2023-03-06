@@ -1,0 +1,37 @@
+{
+  "auth": {
+    "username": "用户名",
+    "password": "密码",
+    "email": "邮箱",
+    "other_login_ways": "其他登录方式",
+    "by_facebook": "脸书",
+    "by_google": "谷歌"
+  },
+  "register": {
+    "title": "创建您的免费账户",
+    "for_free": "无需任何费用",
+    "email": "邮箱",
+    "register_btn": "注册账户",
+    "already_have_account": "已有账户?",
+    "go_to_login": "去登录",
+    "footer": "注册即表示您同意我们的",
+    "terms_and_policy": "服务条款和隐私政策"
+  },
+  "login": {
+    "title": "登录",
+    "recover_password": "忘记密码?",
+    "confirm_email": "邮箱确认",
+    "login_btn": "登录",
+    "no_account": "没有账户?",
+    "register": "去注册"
+  },
+  "recover": {
+    "title": "密码找回",
+    "description": "请输入您的电子邮件地址，我们将向您发送密码重置链接。",
+    "old_password": "旧密码",
+    "new_password": "新密码",
+    "confirm_password": "确认密码",
+    "recover_btn": "更改密码",
+    "back_to_login": "返回登录"
+  }
+}

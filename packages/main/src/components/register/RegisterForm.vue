@@ -16,17 +16,17 @@ const forms = computed(() => {
     {
       key: 'name',
       label: 'Name',
-      placeholder: 'Name',
+      i18nKey: 'auth.username',
     },
     {
       key: 'email',
       label: 'Email',
-      placeholder: 'Email',
+      i18nKey: 'auth.email',
     },
     {
       key: 'password',
       label: 'Password',
-      placeholder: 'Password',
+      i18nKey: 'auth.password',
     },
   ]
 })
@@ -47,12 +47,12 @@ const { submit } = submitter(async ({ form }) => {
 <template>
   <form @submit.prevent="submit">
     <div v-for="f in forms" :key="f.label" class="mb-1">
-      <Input v-model:value="form[f.key]" :label="f.label" class="w-72" :placeholder="f.placeholder" />
+      <Input v-model:value="form[f.key]" :label="$t(f.i18nKey)" class="w-72" :placeholder="$t(f.i18nKey)" />
     </div>
     <Button
       class="btn btn-primary rounded-sm text-base w-72 mt-4"
       type="submit"
-      text="创建"
+      :text="$t('register.register_btn')"
     />
   </form>
   <OtherLoginWays />

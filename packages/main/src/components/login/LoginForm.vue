@@ -15,12 +15,12 @@ const forms = computed(() => {
     {
       key: 'username',
       label: 'Name',
-      placeholder: 'Name',
+      i18nKey: 'auth.username',
     },
     {
       key: 'password',
       label: 'Password',
-      placeholder: 'Password',
+      i18nKey: 'auth.password',
     },
   ]
 })
@@ -40,24 +40,24 @@ const { submit } = submitter(async ({ form }) => {
 <template>
   <form @submit.prevent="submit">
     <div v-for="f in forms" :key="f.label" class="mb-1">
-      <Input v-model:value="form[f.key]" :label="f.label" class="w-72" :placeholder="f.placeholder" />
+      <Input v-model:value="form[f.key]" :label="$t(f.i18nKey)" class="w-72" :placeholder="$t(f.i18nKey)" />
     </div>
     <div class="text-center mt-3 my-2">
-      <Link text="忘记密码?" @click="$router.push({ name: 'login', query: { pattern: 'recover' } })" />
+      <Link :text="$t('login.recover_password')" @click="$router.push({ name: 'login', query: { pattern: 'recover' } })" />
       <span class="text-gray-400 mx-6">|</span>
-      <Link text="邮箱确认" />
+      <Link :text="$t('login.confirm_email')" />
     </div>
     <Button
       class="btn btn-primary rounded-sm text-base w-72 mt-4"
       type="submit"
-      text="Log in"
+      :text="$t('login.login_btn')"
     />
   </form>
   <OtherLoginWays />
   <div>
     <p class="text-sm text-center mt-4">
-      没有账号?
-      <Link text="注册" @click="$router.push({ name: 'login' })" />
+      {{ $t('login.no_account') }}
+      <Link :text="$t('login.register')" @click="$router.push({ name: 'login' })" />
     </p>
   </div>
 </template>
