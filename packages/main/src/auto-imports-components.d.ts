@@ -10,7 +10,6 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     About: typeof import('./components/About.vue')['default']
-    Auth: typeof import('./components/auth/AuthComponent.vue')['default']
     Avatar: typeof import('./components/Avatar.vue')['default']
     Button: typeof import('./components/base/Button.vue')['default']
     Card: typeof import('./components/Card.vue')['default']
@@ -18,10 +17,11 @@ declare module '@vue/runtime-core' {
     Input: typeof import('./components/base/Input.vue')['default']
     Link: typeof import('./components/base/Link.vue')['default']
     Login: typeof import('./components/login/index.vue')['default']
-    LoginButtons: typeof import('./components/login/LoginButtons.vue')['default']
     LoginForm: typeof import('./components/login/LoginForm.vue')['default']
     LoginGirl: typeof import('./components/LoginGirl.vue')['default']
     OtherLoginWays: typeof import('./components/login/OtherLoginWays.vue')['default']
+    RecoverPassword: typeof import('./components/recover-password/index.vue')['default']
+    RecoverPasswordForm: typeof import('./components/recover-password/RecoverPasswordForm.vue')['default']
     Register: typeof import('./components/register/index.vue')['default']
     RegisterFooter: typeof import('./components/register/RegisterFooter.vue')['default']
     RegisterForm: typeof import('./components/register/RegisterForm.vue')['default']

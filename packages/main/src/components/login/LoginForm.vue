@@ -43,7 +43,7 @@ const { submit } = submitter(async ({ form }) => {
       <Input v-model:value="form[f.key]" :label="f.label" class="w-72" :placeholder="f.placeholder" />
     </div>
     <div class="text-center mt-3 my-2">
-      <Link text="忘记密码?" />
+      <Link text="忘记密码?" @click="$router.push({ name: 'login', query: { pattern: 'recover' } })" />
       <span class="text-gray-400 mx-6">|</span>
       <Link text="邮箱确认" />
     </div>
