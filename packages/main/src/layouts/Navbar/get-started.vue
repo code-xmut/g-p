@@ -7,6 +7,7 @@ import { Icon } from '@iconify/vue'
     <Button
       class="btn btn-outline btn-accent"
       text="Get started"
+      @click="() => $router.push('/login')"
     />
     <button data-collapse-toggle="navbar-cta" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-cta" aria-expanded="false">
       <Icon class="w-6 h-6" icon="mdi:menu" />

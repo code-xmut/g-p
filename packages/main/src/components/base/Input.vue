@@ -1,15 +1,12 @@
 <script setup lang="ts">
 export interface Props {
   label?: string
-  placeholder?: string
   value?: string
 }
 
 withDefaults(
   defineProps<Props>(),
-  {
-    placeholder: 'Search...',
-  },
+  {},
 )
 
 const emit = defineEmits(['update:value'])
@@ -20,13 +17,13 @@ const emitValue = (e: Event) => {
 </script>
 
 <template>
+  <label v-if="label" class="block mb-2 text-sm font-medium text-gray-600 dark:text-white">{{ label }}</label>
   <input
     v-bind="$attrs"
-    class="bg-transparent"
+    class="input input-bordered"
     type="text"
     data-test-id="input"
     :value="value"
-    :placeholder="placeholder"
     @input="emitValue"
   >
 </template>
