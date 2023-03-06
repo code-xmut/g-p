@@ -17,6 +17,7 @@ declare module '@vue/runtime-core' {
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     Input: typeof import('./components/base/Input.vue')['default']
     LoginButtons: typeof import('./components/login/LoginButtons.vue')['default']
+    LoginFooter: typeof import('./components/login/LoginFooter.vue')['default']
     LoginForm: typeof import('./components/login/LoginForm.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

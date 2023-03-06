@@ -30,10 +30,10 @@ import { Icon } from '@iconify/vue'
       </Button>
     </div>
   </div>
-  <div class="flex text-sm items-center">
-    <p>
+  <div class="text-sm">
+    <span>
       已有账号?
-    </p>
+    </span>
     <a class="link text-sky-600 ml-2">去登陆</a>
   </div>
 </template>

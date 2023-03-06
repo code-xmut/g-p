@@ -12,4 +12,5 @@ import { Icon } from '@iconify/vue'
   </h3>
   <LoginForm />
   <LoginButtons />
+  <LoginFooter />
 </template>

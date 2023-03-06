@@ -11,7 +11,7 @@ const { isMobile } = useIsMobile()
     <div v-if="!isMobile" class="w-full h-2/5 bg-darkBg lg:h-full lg:w-3/5 mx-auto flex justify-center items-center xs:hidden">
       <img class="w-3/5 h-3/5 block md:w-full md:h-full" src="@/assets/images/log-in-girl.svg" alt="">
     </div>
-    <div class="w-full h-full lg:w-2/5 bg-white text-[#37465B] flex flex-col justify-center items-center">
+    <div class="w-full h-full lg:w-2/5 py-5 bg-white text-[#37465B] flex flex-col justify-center items-center">
       <Auth />
     </div>
   </div>
