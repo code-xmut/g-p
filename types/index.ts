@@ -1,3 +1,9 @@
+import {
+  CreateUserDto
+} from './user';
+
+export type { CreateUserDto };
+
 export interface IMyInterface  {
   id: number;
   name: string;
@@ -5,7 +11,7 @@ export interface IMyInterface  {
 }
 
 export type User = {
-  id: number;
+  id?: number;
   name: string;
   username: string;
   password: string;
