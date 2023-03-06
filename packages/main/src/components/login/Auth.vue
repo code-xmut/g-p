@@ -11,6 +11,5 @@ import { Icon } from '@iconify/vue'
     <span>无需任何费用</span>
   </h3>
   <LoginForm />
-  <LoginButtons />
   <LoginFooter />
 </template>

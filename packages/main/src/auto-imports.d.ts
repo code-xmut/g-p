@@ -7,5 +7,6 @@ declare global {
   const computed: typeof import('vue')['computed']
   const onMounted: typeof import('vue')['onMounted']
   const onUnmounted: typeof import('vue')['onUnmounted']
+  const reactive: typeof import('vue')['reactive']
   const ref: typeof import('vue')['ref']
 }
