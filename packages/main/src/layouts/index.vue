@@ -4,7 +4,7 @@ import Sidebar from './SideBar/index.vue'
 </script>
 
 <template>
-  <div>
+  <div class="bg-white dark:bg-darkBg">
     <header>
       <Navbar />
     </header>
