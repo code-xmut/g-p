@@ -10,6 +10,6 @@ import { Icon } from '@iconify/vue'
     <Icon icon="mdi:check" class="w-6 h-6 text-green-900" />
     <span>无需任何费用</span>
   </h3>
-  <LoginForm />
-  <LoginFooter />
+  <RegisterForm />
+  <RegisterFooter />
 </template>

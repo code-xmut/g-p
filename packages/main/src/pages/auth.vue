@@ -12,7 +12,7 @@ const { isMobile } = useIsMobile()
       <img class="w-3/5 h-3/5 block md:w-full md:h-full" src="@/assets/images/log-in-girl.svg" alt="">
     </div>
     <div class="w-full h-full lg:w-2/5 py-5 text-[#37465B] bg-white dark:bg-darkBg flex flex-col justify-center items-center">
-      <Auth />
+      <Register />
     </div>
   </div>
 </template>
