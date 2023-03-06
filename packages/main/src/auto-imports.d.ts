@@ -9,4 +9,5 @@ declare global {
   const onUnmounted: typeof import('vue')['onUnmounted']
   const reactive: typeof import('vue')['reactive']
   const ref: typeof import('vue')['ref']
+  const watchEffect: typeof import('vue')['watchEffect']
 }
