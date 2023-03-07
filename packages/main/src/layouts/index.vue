@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Navbar from './Navbar/index.vue'
-import Sidebar from './SideBar/index.vue'
+import Main from './Main/index.vue'
 </script>
 
 <template>
@@ -9,7 +9,7 @@ import Sidebar from './SideBar/index.vue'
       <Navbar />
     </header>
     <main>
-      <Sidebar />
+      <Main />
     </main>
   </div>
 </template>
