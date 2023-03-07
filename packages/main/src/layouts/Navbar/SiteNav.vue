@@ -15,14 +15,29 @@ const navs = computed(() => {
   ]
 })
 
+const body = ref(document.body)
 const showDrawer = ref(false)
 const navIcon = computed(() => {
+  if (showDrawer.value)
+    body.value.classList.add('overflow-hidden')
+  else
+    body.value.classList.remove('overflow-hidden')
+
   return showDrawer.value ? 'mdi:close' : 'mdi:menu'
 })
+
+const resizeHandler = () => {
+  if (window.innerWidth > 1024) {
+    showDrawer.value = false
+    body.value.classList.remove('overflow-hidden')
+  }
+}
+
+window.addEventListener('resize', resizeHandler)
 </script>
 
 <template>
-  <Icon class="w-6 h-6 lg:hidden" :icon="navIcon" @click="showDrawer = !showDrawer" />
+  <Icon class="w-6 h-6 cursor-pointer lg:hidden" :icon="navIcon" @click="showDrawer = !showDrawer" />
   <Drawer :show="showDrawer" />
   <div class="flex justify-center items-center">
     <a href="#">
