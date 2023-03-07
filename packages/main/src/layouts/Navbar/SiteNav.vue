@@ -14,10 +14,16 @@ const navs = computed(() => {
     },
   ]
 })
+
+const showDrawer = ref(false)
+const navIcon = computed(() => {
+  return showDrawer.value ? 'mdi:close' : 'mdi:menu'
+})
 </script>
 
 <template>
-  <Icon class="w-6 h-6 lg:hidden" icon="mdi:menu" />
+  <Icon class="w-6 h-6 lg:hidden" :icon="navIcon" @click="showDrawer = !showDrawer" />
+  <Drawer :show="showDrawer" />
   <div class="flex justify-center items-center">
     <a href="#">
       <img src="@/assets/images/image2.jpg" class="w-12 h-12 rounded-full" alt="">
