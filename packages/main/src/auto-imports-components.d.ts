@@ -15,6 +15,7 @@ declare module '@vue/runtime-core' {
     Card: typeof import('./components/Card.vue')['default']
     Collapse: typeof import('./components/Collapse/index.vue')['default']
     Drawer: typeof import('./components/drawer/index.vue')['default']
+    Dropdown: typeof import('./components/Dropdown/index.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     Input: typeof import('./components/base/Input.vue')['default']
     Link: typeof import('./components/base/Link.vue')['default']
