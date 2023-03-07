@@ -34,6 +34,10 @@ const resizeHandler = () => {
 }
 
 window.addEventListener('resize', resizeHandler)
+
+onUnmounted(() => {
+  window.removeEventListener('resize', resizeHandler)
+})
 </script>
 
 <template>
