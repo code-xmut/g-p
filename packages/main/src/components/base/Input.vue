@@ -20,7 +20,7 @@ const emitValue = (e: Event) => {
   <label v-if="label" class="block mb-2 text-sm font-medium text-gray-600 dark:text-white">{{ label }}</label>
   <input
     v-bind="$attrs"
-    class="input input-bordered"
+    class="input input-bordered dark:bg-cardBg dark:text-gray-400"
     type="text"
     data-test-id="input"
     :value="value"
