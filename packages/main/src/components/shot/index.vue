@@ -6,6 +6,7 @@
   <div>
     <div class="card w-full cursor-pointer relative group">
       <figure><img class="rounded-lg" src="@/assets/images/image3.jpg" alt="Shoes"></figure>
+      <ShotMask />
     </div>
     <div class="mt-2 flex justify-between items-center">
       <Avatar />

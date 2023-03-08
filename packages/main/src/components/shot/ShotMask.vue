@@ -17,8 +17,14 @@ withDefaults(defineProps<ShotProps>(), {
       {{ title }}
     </span>
     <div class="flex space-x-2">
-      <Action class="w-8 h-8 text-gray-300" icon="material-symbols:create-new-folder" />
-      <Action class="w-8 h-8 text-gray-300" />
+      <Action
+        v-tip="{ content: 'Save shot', placement: 'bottom' }"
+        class="w-8 h-8 text-gray-300" icon="material-symbols:create-new-folder"
+      />
+      <Action
+        v-tip="{ content: 'Like this shot', placement: 'bottom' }"
+        class="w-8 h-8 text-gray-300"
+      />
     </div>
   </div>
 </template>
