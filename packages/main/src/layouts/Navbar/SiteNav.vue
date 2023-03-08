@@ -52,7 +52,9 @@ onUnmounted(() => {
         v-for="n in navs"
         :key="n.name" class="flex"
       >
-        <Link class="no-underline" :text="n.name" />
+        <Dropdown>
+          <Link class="no-underline" :text="n.name" />
+        </Dropdown>
       </li>
     </ul>
   </div>

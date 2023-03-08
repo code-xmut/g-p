@@ -75,7 +75,7 @@ const drawerMenus = computed(() => {
   <div
     v-if="show"
     style="height: calc(100vh - 68px);"
-    class="w-full overflow-y-scroll absolute bottom-0 left-0 p-4"
+    class="w-full overflow-y-scroll absolute bottom-0 bg-white dark:bg-darkBg left-0 p-4 z-50"
   >
     <Input class="w-full" show-icon />
     <template v-for="d in drawerMenus" :key="d.name">

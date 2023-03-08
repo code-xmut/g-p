@@ -9,10 +9,16 @@
       </div>
     </li>
     <li>
-      <Link class="no-underline" text="Sign in" />
+      <Link
+        class="no-underline" text="Sign in"
+        @click="$router.push({ name: 'auth', query: { pattern: 'login' } })"
+      />
     </li>
     <li class="hidden lg:block">
-      <Button class="btn btn-secondary" text="Sign up" />
+      <Button
+        class="btn btn-secondary" text="Sign up"
+        @click="$router.push({ name: 'auth', query: { pattern: 'register' } })"
+      />
     </li>
   </ul>
 </template>

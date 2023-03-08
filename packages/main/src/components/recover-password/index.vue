@@ -12,5 +12,5 @@ const email = ref('')
     {{ $t('recover.description') }}
   </p>
   <RecoverPasswordForm />
-  <Link class="mt-4" :text="$t('recover.back_to_login')" @click="$router.push({ name: 'login', query: { pattern: 'login' } })" />
+  <Link class="mt-4" :text="$t('recover.back_to_login')" @click="$router.push({ name: 'auth', query: { pattern: 'login' } })" />
 </template>
