@@ -9,7 +9,7 @@
     </span>
     <Link
       :text="$t('register.go_to_login')"
-      @click="$router.push({ name: 'login', query: { pattern: 'login' } })"
+      @click="$router.push({ name: 'auth', query: { pattern: 'login' } })"
     />
   </div>
   <div class="text-xs text-center mt-20 md:mt-1 lg:mt-20">

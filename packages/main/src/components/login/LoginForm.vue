@@ -43,7 +43,7 @@ const { submit } = submitter(async ({ form }) => {
       <Input v-model:value="form[f.key]" :label="$t(f.i18nKey)" class="w-72" :placeholder="$t(f.i18nKey)" />
     </div>
     <div class="text-center mt-3 my-2">
-      <Link :text="$t('login.recover_password')" @click="$router.push({ name: 'login', query: { pattern: 'recover' } })" />
+      <Link :text="$t('login.recover_password')" @click="$router.push({ name: 'auth', query: { pattern: 'recover' } })" />
       <span class="text-gray-400 mx-6">|</span>
       <Link :text="$t('login.confirm_email')" />
     </div>
@@ -57,7 +57,7 @@ const { submit } = submitter(async ({ form }) => {
   <div>
     <p class="text-sm text-center mt-4">
       {{ $t('login.no_account') }}
-      <Link :text="$t('login.register')" @click="$router.push({ name: 'login' })" />
+      <Link :text="$t('login.register')" @click="$router.push({ name: 'auth' })" />
     </p>
   </div>
 </template>
