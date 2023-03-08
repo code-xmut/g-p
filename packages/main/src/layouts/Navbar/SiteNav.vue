@@ -52,6 +52,9 @@ window.addEventListener('resize', resizeHandler)
           <Link class="no-underline" :text="n.name" />
         </Dropdown>
       </li>
+      <li>
+        <DarkMode />
+      </li>
     </ul>
   </div>
 </template>
