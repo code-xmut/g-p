@@ -16,6 +16,8 @@ declare module '@vue/runtime-core' {
     DarkMode: typeof import('./components/DarkMode.vue')['default']
     Drawer: typeof import('./components/Drawer/index.vue')['default']
     Dropdown: typeof import('./components/Dropdown/index.vue')['default']
+    FilterSet: typeof import('./components/Shot/FilterSet.vue')['default']
+    FilterSubNav: typeof import('./components/FilterSubNav.vue')['default']
     Hero: typeof import('./components/Hero/index.vue')['default']
     HeroFooter: typeof import('./components/Hero/HeroFooter.vue')['default']
     HeroImage: typeof import('./components/Hero/HeroImage.vue')['default']
@@ -32,7 +34,9 @@ declare module '@vue/runtime-core' {
     RegisterForm: typeof import('./components/Register/RegisterForm.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Select: typeof import('./components/base/Select.vue')['default']
     Shot: typeof import('./components/Shot/index.vue')['default']
     ShotMask: typeof import('./components/Shot/ShotMask.vue')['default']
+    Swap: typeof import('./components/base/Swap.vue')['default']
   }
 }
