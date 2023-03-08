@@ -9,15 +9,11 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    About: typeof import('./components/About.vue')['default']
-    Avatar: typeof import('./components/Avatar.vue')['default']
     Button: typeof import('./components/base/Button.vue')['default']
-    Card: typeof import('./components/Card.vue')['default']
     Collapse: typeof import('./components/Collapse/index.vue')['default']
     DarkMode: typeof import('./components/DarkMode.vue')['default']
     Drawer: typeof import('./components/drawer/index.vue')['default']
     Dropdown: typeof import('./components/Dropdown/index.vue')['default']
-    HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     Hero: typeof import('./components/hero/index.vue')['default']
     HeroFooter: typeof import('./components/hero/HeroFooter.vue')['default']
     HeroImage: typeof import('./components/hero/HeroImage.vue')['default']
