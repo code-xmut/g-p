@@ -10,7 +10,7 @@ withDefaults(defineProps<LinkProps>(), {
 
 <template>
   <a
-    class="link text-sky-600"
+    class="link no-underline"
     v-bind="$attrs"
   >
     {{ text }}
