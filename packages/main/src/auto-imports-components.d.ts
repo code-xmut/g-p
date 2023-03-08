@@ -14,6 +14,7 @@ declare module '@vue/runtime-core' {
     Button: typeof import('./components/base/Button.vue')['default']
     Card: typeof import('./components/Card.vue')['default']
     Collapse: typeof import('./components/Collapse/index.vue')['default']
+    DarkMode: typeof import('./components/DarkMode.vue')['default']
     Drawer: typeof import('./components/drawer/index.vue')['default']
     Dropdown: typeof import('./components/Dropdown/index.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
