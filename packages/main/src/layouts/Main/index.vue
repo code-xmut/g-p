@@ -3,9 +3,10 @@
 </script>
 
 <template>
-  <main class="p-4">
-    <div class="p-4 min-h-screen dark:border-gray-700">
-      <DarkMode />
+  <Hero />
+  <main class="py-2 px-4">
+    <div class="min-h-screen dark:border-gray-700">
+      main
     </div>
   </main>
 </template>

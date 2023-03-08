@@ -10,8 +10,8 @@ withDefaults(defineProps<LinkProps>(), {
 
 <template>
   <a
-    v-bind="$attrs"
     class="link text-sky-600"
+    v-bind="$attrs"
   >
     {{ text }}
   </a>
