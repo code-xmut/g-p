@@ -3,6 +3,83 @@ import { Icon } from '@iconify/vue'
 
 const show = ref(false)
 const showFilter = ref(false)
+
+const filterSets = computed(() => {
+  return [
+    {
+      title: 'Colors',
+      content: [
+        {
+          name: 'Black',
+        },
+        {
+          name: 'Blue',
+        },
+        {
+          name: 'Brown',
+        },
+        {
+          name: 'Gray',
+        },
+        {
+          name: 'Green',
+        },
+        {
+          name: 'Orange',
+        },
+        {
+          name: 'Pink',
+        },
+        {
+          name: 'Purple',
+        },
+        {
+          name: 'Red',
+        },
+        {
+          name: 'Teal',
+        },
+        {
+          name: 'White',
+        },
+        {
+          name: 'Yellow',
+        },
+      ],
+    },
+    {
+      title: 'TimeFrame',
+      content: [
+        {
+          name: 'Last 24 Hours',
+        },
+        {
+          name: 'Last 7 Days',
+        },
+        {
+          name: 'Last 30 Days',
+        },
+        {
+          name: 'Last 12 Months',
+        },
+      ],
+    },
+    {
+      title: 'Downloads',
+      content: [
+        {
+          name: 'Most Popular',
+        },
+        {
+          name: 'Most Downloaded',
+        },
+        {
+          name: 'Most Viewed',
+        },
+      ],
+    },
+  ]
+})
 </script>
 
 <template>
@@ -23,15 +100,11 @@ const showFilter = ref(false)
     </div>
     <div v-show="showFilter" class="flex flex-col lg:flex-row justify-between pt-4 pb-2">
       <FilterSet />
-      <FilterSet title="Colors">
-        <Select />
-      </FilterSet>
-      <FilterSet title="TimeFrame">
-        <Select />
-      </FilterSet>
-      <FilterSet title="Downloads">
-        <Select />
-      </FilterSet>
+      <template v-for="set in filterSets" :key="set.title">
+        <FilterSet :title="set.title">
+          <Select :content="set.content" />
+        </FilterSet>
+      </template>
     </div>
   </div>
 </template>
