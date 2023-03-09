@@ -1,5 +1,9 @@
 <script setup lang="ts">
+interface OptionsProps {
+  content?: { name: string }[]
+}
 
+defineProps<OptionsProps>()
 </script>
 
 <template>
@@ -7,9 +11,8 @@
     <option disabled selected>
       What is the best TV show?
     </option>
-    <option>Game of Thrones</option>
-    <option>Lost</option>
-    <option>Breaking Bad</option>
-    <option>Walking Dead</option>
+    <template v-for="o in content" :key="o.name">
+      <option>{{ o.name }}</option>
+    </template>
   </select>
 </template>
