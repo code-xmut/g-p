@@ -1,5 +1,14 @@
-import type { CreateUserDto } from '@gp/types';
-import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import type { CreateUserDto, UpdateUserProfileDto } from '@gp/types';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  UseGuards,
+} from '@nestjs/common';
+import { ObjectId } from 'mongoose';
 import { JwtAuthGuards } from 'src/auth/jwt-auth.guard';
 import { User } from './schemas/user.schema';
 import { UsersService } from './users.service';
@@ -22,5 +31,13 @@ export class UsersController {
   @Get('username/:username')
   async isUserNameValid(@Param('username') username: string): Promise<boolean> {
     return this.usersService.isUserNameValid(username);
+  }
+
+  @Put('profile/:id')
+  async updateUserProfileById(
+    @Param('id') id: ObjectId,
+    @Body() user: UpdateUserProfileDto,
+  ): Promise<any> {
+    return this.usersService.updateUserProfileById(id, user);
   }
 }
