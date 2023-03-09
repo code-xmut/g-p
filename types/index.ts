@@ -1,11 +1,13 @@
 import {
   CreateUserDto,
   LoginUserDto,
+  UpdateUserProfileDto
 } from './user';
 
 export type { 
   CreateUserDto,
   LoginUserDto,
+  UpdateUserProfileDto
 };
 
 export interface IMyInterface  {
