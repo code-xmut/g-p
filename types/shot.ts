@@ -1,3 +1,4 @@
+import { Comment } from './comment'
 
 export type Shot = {
   _id?: string;
@@ -11,10 +12,28 @@ export type Shot = {
   likes: number;
   shares: number;
   collections: number;
-  comments: string[];
+  comments: Comment[];
 
   createdAt?: Date;
   updatedAt?: Date;
 
   [key: string]: any;
+}
+
+export type createShotDto = {
+  title: string;
+  description: string;
+  tags: string[];
+  cover: string;
+  content: string;
+  serverUrl: string;
+}
+
+export type updateShotDto = {
+  title?: string;
+  description?: string;
+  tags?: string[];
+  cover?: string;
+  content?: string;
+  serverUrl?: string;
 }

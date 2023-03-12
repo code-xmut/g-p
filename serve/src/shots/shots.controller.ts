@@ -1,42 +1,57 @@
+import { createShotDto, Shot, updateShotDto } from '@gp/types';
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  Query,
 } from '@nestjs/common';
 import { ShotsService } from './shots.service';
-import { CreateShotDto } from './dto/create-shot.dto';
-import { UpdateShotDto } from './dto/update-shot.dto';
 
 @Controller('shots')
 export class ShotsController {
   constructor(private readonly shotsService: ShotsService) {}
 
   @Post()
-  create(@Body() createShotDto: CreateShotDto) {
-    return this.shotsService.create(createShotDto);
+  async create(@Body() shot: createShotDto) {
+    return this.shotsService.createShots(shot);
   }
 
   @Get()
-  findAll() {
+  async findAll() {
     return this.shotsService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.shotsService.findOne(+id);
+  @Get('page')
+  async findPage(
+    @Query('page') page: number,
+    @Query('size') size: number,
+    @Query('sort') sort?: string,
+    @Query('order') order?: string,
+  ) {
+    return this.shotsService.findPage(page, size, sort, order);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateShotDto: UpdateShotDto) {
-    return this.shotsService.update(+id, updateShotDto);
+  @Get(':id')
+  async findShotById(@Param('id') id: string) {
+    return this.shotsService.findShotById(id);
+  }
+
+  @Post(':id')
+  async updateShotById(@Param('id') id: string, @Body() shot: updateShotDto) {
+    return this.shotsService.updateShotById(id, shot);
+  }
+
+  @Put(':id/like')
+  async likeShotById(@Param('id') id: string) {
+    return this.shotsService.likeShotById(id);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.shotsService.remove(+id);
+  async deleteShotById(@Param('id') id: string) {
+    return this.shotsService.deleteShotById(id);
   }
 }

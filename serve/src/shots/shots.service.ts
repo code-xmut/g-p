@@ -1,26 +1,48 @@
 import { Injectable } from '@nestjs/common';
-import { CreateShotDto } from './dto/create-shot.dto';
-import { UpdateShotDto } from './dto/update-shot.dto';
+import { InjectModel } from '@nestjs/mongoose';
+import { createShotDto, updateShotDto } from '@gp/types';
+import { Model } from 'mongoose';
+import { Shot } from './shot.schema';
 
 @Injectable()
 export class ShotsService {
-  create(createShotDto: CreateShotDto) {
-    return 'This action adds a new shot';
+  constructor(
+    @InjectModel(Shot.name)
+    private shotModel: Model<Shot>,
+  ) {}
+
+  async createShots(shot: createShotDto): Promise<Shot> {
+    const createdShot = new this.shotModel(shot);
+    return createdShot.save();
   }
 
-  findAll() {
-    return `This action returns all shots`;
+  async findAll() {
+    return await this.shotModel.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} shot`;
+  async findPage(page: number, size: number, sort?: string, order?: string) {
+    return await this.shotModel
+      .find()
+      .skip((page - 1) * size)
+      .limit(size)
+      .sort({ [sort]: order } as any);
   }
 
-  update(id: number, updateShotDto: UpdateShotDto) {
-    return `This action updates a #${id} shot`;
+  async findShotById(id: string) {
+    return await this.shotModel.findById(id);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} shot`;
+  async updateShotById(id: string, shot: updateShotDto) {
+    return await this.shotModel.findByIdAndUpdate(id, shot);
+  }
+
+  async likeShotById(id: string) {
+    return await this.shotModel.findByIdAndUpdate(id, {
+      $inc: { likes: 1 },
+    });
+  }
+
+  async deleteShotById(id: string) {
+    return await this.shotModel.findByIdAndDelete(id);
   }
 }
