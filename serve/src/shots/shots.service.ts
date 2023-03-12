@@ -1,26 +1,16 @@
 import { Injectable } from '@nestjs/common';
-import { CreateShotDto } from './dto/create-shot.dto';
-import { UpdateShotDto } from './dto/update-shot.dto';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Shot } from './shot.schema';
 
 @Injectable()
 export class ShotsService {
-  create(createShotDto: CreateShotDto) {
-    return 'This action adds a new shot';
-  }
+  constructor(
+    @InjectModel(Shot.name)
+    private shotModel: Model<Shot>,
+  ) {}
 
-  findAll() {
-    return `This action returns all shots`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} shot`;
-  }
-
-  update(id: number, updateShotDto: UpdateShotDto) {
-    return `This action updates a #${id} shot`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} shot`;
+  async findAll() {
+    return await this.shotModel.find();
   }
 }

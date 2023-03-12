@@ -3,9 +3,9 @@ import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { BookModule } from './book/book.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { ShotsModule } from './shots/shots.module';
 
 @Module({
   imports: [
@@ -14,8 +14,8 @@ import { AuthModule } from './auth/auth.module';
       isGlobal: true,
     }),
     MongooseModule.forRoot(process.env.DB_URI),
-    BookModule,
     UsersModule,
+    ShotsModule,
     AuthModule,
   ],
   controllers: [AppController],
