@@ -6,13 +6,20 @@ import {
 
 import { Shot, createShotDto, updateShotDto } from './shot';
 
+import { Comment, createCommentDto, updateCommentDto } from './comment';
+
 export type { 
   CreateUserDto,
   LoginUserDto,
   UpdateUserProfileDto,
+  
   Shot,
   createShotDto,
-  updateShotDto
+  updateShotDto,
+  
+  Comment,
+  createCommentDto,
+  updateCommentDto
 };
 
 export interface IMyInterface  {

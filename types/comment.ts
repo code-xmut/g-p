@@ -10,3 +10,15 @@ export type Comment = {
   updatedAt?: Date;
   [key: string]: any;
 }
+
+export type createCommentDto = {
+  content: string;
+  user: string;
+  shotId: string;
+}
+
+export type updateCommentDto = {
+  content?: string;
+  likes?: number;
+  dislikes?: number;
+}
