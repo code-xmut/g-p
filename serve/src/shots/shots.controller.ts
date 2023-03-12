@@ -17,7 +17,7 @@ export class ShotsController {
   constructor(private readonly shotsService: ShotsService) {}
 
   @Post()
-  async create(@Body() shot: createShotDto): Promise<Shot> {
+  async create(@Body() shot: createShotDto) {
     return this.shotsService.createShots(shot);
   }
 
