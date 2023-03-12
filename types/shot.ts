@@ -18,3 +18,21 @@ export type Shot = {
 
   [key: string]: any;
 }
+
+export type createShotDto = {
+  title: string;
+  description: string;
+  tags: string[];
+  cover: string;
+  content: string;
+  serverUrl: string;
+}
+
+export type updateShotDto = {
+  title?: string;
+  description?: string;
+  tags?: string[];
+  cover?: string;
+  content?: string;
+  serverUrl?: string;
+}

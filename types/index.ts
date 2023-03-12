@@ -4,10 +4,15 @@ import {
   UpdateUserProfileDto
 } from './user';
 
+import { Shot, createShotDto, updateShotDto } from './shot';
+
 export type { 
   CreateUserDto,
   LoginUserDto,
-  UpdateUserProfileDto
+  UpdateUserProfileDto,
+  Shot,
+  createShotDto,
+  updateShotDto
 };
 
 export interface IMyInterface  {
