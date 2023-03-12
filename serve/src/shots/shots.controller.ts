@@ -1,4 +1,4 @@
-import { createShotDto, Shot } from '@gp/types';
+import { createShotDto, Shot, updateShotDto } from '@gp/types';
 import {
   Body,
   Controller,
@@ -9,7 +9,6 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
-import { UpdateShotDto } from './dto/update-shot.dto';
 import { ShotsService } from './shots.service';
 
 @Controller('shots')
@@ -42,7 +41,7 @@ export class ShotsController {
   }
 
   @Post(':id')
-  async updateShotById(@Param('id') id: string, @Body() shot: UpdateShotDto) {
+  async updateShotById(@Param('id') id: string, @Body() shot: updateShotDto) {
     return this.shotsService.updateShotById(id, shot);
   }
 
