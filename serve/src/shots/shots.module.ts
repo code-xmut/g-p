@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ShotsService } from './shots.service';
 import { ShotsController } from './shots.controller';
-import { Mongoose } from 'mongoose';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Shot, ShotSchema } from './shot.schema';
 
@@ -11,5 +10,6 @@ import { Shot, ShotSchema } from './shot.schema';
   ],
   controllers: [ShotsController],
   providers: [ShotsService],
+  exports: [ShotsService],
 })
 export class ShotsModule {}

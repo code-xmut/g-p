@@ -32,6 +32,12 @@ export class ShotsService {
     return await this.shotModel.findById(id);
   }
 
+  async addCommentToShot(id: string, comment: any) {
+    return await this.shotModel.findByIdAndUpdate(id, {
+      $push: { comments: comment },
+    });
+  }
+
   async updateShotById(id: string, shot: updateShotDto) {
     return await this.shotModel.findByIdAndUpdate(id, shot);
   }
