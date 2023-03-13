@@ -34,6 +34,16 @@ export class CommentsController {
     return this.commentsService.updateCommentById(id, comment);
   }
 
+  @Put('like/:id')
+  likeComment(@Param('id') id: string, @Body('userId') userId: string) {
+    return this.commentsService.likeCommentById(id, userId);
+  }
+
+  @Put('dislike/:id')
+  dislikeComment(@Param('id') id: string, @Body('userId') userId: string) {
+    return this.commentsService.dislikeCommentById(id, userId);
+  }
+
   @Delete(':id')
   deleteComment(@Param('id') id: string) {
     return this.commentsService.deleteCommentById(id);

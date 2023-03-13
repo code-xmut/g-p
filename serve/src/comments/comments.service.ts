@@ -37,6 +37,18 @@ export class CommentsService {
     });
   }
 
+  async likeCommentById(id: string, userId: string) {
+    return await this.commentModel.findByIdAndUpdate(id, {
+      $addToSet: { likes: userId },
+    });
+  }
+
+  async dislikeCommentById(id: string, userId: string) {
+    return await this.commentModel.findByIdAndUpdate(id, {
+      $addToSet: { dislikes: userId },
+    });
+  }
+
   async deleteCommentById(id: string) {
     return await this.commentModel.findByIdAndDelete(id);
   }

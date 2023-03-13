@@ -13,10 +13,10 @@ export class Comment {
   @Prop({ required: true })
   shotId: string;
 
-  @Prop({ default: 0 })
-  likes: number;
+  @Prop({ default: [] })
+  likes: any[]; // Set<string>
 
-  @Prop({ default: 0 })
-  dislikes: number;
+  @Prop({ default: [] })
+  dislikes: any[];
 }
 export const CommentSchema = SchemaFactory.createForClass(Comment);

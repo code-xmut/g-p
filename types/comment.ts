@@ -3,8 +3,8 @@ export type Comment = {
   content: string;
   user: string;
   shotId: string;
-  likes: number;
-  dislikes: number;
+  likes: string[];
+  dislikes: string[];
 
   createdAt?: Date;
   updatedAt?: Date;
