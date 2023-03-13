@@ -16,7 +16,13 @@ export class Comment {
   @Prop({ default: [] })
   likes: any[]; // Set<string>
 
+  @Prop({ default: 0 })
+  likesCount: number;
+
   @Prop({ default: [] })
   dislikes: any[];
+
+  @Prop({ default: 0 })
+  dislikesCount: number;
 }
 export const CommentSchema = SchemaFactory.createForClass(Comment);
