@@ -7,6 +7,7 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { ShotsModule } from './shots/shots.module';
 import { CommentsModule } from './comments/comments.module';
+import { UploadModule } from './upload/upload.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { CommentsModule } from './comments/comments.module';
     ShotsModule,
     AuthModule,
     CommentsModule,
+    UploadModule,
   ],
   controllers: [AppController],
   providers: [AppService],
