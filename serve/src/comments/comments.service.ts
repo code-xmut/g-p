@@ -40,12 +40,14 @@ export class CommentsService {
   async likeCommentById(id: string, userId: string) {
     return await this.commentModel.findByIdAndUpdate(id, {
       $addToSet: { likes: userId },
+      $inc: { likesCount: 1 },
     });
   }
 
   async dislikeCommentById(id: string, userId: string) {
     return await this.commentModel.findByIdAndUpdate(id, {
       $addToSet: { dislikes: userId },
+      $inc: { dislikesCount: 1 },
     });
   }
 
