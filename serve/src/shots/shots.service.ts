@@ -28,8 +28,38 @@ export class ShotsService {
       .sort({ [sort]: order } as any);
   }
 
+  findShotByTag(tag: string) {
+    return this.shotModel.find({ tags: tag });
+  }
+
   async findShotById(id: string) {
     return await this.shotModel.findById(id);
+  }
+
+  async findShotsAndSortAscByCreatedAt() {
+    return await this.shotModel.find().sort({ createdAt: 1 });
+  }
+
+  async findShotsAndDescByCreatedAt() {
+    return await this.shotModel.find().sort({ createdAt: -1 });
+  }
+
+  async findShotsAndSorAscByLikes() {
+    return await this.shotModel.find().sort({ likes: 1 });
+  }
+
+  async findShotsAndSortDescByLikes() {
+    return await this.shotModel.find().sort({ likes: -1 });
+  }
+
+  async shotFuseSearch(pattern: string) {
+    return await this.shotModel.find({
+      $or: [
+        { title: { $regex: pattern, $options: 'i' } },
+        { description: { $regex: pattern, $options: 'i' } },
+        { tags: { $regex: pattern, $options: 'i' } },
+      ],
+    });
   }
 
   async addCommentToShot(id: string, comment: any) {
