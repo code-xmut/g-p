@@ -40,6 +40,36 @@ export class ShotsController {
     return this.shotsService.findShotById(id);
   }
 
+  @Get('tag/:tag')
+  async findShotByTag(@Param('tag') tag: string) {
+    return this.shotsService.findShotByTag(tag);
+  }
+
+  @Get('search/:pattern')
+  async shotFuseSearch(@Param('pattern') pattern: string) {
+    return this.shotsService.shotFuseSearch(pattern);
+  }
+
+  @Get('sort/createAt')
+  async findShotsAndSortByCreatedAt() {
+    return this.shotsService.findShotsAndDescByCreatedAt();
+  }
+
+  @Get('sort/createAt/asc')
+  async findShotsAndSortAscByCreatedAt() {
+    return this.shotsService.findShotsAndSortAscByCreatedAt();
+  }
+
+  @Get('sort/likes')
+  async findShotsAndSortByLikes() {
+    return this.shotsService.findShotsAndSortDescByLikes();
+  }
+
+  @Get('sort/likes/asc')
+  async findShotsAndSortAscByLikes() {
+    return this.shotsService.findShotsAndSorAscByLikes();
+  }
+
   @Post(':id')
   async updateShotById(@Param('id') id: string, @Body() shot: updateShotDto) {
     return this.shotsService.updateShotById(id, shot);
