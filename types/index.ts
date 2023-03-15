@@ -8,6 +8,8 @@ import { Shot, createShotDto, updateShotDto } from './shot';
 
 import { Comment, createCommentDto, updateCommentDto } from './comment';
 
+import { Tag, createTagDto, updateTagDto } from './tag'
+
 export type { 
   CreateUserDto,
   LoginUserDto,
@@ -19,7 +21,11 @@ export type {
   
   Comment,
   createCommentDto,
-  updateCommentDto
+  updateCommentDto,
+
+  Tag,
+  createTagDto,
+  updateTagDto
 };
 
 export interface IMyInterface  {

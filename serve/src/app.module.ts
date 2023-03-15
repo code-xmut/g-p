@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { ShotsModule } from './shots/shots.module';
 import { CommentsModule } from './comments/comments.module';
 import { UploadModule } from './upload/upload.module';
+import { TagsModule } from './tags/tags.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { UploadModule } from './upload/upload.module';
     AuthModule,
     CommentsModule,
     UploadModule,
+    TagsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
