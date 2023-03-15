@@ -33,8 +33,6 @@ declare module '@vue/runtime-core' {
     Register: typeof import('./components/Register/index.vue')['default']
     RegisterFooter: typeof import('./components/Register/RegisterFooter.vue')['default']
     RegisterForm: typeof import('./components/Register/RegisterForm.vue')['default']
-    RouterLink: typeof import('vue-router')['RouterLink']
-    RouterView: typeof import('vue-router')['RouterView']
     Select: typeof import('./components/base/Select.vue')['default']
     Shot: typeof import('./components/Shot/index.vue')['default']
     ShotMask: typeof import('./components/Shot/ShotMask.vue')['default']

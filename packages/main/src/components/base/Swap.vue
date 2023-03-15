@@ -2,8 +2,8 @@
 import { Icon } from '@iconify/vue'
 
 interface SwapProps {
-  fIcon: string
-  sIcon: string
+  fIcon?: string
+  sIcon?: string
 }
 
 withDefaults(defineProps<SwapProps>(), {
