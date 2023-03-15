@@ -18,6 +18,7 @@ declare module '@vue/runtime-core' {
     Dropdown: typeof import('./components/Dropdown/index.vue')['default']
     FilterSet: typeof import('./components/Shot/FilterSet.vue')['default']
     FilterSubNav: typeof import('./components/FilterSubNav.vue')['default']
+    Footer: typeof import('./components/footer/index.vue')['default']
     Hero: typeof import('./components/Hero/index.vue')['default']
     HeroFooter: typeof import('./components/Hero/HeroFooter.vue')['default']
     HeroImage: typeof import('./components/Hero/HeroImage.vue')['default']
