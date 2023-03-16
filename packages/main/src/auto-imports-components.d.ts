@@ -12,6 +12,7 @@ declare module '@vue/runtime-core' {
     Action: typeof import('./components/Action.vue')['default']
     Avatar: typeof import('./components/Avatar.vue')['default']
     Button: typeof import('./components/base/Button.vue')['default']
+    Card: typeof import('./components/base/Card.vue')['default']
     Collapse: typeof import('./components/Collapse/index.vue')['default']
     DarkMode: typeof import('./components/DarkMode.vue')['default']
     Drawer: typeof import('./components/Drawer/index.vue')['default']
@@ -30,6 +31,7 @@ declare module '@vue/runtime-core' {
     OtherLoginWays: typeof import('./components/Login/OtherLoginWays.vue')['default']
     Profile: typeof import('./components/profile/index.vue')['default']
     ProfileInfo: typeof import('./components/profile/ProfileInfo.vue')['default']
+    ProfileTabs: typeof import('./components/tabs/ProfileTabs.vue')['default']
     RecoverPassword: typeof import('./components/RecoverPassword/index.vue')['default']
     RecoverPasswordForm: typeof import('./components/RecoverPassword/RecoverPasswordForm.vue')['default']
     Register: typeof import('./components/Register/index.vue')['default']
@@ -39,5 +41,9 @@ declare module '@vue/runtime-core' {
     Shot: typeof import('./components/Shot/index.vue')['default']
     ShotMask: typeof import('./components/Shot/ShotMask.vue')['default']
     Swap: typeof import('./components/base/Swap.vue')['default']
+    Tabs: typeof import('./components/tabs/index.vue')['default']
+    WorkCard: typeof import('./components/profile/WorkCard.vue')['default']
+    WorkCark: typeof import('./components/profile/WorkCard.vue')['default']
+    WorkTab: typeof import('./components/profile/WorkTab.vue')['default']
   }
 }
