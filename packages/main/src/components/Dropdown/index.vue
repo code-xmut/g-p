@@ -1,6 +1,6 @@
 <script setup lang="ts">
 interface DropDownProps {
-  trigger: 'click' | 'hover'
+  trigger?: 'click' | 'hover'
 }
 
 withDefaults(defineProps<DropDownProps>(), {
