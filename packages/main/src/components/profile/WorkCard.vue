@@ -1,0 +1,28 @@
+<script setup lang="ts">
+</script>
+
+<template>
+  <ul class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+    <li>
+      <Card class="min-h-[320px] lg:min-h-[360px] border-2 border-dashed flex flex-col justify-center items-center">
+        <h1 class="text-3xl md:text-xl xl:text-3xl text-gray-900 dark:text-gray-500">
+          Upload your first shot
+        </h1>
+        <p class="text-center px-10 my-4">
+          Show off your best work. Get feedback, likes and be a part of a growing community.
+        </p>
+        <Button text="Upload your first shot" class="btn-secondary" />
+      </Card>
+    </li>
+    <li v-for="i in 5" :key="i">
+      <Card class="min-h-[320px] lg:min-h-[360px] empty-shot-item" />
+    </li>
+  </ul>
+</template>
+
+<style scoped>
+.empty-shot-item {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.03)), to(transparent));
+    background: linear-gradient(180deg, rgba(0,0,0,0.03) 0%, transparent 100%);
+}
+</style>
