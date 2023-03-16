@@ -1,6 +1,6 @@
 <script setup lang="ts">
 interface ShotProps {
-  title: string
+  title?: string
 }
 
 withDefaults(defineProps<ShotProps>(), {

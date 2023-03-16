@@ -28,6 +28,8 @@ declare module '@vue/runtime-core' {
     LoginForm: typeof import('./components/Login/LoginForm.vue')['default']
     LoginGirl: typeof import('./components/LoginGirl.vue')['default']
     OtherLoginWays: typeof import('./components/Login/OtherLoginWays.vue')['default']
+    Profile: typeof import('./components/profile/index.vue')['default']
+    ProfileInfo: typeof import('./components/profile/ProfileInfo.vue')['default']
     RecoverPassword: typeof import('./components/RecoverPassword/index.vue')['default']
     RecoverPasswordForm: typeof import('./components/RecoverPassword/RecoverPasswordForm.vue')['default']
     Register: typeof import('./components/Register/index.vue')['default']

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import Navbar from './Navbar/index.vue'
-import Main from './Main/index.vue'
 </script>
 
 <template>
@@ -9,7 +8,8 @@ import Main from './Main/index.vue'
       <Navbar />
     </header>
     <main>
-      <Main />
+      <router-view />
     </main>
+    <Footer />
   </div>
 </template>
