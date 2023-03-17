@@ -26,7 +26,7 @@ const activateTab = (index: number) => {
       {{ t.name }}
     </a>
   </div>
-  <div class="tab-content py-6 px-4">
+  <div class="tab-content py-6 px-4 lg:px-0">
     <slot :name="tabs[activeTab].slotName" />
   </div>
 </template>

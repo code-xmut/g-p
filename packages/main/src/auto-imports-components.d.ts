@@ -20,10 +20,12 @@ declare module '@vue/runtime-core' {
     FilterSet: typeof import('./components/Shot/FilterSet.vue')['default']
     FilterSubNav: typeof import('./components/FilterSubNav.vue')['default']
     Footer: typeof import('./components/footer/index.vue')['default']
+    Grid: typeof import('./components/base/Grid.vue')['default']
     Hero: typeof import('./components/Hero/index.vue')['default']
     HeroFooter: typeof import('./components/Hero/HeroFooter.vue')['default']
     HeroImage: typeof import('./components/Hero/HeroImage.vue')['default']
     Input: typeof import('./components/base/Input.vue')['default']
+    LikeShotsTab: typeof import('./components/profile/LikeShotsTab.vue')['default']
     Link: typeof import('./components/base/Link.vue')['default']
     Login: typeof import('./components/Login/index.vue')['default']
     LoginForm: typeof import('./components/Login/LoginForm.vue')['default']
@@ -43,7 +45,6 @@ declare module '@vue/runtime-core' {
     Swap: typeof import('./components/base/Swap.vue')['default']
     Tabs: typeof import('./components/tabs/index.vue')['default']
     WorkCard: typeof import('./components/profile/WorkCard.vue')['default']
-    WorkCark: typeof import('./components/profile/WorkCard.vue')['default']
     WorkTab: typeof import('./components/profile/WorkTab.vue')['default']
   }
 }
