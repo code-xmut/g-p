@@ -35,7 +35,7 @@ const tabs = reactive([
         boosted shot
       </template>
       <template #Collections>
-        collections
+        <CollectionsTab />
       </template>
       <template #LikedShots>
         <LikeShotsTab />
