@@ -5,7 +5,7 @@
 <template>
   <ul class=" w-full cursor-pointer">
     <li>
-      <a href="" class="group text-center">
+      <div class="group text-center">
         <Card>
           <img class=" rounded-tl-md rounded-tr-md " src="@/assets/images/image1.jpg" alt="">
           <ul class="grid grid-cols-3 gap-1 mt-1">
@@ -27,7 +27,7 @@
             <span>3 shots · 3 designer</span>
           </div>
         </Card>
-      </a>
+      </div>
     </li>
   </ul>
 </template>
