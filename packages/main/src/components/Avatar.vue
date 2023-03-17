@@ -20,7 +20,7 @@ withDefaults(defineProps<AvatarProps>(), {
         <img src="@/assets/images/image2.jpg">
       </div>
     </div>
-    <p v-if="showStatus" class="ml-2 text-sm font-semibold">
+    <p v-if="showStatus" class="ml-2 text-sm font-semibold text-gray-900 dark:text-gray-500">
       John Doe
     </p>
   </div>
