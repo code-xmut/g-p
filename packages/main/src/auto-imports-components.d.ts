@@ -27,6 +27,7 @@ declare module '@vue/runtime-core' {
     Input: typeof import('./components/Base/Input.vue')['default']
     LikeShotsTab: typeof import('./components/Profile/LikeShotsTab.vue')['default']
     Link: typeof import('./components/Base/Link.vue')['default']
+    Loading: typeof import('./components/Loading/index.vue')['default']
     Login: typeof import('./components/Login/index.vue')['default']
     LoginForm: typeof import('./components/Login/LoginForm.vue')['default']
     LoginGirl: typeof import('./components/LoginGirl.vue')['default']
