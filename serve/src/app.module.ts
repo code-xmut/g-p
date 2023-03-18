@@ -9,6 +9,7 @@ import { ShotsModule } from './shots/shots.module';
 import { CommentsModule } from './comments/comments.module';
 import { UploadModule } from './upload/upload.module';
 import { TagsModule } from './tags/tags.module';
+import { CollectionModule } from './collection/collection.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { TagsModule } from './tags/tags.module';
     CommentsModule,
     UploadModule,
     TagsModule,
+    CollectionModule,
   ],
   controllers: [AppController],
   providers: [AppService],
