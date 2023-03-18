@@ -37,4 +37,5 @@ export class Shot {
   @Prop()
   comments: string[];
 }
+export type ShotDocument = Shot & Document;
 export const ShotSchema = SchemaFactory.createForClass(Shot);

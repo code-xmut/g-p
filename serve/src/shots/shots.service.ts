@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { createShotDto, updateShotDto } from '@gp/types';
 import { Model } from 'mongoose';
-import { Shot } from './shot.schema';
+import { Shot, ShotDocument } from './shot.schema';
 
 @Injectable()
 export class ShotsService {
@@ -28,7 +28,7 @@ export class ShotsService {
       .sort({ [sort]: order } as any);
   }
 
-  findShotByTag(tag: string) {
+  findShotByTag(tag: string): Promise<ShotDocument[]> {
     return this.shotModel.find({ tags: tag });
   }
 
