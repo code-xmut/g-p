@@ -14,11 +14,11 @@ withDefaults(
 
 <template>
   <button
-    v-bind="$attrs"
     class="btn"
     :class="[
       { 'opacity-50 cursor-not-allowed': disabled },
     ]"
+    v-bind="$attrs"
     :disabled="disabled"
   >
     <slot v-if="$slots.frontIcon" name="frontIcon" />

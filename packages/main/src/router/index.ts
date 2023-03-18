@@ -21,7 +21,13 @@ const router = createRouter({
           path: 'profile',
           name: 'profile',
           component: () => import('@/pages/profile.vue'),
-        }],
+        },
+        {
+          path: 'collections',
+          name: 'collections',
+          component: () => import('@/pages/collections.vue'),
+        },
+      ],
     },
     {
       path: '/auth',
