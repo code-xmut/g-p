@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <footer class="footer p-10 text-base-content">
+  <footer class="footer px-2.5 py-10 lg:p-10 text-base-content">
     <div>
       <span class="footer-title">Social</span>
       <div class="grid grid-flow-col gap-4">
