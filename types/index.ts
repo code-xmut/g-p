@@ -1,7 +1,7 @@
 import {
   CreateUserDto,
   LoginUserDto,
-  UpdateUserProfileDto
+  UpdateUserProfileDto,
 } from './user';
 import { Shot, createShotDto, updateShotDto } from './shot';
 import { Comment, createCommentDto, updateCommentDto } from './comment';

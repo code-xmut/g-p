@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import type { CreateUserDto } from '@gp/types'
 import { useForm } from 'slimeform'
-import { useRequest } from '@/composables'
-
-const { post } = useRequest()
+import { authApi } from '@/api'
 
 const createUserDto = reactive<CreateUserDto>({
-  name: '',
+  username: '',
   email: '',
   password: '',
 })
@@ -14,8 +12,8 @@ const createUserDto = reactive<CreateUserDto>({
 const forms = computed(() => {
   return [
     {
-      key: 'name',
-      label: 'Name',
+      key: 'username',
+      label: 'userName',
       i18nKey: 'auth.username',
     },
     {
@@ -33,14 +31,15 @@ const forms = computed(() => {
 
 const { form, submitter } = useForm({
   form: () => ({
-    name: createUserDto.name,
+    username: createUserDto.username,
     email: createUserDto.email,
     password: createUserDto.password,
   } as CreateUserDto),
 })
 
 const { submit } = submitter(async ({ form }) => {
-  const { data } = await post('/users/register', form)
+  const { data } = await authApi.register(form)
+  console.log(data)
 })
 </script>
 

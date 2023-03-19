@@ -12,7 +12,7 @@ const pattern = computed(() => {
   return 'register'
 })
 
-useTitle('Login | Capalot')
+useTitle('Capalot - auth')
 </script>
 
 <template>
