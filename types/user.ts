@@ -1,7 +1,6 @@
-import { ObjectId } from "mongoose";
-
 export type User = {
-  _id?: ObjectId
+  _id?: string
+
   name: string;
   username: string;
   email: string;
@@ -11,16 +10,17 @@ export type User = {
   password: string;
   createdAt?: Date;
   updatedAt?: Date;
-  likes?: ObjectId[];
-  collections?: ObjectId[];
-  shots?: ObjectId[];
+  likes?: string[];
+  collections?: string[];
+  shots?: string[];
 
   [key: string]: any;
 }
 
 
-export type CreateUserDto = Pick<User, "name" | "username" | "email" | "password">;
+export type CreateUserDto = Pick<User, "username" | "email" | "password"> & { [key: string]: any };
 
-export type LoginUserDto = Pick<CreateUserDto, "email" | "password">;
+export type LoginUserDto = Pick<CreateUserDto, "password"> & Partial<Pick<CreateUserDto, "username" | "email">> & { [key: string]: any };
 
 export type UpdateUserProfileDto = Partial<Pick<User, "name" | "bio" | "location">>;
+

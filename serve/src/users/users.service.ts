@@ -54,7 +54,6 @@ export class UsersService {
   }
 
   async create(user: CreateUserDto): Promise<User> {
-    const newUser = new this.userModel(user);
-    return await newUser.save();
+    return await this.userModel.create(user);
   }
 }

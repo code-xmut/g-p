@@ -12,8 +12,10 @@ importers:
       '@iconify-json/logos': ^1.1.23
       '@iconify-json/mdi': ^1.1.47
       '@iconify/vue': ^4.1.0
+      '@tailwindcss/typography': ^0.5.9
       '@types/jsdom': ^21.1.0
       '@types/lodash-es': ^4.17.6
+      '@types/marked': ^4.0.8
       '@types/node': ^18.14.2
       '@vitejs/plugin-vue': ^4.0.0
       '@vue/test-utils': ^2.3.0
@@ -25,6 +27,7 @@ importers:
       jsdom: ^21.1.0
       lint-staged: ^13.1.2
       lodash-es: ^4.17.21
+      marked: ^4.2.12
       pinia: ^2.0.32
       postcss: ^8.4.21
       qiankun: ^2.10.1
@@ -50,6 +53,7 @@ importers:
       axios: 1.3.4
       daisyui: 2.51.3_gbtt6ss3tbiz4yjtvdr6fbrj44
       lodash-es: 4.17.21
+      marked: 4.2.12
       pinia: 2.0.32_hmuptsblhheur2tugfgucj7gc4
       qiankun: 2.10.1
       slimeform: 0.9.1_vue@3.2.47
@@ -61,8 +65,10 @@ importers:
     devDependencies:
       '@antfu/eslint-config': 0.35.3_ycpbpc6yetojsgtrx3mwntkhsu
       '@gp/types': link:../../types
+      '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.7
       '@types/jsdom': 21.1.0
       '@types/lodash-es': 4.17.6
+      '@types/marked': 4.0.8
       '@types/node': 18.14.2
       '@vitejs/plugin-vue': 4.0.0_vite@4.1.4+vue@3.2.47
       '@vue/test-utils': 2.3.0_vue@3.2.47
@@ -1694,6 +1700,18 @@ packages:
       '@sinonjs/commons': 2.0.0
     dev: true
 
+  /@tailwindcss/typography/0.5.9_tailwindcss@3.2.7:
+    resolution: {integrity: sha512-t8Sg3DyynFysV9f4JDOVISGsjazNb48AeIYQwcL+Bsq5uf4RYL75C1giZ43KISjeDGBaTN3Kxh7Xj/vRSMJUUg==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || insiders'
+    dependencies:
+      lodash.castarray: 4.4.0
+      lodash.isplainobject: 4.0.6
+      lodash.merge: 4.6.2
+      postcss-selector-parser: 6.0.10
+      tailwindcss: 3.2.7_postcss@8.4.21
+    dev: true
+
   /@tootallnate/once/2.0.0:
     resolution: {integrity: sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==}
     engines: {node: '>= 10'}
@@ -1867,6 +1885,10 @@ packages:
 
   /@types/lodash/4.14.191:
     resolution: {integrity: sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==}
+    dev: true
+
+  /@types/marked/4.0.8:
+    resolution: {integrity: sha512-HVNzMT5QlWCOdeuBsgXP8EZzKUf0+AXzN+sLmjvaB3ZlLqO+e4u0uXrdw9ub69wBKFs+c6/pA4r9sy6cCDvImw==}
     dev: true
 
   /@types/mdast/3.0.10:
@@ -5990,6 +6012,14 @@ packages:
     resolution: {integrity: sha1-DM8tiRZq8Ds2Y8eWU4t1rG4RTZ0=}
     dev: true
 
+  /lodash.castarray/4.4.0:
+    resolution: {integrity: sha1-wCUTUV4wna3dTCTGDP3c9ZdtkRU=}
+    dev: true
+
+  /lodash.isplainobject/4.0.6:
+    resolution: {integrity: sha1-fFJqUtibRcRcxpC4gWO+BJf1UMs=}
+    dev: true
+
   /lodash.memoize/4.1.2:
     resolution: {integrity: sha1-vMbEmkKihA7Zl/Mj6tpezRguC/4=}
     dev: true
@@ -6110,6 +6140,12 @@ packages:
     dependencies:
       tmpl: 1.0.5
     dev: true
+
+  /marked/4.2.12:
+    resolution: {integrity: sha512-yr8hSKa3Fv4D3jdZmtMMPghgVt6TWbk86WQaWhDloQjRSQhMMYCAro7jP7VDJrjjdV8pxVxMssXS8B8Y5DZ5aw==}
+    engines: {node: '>= 12'}
+    hasBin: true
+    dev: false
 
   /mdast-util-from-markdown/0.8.5:
     resolution: {integrity: sha512-2hkTXtYYnr+NubD/g6KGBS/0mFmBcifAsI0yIWRiRo0PjVs6SSOSOdtzbp6kSGnShDN6G5aWZpKQ2lWRy27mWQ==}
@@ -6879,6 +6915,14 @@ packages:
     dependencies:
       postcss: 8.4.21
       postcss-selector-parser: 6.0.11
+
+  /postcss-selector-parser/6.0.10:
+    resolution: {integrity: sha512-IQ7TZdoaqbT+LCpShg46jnZVlhWD2w6iQYAcYXfHARZ7X1t/UGhhceQDs5X0cGqKvYlHNOuv7Oa1xmb0oQuA3w==}
+    engines: {node: '>=4'}
+    dependencies:
+      cssesc: 3.0.0
+      util-deprecate: 1.0.2
+    dev: true
 
   /postcss-selector-parser/6.0.11:
     resolution: {integrity: sha512-zbARubNdogI9j7WY4nQJBiNqQf3sLS3wCP4WfOidu+p28LofJqDH1tcXypGrcmMHhDk2t9wGhCsYe/+szLTy1g==}

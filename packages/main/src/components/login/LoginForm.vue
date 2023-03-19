@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { useForm } from 'slimeform'
 import type { LoginUserDto } from '@gp/types'
-import { useRequest } from '@/composables'
-
-const { post } = useRequest()
+import { authApi } from '@/api'
 
 const loginForm = reactive<LoginUserDto>({
   username: '',
@@ -33,7 +31,7 @@ const { form, submitter } = useForm({
 })
 
 const { submit } = submitter(async ({ form }) => {
-  const { data } = await post('/login', form)
+  const { data } = await authApi.login(form)
 })
 </script>
 

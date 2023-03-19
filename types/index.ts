@@ -1,12 +1,13 @@
 import {
   CreateUserDto,
   LoginUserDto,
-  UpdateUserProfileDto
+  UpdateUserProfileDto,
 } from './user';
 import { Shot, createShotDto, updateShotDto } from './shot';
 import { Comment, createCommentDto, updateCommentDto } from './comment';
 import { Tag, createTagDto, updateTagDto } from './tag'
 import { Collection,createCollectionDto, updateCollectionDto } from './collections';
+import { Likes } from './likes';
 
 
 export type { 
@@ -28,7 +29,9 @@ export type {
 
   Collection,
   createCollectionDto,
-  updateCollectionDto
+  updateCollectionDto,
+
+  Likes
 };
 
 export interface IMyInterface  {
