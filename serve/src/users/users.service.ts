@@ -50,7 +50,7 @@ export class UsersService {
   }
 
   async findOne(username: string): Promise<User | undefined> {
-    return this.userModel.findOne({ username });
+    return await this.userModel.findOne({ username });
   }
 
   async create(user: CreateUserDto): Promise<User> {

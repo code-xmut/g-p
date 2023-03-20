@@ -40,4 +40,9 @@ export class UsersController {
   ): Promise<any> {
     return this.usersService.updateUserProfileById(id, user);
   }
+
+  @Get(':userName')
+  async getUserByUsername(@Param('userName') userName: string): Promise<User> {
+    return this.usersService.findOne(userName);
+  }
 }
