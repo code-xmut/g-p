@@ -1,5 +1,5 @@
-import { defineStore } from 'pinia'
+import { useUserStore } from './user'
 
-export const useUserStore = defineStore('user', () => {
-  const user = ref()
-})
+export {
+  useUserStore,
+}
