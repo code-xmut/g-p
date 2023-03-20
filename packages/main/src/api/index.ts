@@ -1,3 +1,4 @@
 import * as authApi from './auth'
+import * as userApi from './user'
 
-export { authApi }
+export { authApi, userApi }

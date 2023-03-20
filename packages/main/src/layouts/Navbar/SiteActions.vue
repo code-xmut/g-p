@@ -2,8 +2,10 @@
 import SiteActionsLogged from './SiteActionsLogged.vue'
 
 const logged = computed((): boolean => {
-  const user = JSON.parse(localStorage.getItem('user') || '{}')
-  return user && user.token
+  const token = localStorage.getItem('token') || '{}'
+  if (token === '{}')
+    return false
+  return true
 })
 </script>
 
@@ -14,7 +16,7 @@ const logged = computed((): boolean => {
         <Input show-icon />
       </div>
     </li>
-    <template v-if="logged">
+    <template v-if="!logged">
       <li>
         <Link
           class="no-underline" text="Sign in"
