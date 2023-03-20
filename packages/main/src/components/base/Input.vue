@@ -5,9 +5,21 @@ export interface Props {
   showIcon?: boolean
   label?: string
   value?: string
+  type?: string
+  withRule: boolean
+  rule?: string
+  isError?: boolean
 }
 
-defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  showIcon: false,
+  label: '',
+  value: '',
+  type: 'text',
+  withRule: false,
+  rule: '',
+  isError: false,
+})
 
 const emit = defineEmits(['update:value'])
 
@@ -30,11 +42,17 @@ const emitValue = (e: Event) => {
         {
           'pl-10': showIcon,
         },
+        {
+          'border-red-600': isError,
+        },
       ]"
-      type="text"
+      :type="type"
       data-test-id="input"
       :value="value"
       @input="emitValue"
     >
+    <p v-if="withRule" class="text-sm text-red-600 mt-2">
+      {{ rule }}
+    </p>
   </div>
 </template>
