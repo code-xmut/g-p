@@ -8,10 +8,10 @@ export interface Props {
   type?: string
   withRule?: boolean
   rule?: string
+  customRule?: string
   isError?: boolean
 }
-
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   showIcon: false,
   label: '',
   value: '',
@@ -52,7 +52,7 @@ const emitValue = (e: Event) => {
       @input="emitValue"
     >
     <p v-if="withRule" class="text-sm text-red-600 mt-2">
-      {{ rule }}
+      {{ (customRule && label === $t('auth.username')) ? customRule : rule }}
     </p>
   </div>
 </template>
