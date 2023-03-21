@@ -6,7 +6,7 @@ export interface Props {
   label?: string
   value?: string
   type?: string
-  withRule: boolean
+  withRule?: boolean
   rule?: string
   isError?: boolean
 }
