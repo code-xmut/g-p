@@ -18,7 +18,7 @@ export class UsersService {
   async isUserNameValid(username: string): Promise<boolean> {
     const user = await this.userModel.findOne({ username });
     if (user) {
-      throw new NotFoundException('Username already exists.');
+      return false;
     }
 
     return true;
@@ -54,6 +54,12 @@ export class UsersService {
   }
 
   async create(user: CreateUserDto): Promise<User> {
-    return await this.userModel.create(user);
+    const isUserNameAvailable = await this.isUserNameValid(user.username);
+
+    if (isUserNameAvailable) {
+      return await this.userModel.create(user);
+    }
+
+    throw new NotFoundException('Username already exists.');
   }
 }

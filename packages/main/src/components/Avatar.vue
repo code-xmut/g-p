@@ -2,6 +2,7 @@
 interface AvatarProps {
   showStatus?: boolean
   sizeClass?: string
+  userName?: string
 }
 
 withDefaults(defineProps<AvatarProps>(), {
@@ -21,7 +22,7 @@ withDefaults(defineProps<AvatarProps>(), {
       </div>
     </div>
     <p v-if="showStatus" class="ml-2 text-sm font-semibold text-gray-900 dark:text-gray-500">
-      John Doe
+      {{ userName }}
     </p>
   </div>
 </template>
