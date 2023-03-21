@@ -3,7 +3,8 @@ import { useForm } from 'slimeform'
 import { useRouter } from 'vue-router'
 import type { LoginUserDto } from '@gp/types'
 import { useStorage } from '@vueuse/core'
-import { authApi } from '@/api'
+import { useUserStore } from '@/store'
+import { authApi, userApi } from '@/api'
 
 const loginForm = reactive<LoginUserDto>({
   username: '',
@@ -11,6 +12,7 @@ const loginForm = reactive<LoginUserDto>({
 })
 
 const router = useRouter()
+const store = useUserStore()
 const forms = computed(() => {
   return [
     {
@@ -50,6 +52,9 @@ const { submit } = submitter(async ({ form }) => {
 
   if (data && data.access_token) {
     useStorage('token', data.access_token)
+    const { data: user } = await userApi.getUser(form.username)
+    store.setUser(user)
+
     router.push('/')
   }
 })
