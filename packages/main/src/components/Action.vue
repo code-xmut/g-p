@@ -3,7 +3,7 @@ import { Icon } from '@iconify/vue'
 
 interface ActionProps {
   icon?: string
-  text?: string
+  text?: string | number
 }
 
 withDefaults(defineProps<ActionProps>(), {
@@ -18,7 +18,7 @@ withDefaults(defineProps<ActionProps>(), {
       class="w-4 h-4 cursor-pointer hover:text-red-500"
       v-bind="$attrs"
     />
-    <span v-if="text && text.length > 0" class="ml-1">
+    <span v-if="text" class="ml-1">
       {{ text }}
     </span>
   </div>

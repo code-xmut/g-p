@@ -4,16 +4,18 @@ interface ShotProps {
 }
 
 withDefaults(defineProps<ShotProps>(), {
-  title: 'Rich4st Shot',
+  title: 'Rich4st Shot Rich4st Shot Rich4st Shot Rich4st Shot Rich4st Shot',
 })
+
+// tailwindcss 设置文字最多两行，超出显示省略号
 </script>
 
 <template>
   <div
     class="absolute w-full left-0 bottom-0 text-white hidden py-4 bg-gradient-to-t from-black to-transparent
-        font-semibold px-4 group-hover:flex justify-between items-center"
+        px-4 group-hover:flex justify-between items-center"
   >
-    <span>
+    <span class="text-sm line-clamp-2">
       {{ title }}
     </span>
     <div class="flex space-x-2">
