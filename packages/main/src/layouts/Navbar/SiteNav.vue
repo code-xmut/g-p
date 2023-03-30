@@ -45,7 +45,9 @@ onUnmounted(() => {
   <Drawer :show="showDrawer" />
   <div class="flex justify-center items-center">
     <a href="#">
-      <img src="@/assets/images/image2.jpg" class="w-12 h-12 rounded-full" alt="">
+      <RouterLink to="/">
+        <img src="@/assets/images/image2.jpg" class="w-12 h-12 rounded-full" alt="">
+      </RouterLink>
     </a>
     <ul class="space-x-6 ml-6 text-sm hidden lg:flex">
       <li
