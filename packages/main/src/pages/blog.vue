@@ -13,5 +13,5 @@ onMounted(() => {
 </script>
 
 <template>
-  <div id="subapp-viewport" />
+  <div id="subapp-viewport" class="py-2 px-[3vw]" />
 </template>

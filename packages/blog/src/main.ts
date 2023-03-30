@@ -3,6 +3,7 @@ import { App, createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router';
 import AppVue from './App.vue'
 import routes from './router';
+import './style.css'
 
 declare const window: {
   __POWERED_BY_QIANKUN__: boolean
