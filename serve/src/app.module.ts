@@ -11,6 +11,7 @@ import { UploadModule } from './upload/upload.module';
 import { TagsModule } from './tags/tags.module';
 import { CollectionModule } from './collection/collection.module';
 import { LikesModule } from './likes/likes.module';
+import { MailModule } from './mail/mail.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { LikesModule } from './likes/likes.module';
     TagsModule,
     CollectionModule,
     LikesModule,
+    MailModule,
   ],
   controllers: [AppController],
   providers: [AppService],
