@@ -8,6 +8,7 @@ import { Comment, createCommentDto, updateCommentDto } from './comment';
 import { Tag, createTagDto, updateTagDto } from './tag'
 import { Collection,createCollectionDto, updateCollectionDto } from './collections';
 import { Likes } from './likes';
+import { Blog, createBlogDto, updateBlogDto } from './blog';
 
 
 export type { 
@@ -32,7 +33,11 @@ export type {
   createCollectionDto,
   updateCollectionDto,
 
-  Likes
+  Likes,
+
+  Blog,
+  createBlogDto,
+  updateBlogDto
 };
 
 export interface IMyInterface  {

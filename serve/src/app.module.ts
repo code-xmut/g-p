@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { CacheModule, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
@@ -12,6 +12,7 @@ import { TagsModule } from './tags/tags.module';
 import { CollectionModule } from './collection/collection.module';
 import { LikesModule } from './likes/likes.module';
 import { MailModule } from './mail/mail.module';
+import { BlogModule } from './blog/blog.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { MailModule } from './mail/mail.module';
     CollectionModule,
     LikesModule,
     MailModule,
+    BlogModule,
   ],
   controllers: [AppController],
   providers: [AppService],

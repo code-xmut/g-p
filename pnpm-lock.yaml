@@ -113,6 +113,7 @@ importers:
       '@types/supertest': ^2.0.11
       '@typescript-eslint/eslint-plugin': ^5.0.0
       '@typescript-eslint/parser': ^5.0.0
+      cache-manager: ^5.2.0
       eslint: ^8.0.1
       eslint-config-prettier: ^8.3.0
       eslint-plugin-prettier: ^4.0.0
@@ -135,7 +136,7 @@ importers:
       typescript: ^4.7.4
     dependencies:
       '@nestjs-modules/mailer': 1.8.1_qjyj2b37oh52zq44hrbo2j5jqy
-      '@nestjs/common': 9.3.9_mnr6j2del53muneqly5h4y27ai
+      '@nestjs/common': 9.3.9_tlumnqqvmvb3kwfyqx2yaxaq2y
       '@nestjs/config': 2.3.1_jrq2rdgfp2sx67wmylmrqliwxe
       '@nestjs/core': 9.3.9_q6agyr4hwia55oswpsa7zjxcpm
       '@nestjs/jwt': 10.0.2_@nestjs+common@9.3.9
@@ -143,6 +144,7 @@ importers:
       '@nestjs/passport': 9.0.3_v3ijvyhfbmibt6kvwmic262qla
       '@nestjs/platform-express': 9.3.9_77foi4w27ghy47yutmnzv7krjy
       '@nestjs/swagger': 6.2.1_shbtxdxgogsm4p64bg2toeylku
+      cache-manager: 5.2.0
       mongoose: 7.0.0
       multer: 1.4.4
       nodemailer: 6.9.1
@@ -1359,7 +1361,7 @@ packages:
       '@nestjs/core': ^7.0.9 || ^8.0.0 || ^9.0.0
       nodemailer: ^6.4.6
     dependencies:
-      '@nestjs/common': 9.3.9_mnr6j2del53muneqly5h4y27ai
+      '@nestjs/common': 9.3.9_tlumnqqvmvb3kwfyqx2yaxaq2y
       '@nestjs/core': 9.3.9_q6agyr4hwia55oswpsa7zjxcpm
       glob: 8.0.3
       inline-css: 4.0.1
@@ -1412,7 +1414,7 @@ packages:
       - webpack-cli
     dev: true
 
-  /@nestjs/common/9.3.9_mnr6j2del53muneqly5h4y27ai:
+  /@nestjs/common/9.3.9_tlumnqqvmvb3kwfyqx2yaxaq2y:
     resolution: {integrity: sha512-GshTD9Xz+wD2em6NyzU4NXw5IXMUmapgDgD+iuj6XL0258hvDwODmNk37mBBnZvTZlqER+krvIUKnS34etqF/A==}
     peerDependencies:
       cache-manager: <=5
@@ -1428,6 +1430,7 @@ packages:
       class-validator:
         optional: true
     dependencies:
+      cache-manager: 5.2.0
       iterare: 1.2.1
       reflect-metadata: 0.1.13
       rxjs: 7.8.0
@@ -1441,7 +1444,7 @@ packages:
       reflect-metadata: ^0.1.13
       rxjs: ^6.0.0 || ^7.2.0
     dependencies:
-      '@nestjs/common': 9.3.9_mnr6j2del53muneqly5h4y27ai
+      '@nestjs/common': 9.3.9_tlumnqqvmvb3kwfyqx2yaxaq2y
       dotenv: 16.0.3
       dotenv-expand: 10.0.0
       lodash: 4.17.21
@@ -1468,7 +1471,7 @@ packages:
       '@nestjs/websockets':
         optional: true
     dependencies:
-      '@nestjs/common': 9.3.9_mnr6j2del53muneqly5h4y27ai
+      '@nestjs/common': 9.3.9_tlumnqqvmvb3kwfyqx2yaxaq2y
       '@nestjs/platform-express': 9.3.9_77foi4w27ghy47yutmnzv7krjy
       '@nuxtjs/opencollective': 0.3.2
       fast-safe-stringify: 2.1.1
@@ -1486,7 +1489,7 @@ packages:
     peerDependencies:
       '@nestjs/common': ^8.0.0 || ^9.0.0
     dependencies:
-      '@nestjs/common': 9.3.9_mnr6j2del53muneqly5h4y27ai
+      '@nestjs/common': 9.3.9_tlumnqqvmvb3kwfyqx2yaxaq2y
       '@types/jsonwebtoken': 9.0.1
       jsonwebtoken: 9.0.0
     dev: false
@@ -1504,7 +1507,7 @@ packages:
       class-validator:
         optional: true
     dependencies:
-      '@nestjs/common': 9.3.9_mnr6j2del53muneqly5h4y27ai
+      '@nestjs/common': 9.3.9_tlumnqqvmvb3kwfyqx2yaxaq2y
       reflect-metadata: 0.1.13
     dev: false
 
@@ -1517,7 +1520,7 @@ packages:
       reflect-metadata: ^0.1.12
       rxjs: ^7.0.0
     dependencies:
-      '@nestjs/common': 9.3.9_mnr6j2del53muneqly5h4y27ai
+      '@nestjs/common': 9.3.9_tlumnqqvmvb3kwfyqx2yaxaq2y
       '@nestjs/core': 9.3.9_q6agyr4hwia55oswpsa7zjxcpm
       mongoose: 7.0.0
       reflect-metadata: 0.1.13
@@ -1530,7 +1533,7 @@ packages:
       '@nestjs/common': ^8.0.0 || ^9.0.0
       passport: ^0.4.0 || ^0.5.0 || ^0.6.0
     dependencies:
-      '@nestjs/common': 9.3.9_mnr6j2del53muneqly5h4y27ai
+      '@nestjs/common': 9.3.9_tlumnqqvmvb3kwfyqx2yaxaq2y
       passport: 0.6.0
     dev: false
 
@@ -1540,7 +1543,7 @@ packages:
       '@nestjs/common': ^9.0.0
       '@nestjs/core': ^9.0.0
     dependencies:
-      '@nestjs/common': 9.3.9_mnr6j2del53muneqly5h4y27ai
+      '@nestjs/common': 9.3.9_tlumnqqvmvb3kwfyqx2yaxaq2y
       '@nestjs/core': 9.3.9_q6agyr4hwia55oswpsa7zjxcpm
       body-parser: 1.20.1
       cors: 2.8.5
@@ -1597,7 +1600,7 @@ packages:
       class-validator:
         optional: true
     dependencies:
-      '@nestjs/common': 9.3.9_mnr6j2del53muneqly5h4y27ai
+      '@nestjs/common': 9.3.9_tlumnqqvmvb3kwfyqx2yaxaq2y
       '@nestjs/core': 9.3.9_q6agyr4hwia55oswpsa7zjxcpm
       '@nestjs/mapped-types': 1.2.2_ilxajbd2e536h4oohar7aljlry
       js-yaml: 4.1.0
@@ -1620,7 +1623,7 @@ packages:
       '@nestjs/platform-express':
         optional: true
     dependencies:
-      '@nestjs/common': 9.3.9_mnr6j2del53muneqly5h4y27ai
+      '@nestjs/common': 9.3.9_tlumnqqvmvb3kwfyqx2yaxaq2y
       '@nestjs/core': 9.3.9_q6agyr4hwia55oswpsa7zjxcpm
       '@nestjs/platform-express': 9.3.9_77foi4w27ghy47yutmnzv7krjy
       tslib: 2.5.0
@@ -3057,6 +3060,12 @@ packages:
     resolution: {integrity: sha512-b6Ilus+c3RrdDk+JhLKUAQfzzgLEPy6wcXqS7f/xe1EETvsDP6GORG7SFuOs6cID5YkqchW/LXZbX5bc8j7ZcQ==}
     engines: {node: '>=8'}
     dev: true
+
+  /cache-manager/5.2.0:
+    resolution: {integrity: sha512-jwXDLtn8tQGS2vGDTKAhee2OhuX/2cgxlh97fqMnWp328VszIn064BFyKZ87dwp9GmlBFuHYfaVQehI85hFwIw==}
+    dependencies:
+      lodash.clonedeep: 4.5.0
+      lru-cache: 7.18.3
 
   /call-bind/1.0.2:
     resolution: {integrity: sha512-7O+FbCihrB5WGbFYesctwmTKae6rOiIzmz1icreWJ+0aA7LJfuqhEso2T9ncpcFtzMQtzXf2QGGueWJGTYsqrA==}
@@ -6557,6 +6566,9 @@ packages:
     resolution: {integrity: sha1-wCUTUV4wna3dTCTGDP3c9ZdtkRU=}
     dev: true
 
+  /lodash.clonedeep/4.5.0:
+    resolution: {integrity: sha1-4j8/nE+Pvd6HJSnBBxhXoIblzO8=}
+
   /lodash.isplainobject/4.0.6:
     resolution: {integrity: sha1-fFJqUtibRcRcxpC4gWO+BJf1UMs=}
     dev: true
@@ -6629,6 +6641,10 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       yallist: 4.0.0
+
+  /lru-cache/7.18.3:
+    resolution: {integrity: sha512-jumlc0BIUrS3qJGgIkWZsyfAM7NCWiBcCDhnd+3NNM5KbBmLTgHVfWBcg6W+rLUsIpzpERPsvwUP7CckAQSOoA==}
+    engines: {node: '>=12'}
 
   /macos-release/2.5.1:
     resolution: {integrity: sha512-DXqXhEM7gW59OjZO8NIjBCz9AQ1BEMrfiOAl4AYByHCtVHRF4KoGNO8mqQeM8lRCtQe/UnJ4imO/d2HdkKsd+A==}

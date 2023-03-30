@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { CacheModule, Module } from '@nestjs/common';
 import { MailService } from './mail.service';
 import { MailController } from './mail.controller';
 import { MailerModule } from '@nestjs-modules/mailer';
@@ -16,6 +16,7 @@ import { MailerModule } from '@nestjs-modules/mailer';
         },
       },
     }),
+    CacheModule.register(),
   ],
   controllers: [MailController],
   providers: [MailService],
