@@ -14,10 +14,12 @@ importers:
       typescript: ~4.5.5
       vue: ^3.2.13
       vue-class-component: ^8.0.0-0
+      vue-router: '4'
     dependencies:
       core-js: 3.29.1
       vue: 3.2.47
       vue-class-component: 8.0.0-rc.1_vue@3.2.47
+      vue-router: 4.1.6_vue@3.2.47
     devDependencies:
       '@vue/cli-plugin-babel': 5.0.8_cqiqxfjc7mgewi5xkh3xxmqemy
       '@vue/cli-plugin-typescript': 5.0.8_kqw6woi4x7szjjzrlb7uks2dby
