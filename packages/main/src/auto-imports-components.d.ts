@@ -12,6 +12,7 @@ declare module '@vue/runtime-core' {
     Action: typeof import('./components/Action.vue')['default']
     Avatar: typeof import('./components/Avatar.vue')['default']
     Button: typeof import('./components/Base/Button.vue')['default']
+    Buttons: typeof import('./components/uploads/Buttons.vue')['default']
     Card: typeof import('./components/Base/Card.vue')['default']
     Collapse: typeof import('./components/Collapse/index.vue')['default']
     Collections: typeof import('./components/Collections/index.vue')['default']
@@ -47,6 +48,7 @@ declare module '@vue/runtime-core' {
     ShotMask: typeof import('./components/Shot/ShotMask.vue')['default']
     Swap: typeof import('./components/Base/Swap.vue')['default']
     Tabs: typeof import('./components/Tabs/index.vue')['default']
+    UploadFile: typeof import('./components/uploads/UploadFile.vue')['default']
     WorkCard: typeof import('./components/Profile/WorkCard.vue')['default']
     WorkTab: typeof import('./components/Profile/WorkTab.vue')['default']
   }
