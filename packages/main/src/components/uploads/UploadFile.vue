@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { useDropzone } from 'vue3-dropzone';
 import { useStorage } from '@vueuse/core';
+import { useMarkDownImg } from '@/composables';
 import { userApi } from '@/api';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const { getRootProps, getInputProps, ...rest } = useDropzone({
   onDrop: async (acceptedFiles) => {
@@ -9,7 +13,8 @@ const { getRootProps, getInputProps, ...rest } = useDropzone({
     formData.append('file', acceptedFiles[0]);
 
     const { data } = await userApi.uploadFile(formData);
-    useStorage('upload', JSON.stringify(data.url))
+    useStorage('upload', useMarkDownImg(data.url))
+    router.push('/uploads/editor');
   },
 });
 
