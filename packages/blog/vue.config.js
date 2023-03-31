@@ -4,13 +4,13 @@ module.exports = defineConfig({
   transpileDependencies: true,
   devServer: {
     headers: {
-      "Access-Control-Allow-Origin": "*",
+      'Access-Control-Allow-Origin': '*',
     },
   },
   configureWebpack: {
     output: {
       library: `${packageName}-[name]`,
-      libraryTarget: "umd",
+      libraryTarget: 'umd',
     },
   },
 })

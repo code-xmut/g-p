@@ -25,7 +25,7 @@ const router = createRouter({
           component: () => import('@/pages/collections.vue'),
         },
         {
-          path: 'blog',
+          path: '/blog:catchAll(.*)',
           name: 'blog',
           component: () => import('@/pages/blog.vue'),
         },
