@@ -36,6 +36,11 @@ const router = createRouter({
       name: 'auth',
       component: () => import('@/pages/auth.vue'),
     },
+    {
+      path: '/uploads',
+      name: 'uploads',
+      component: () => import('@/pages/uploads.vue'),
+    },
   ],
 })
 

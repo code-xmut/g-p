@@ -18,6 +18,7 @@ const toProfile = () => {
   <li class="hidden lg:block">
     <Button
       class="ml-4 btn btn-secondary" text="upload"
+      @click="$router.push({ name: 'uploads' })"
     />
   </li>
 </template>

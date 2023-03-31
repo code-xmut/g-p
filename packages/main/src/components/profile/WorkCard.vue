@@ -11,7 +11,7 @@
         <p class="text-center px-10 my-4">
           Show off your best work. Get feedback, likes and be a part of a growing community.
         </p>
-        <Button text="Upload your first shot" class="btn-secondary" />
+        <Button text="Upload your first shot" class="btn-secondary" @click="$router.push('/uploads')" />
       </Card>
     </li>
     <li v-for="i in 5" :key="i">
@@ -22,7 +22,7 @@
 
 <style scoped>
 .empty-shot-item {
-    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.03)), to(transparent));
-    background: linear-gradient(180deg, rgba(0,0,0,0.03) 0%, transparent 100%);
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.03)), to(transparent));
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.03) 0%, transparent 100%);
 }
 </style>
