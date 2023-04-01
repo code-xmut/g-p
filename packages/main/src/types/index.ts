@@ -1,3 +1,5 @@
 import { MarkDownEnum } from './editor'
 
-export { MarkDownEnum }
+export {
+  MarkDownEnum,
+}
