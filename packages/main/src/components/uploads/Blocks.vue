@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { nanoid } from 'nanoid'
 import { useEditorStore } from '@/store'
 import { BlockEnum } from '@/types'
 
@@ -9,7 +10,7 @@ const store = useEditorStore()
   <div class="space-y-4 mt-4">
     <div
       class="flex items-center hover:text-red-500 cursor-pointer"
-      @click="store.insertBlock({ id: '3', type: BlockEnum.H1, value: '456' })"
+      @click="store.pushBlock({ id: nanoid(), type: BlockEnum.H1, value: '' })"
     >
       <Icon
         icon="mdi:format-text"

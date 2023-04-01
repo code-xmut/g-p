@@ -15,7 +15,7 @@ const { getRootProps, getInputProps, ...rest } = useDropzone({
     formData.append('file', acceptedFiles[0])
     const { data } = await userApi.uploadFile(formData)
 
-    store.insertBlock({ id: nanoid(), type: BlockEnum.IMG, value: data.url })
+    store.pushBlock({ id: nanoid(), type: BlockEnum.IMG, value: data.url })
     router.push('/uploads/editor')
   },
 })

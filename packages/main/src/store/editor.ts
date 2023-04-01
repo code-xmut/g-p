@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { useStorage } from '@vueuse/core'
 import { nanoid } from 'nanoid'
+import { findIndex } from 'lodash-es'
 import type { Block } from '@/types/editor'
 import { BlockEnum } from '@/types/editor'
 
@@ -23,8 +24,13 @@ export const useEditorStore = defineStore('editor', () => {
     showDrawer.value = false
   }
 
-  const insertBlock = (block: Block) => {
+  const pushBlock = (block: Block) => {
     draft.value.push(block)
+  }
+
+  const updateBlock = (id: string, v: string) => {
+    const index = findIndex(draft.value, item => item.id === id)
+    draft.value[index].value = v
   }
 
   return {
@@ -32,6 +38,7 @@ export const useEditorStore = defineStore('editor', () => {
     showDrawer,
     toggleDrawer,
     closeDrawer,
-    insertBlock,
+    pushBlock,
+    updateBlock,
   }
 })
