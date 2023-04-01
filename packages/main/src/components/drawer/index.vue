@@ -21,7 +21,7 @@ onClickOutside(target, () => {
   <div
     v-if="show"
     ref="target"
-    class="w-96 shadow-2xl bg-transparent h-screen fixed right-0 z-10 px-4 py-8"
+    class="w-[30vw] shadow-2xl bg-[#2a303c] h-screen fixed right-0 z-10 px-4 py-8"
   >
     <Button class="btn-ghost mb-4 font-thin" text="close" @click="$emit('close')" />
     <div class="px-4">
