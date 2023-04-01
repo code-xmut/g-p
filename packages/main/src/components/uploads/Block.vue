@@ -33,7 +33,7 @@ const updateBlockValue = useDebounceFn((e: Event) => {
         :value="block.value" @input="updateBlockValue"
       />
     </div>
-    <Divider line-height="4px" class="hidden group-hover:flex">
+    <Divider line-height="4px" class="invisible group-hover:visible">
       <Button
         v-tip="{ content: 'Add more details, images or text', placement: 'top' }"
         class="btn-secondary rounded-full font-normal"
