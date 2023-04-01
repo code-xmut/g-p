@@ -1,5 +1,7 @@
-export const useMarkDownImg = (v: string, title = 'alt text'): string => {
-  const template = '![alt text](imagePath "alt text") \n'
+import type { MarkDownEnum } from '@/types'
 
-  return JSON.stringify(template.replace('alt text', title).replace('imagePath', v))
+export const useMarkDown = (type: MarkDownEnum, v: string): string => {
+  const result = `${type.replace('capalot', v)} \n`
+
+  return result
 }

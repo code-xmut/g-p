@@ -1,5 +1,5 @@
-import { useMarkDownImg } from './useMarkdownImg'
+import { useMarkDown } from './useMarkdownImg'
 
 export {
-  useMarkDownImg,
+  useMarkDown,
 }
