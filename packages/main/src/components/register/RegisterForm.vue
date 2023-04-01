@@ -8,7 +8,7 @@ const createUserDto = reactive<CreateUserDto>({
   email: '',
   password: '',
 })
-const customRule = ref<string | null>(null)
+const customRule = ref<string | undefined>(undefined)
 
 const isNameAvailable = async (e: Event) => {
   const el = (e.target as HTMLInputElement)
@@ -21,7 +21,7 @@ const isNameAvailable = async (e: Event) => {
     }
     else {
       el.classList.remove('border-red-500')
-      customRule.value = null
+      customRule.value = undefined
     }
   }
 }
