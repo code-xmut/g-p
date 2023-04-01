@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { useDropzone } from 'vue3-dropzone'
 import { useRouter } from 'vue-router'
+import { nanoid } from 'nanoid'
 import { useEditorStore } from '@/store'
 import { userApi } from '@/api'
-import { BlockEnum } from '@/types'
+import { BlockEnum } from '@/types/editor'
 
 const router = useRouter()
 const store = useEditorStore()
@@ -12,10 +13,9 @@ const { getRootProps, getInputProps, ...rest } = useDropzone({
   onDrop: async (acceptedFiles) => {
     const formData = new FormData()
     formData.append('file', acceptedFiles[0])
-
     const { data } = await userApi.uploadFile(formData)
 
-    store.insertBlock({ id: '1', type: BlockEnum.IMG, value: data.url })
+    store.insertBlock({ id: nanoid(), type: BlockEnum.IMG, value: data.url })
     router.push('/uploads/editor')
   },
 })

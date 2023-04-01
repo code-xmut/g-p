@@ -60,6 +60,7 @@ importers:
       lint-staged: ^13.1.2
       lodash-es: ^4.17.21
       marked: ^4.2.12
+      nanoid: ^4.0.2
       pinia: ^2.0.32
       postcss: ^8.4.21
       qiankun: ^2.10.1
@@ -87,6 +88,7 @@ importers:
       daisyui: 2.51.3_gbtt6ss3tbiz4yjtvdr6fbrj44
       lodash-es: 4.17.21
       marked: 4.2.12
+      nanoid: 4.0.2
       pinia: 2.0.32_hmuptsblhheur2tugfgucj7gc4
       qiankun: 2.10.1
       slimeform: 0.9.1_vue@3.2.47
@@ -10577,6 +10579,12 @@ packages:
     resolution: {integrity: sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
+
+  /nanoid/4.0.2:
+    resolution: {integrity: sha512-7ZtY5KTCNheRGfEFxnedV5zFiORN1+Y1N6zvPTnHQd8ENUvfaDBeuJDZb2bN/oXwXxu3qkTXDzy57W5vAmDTBw==}
+    engines: {node: ^14 || ^16 || >=18}
+    hasBin: true
+    dev: false
 
   /natural-compare-lite/1.4.0:
     resolution: {integrity: sha1-F7CVgZiJef3a/gIB6TG6kzyWy7Q=}

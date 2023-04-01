@@ -1,10 +1,17 @@
 import { defineStore } from 'pinia'
 import { useStorage } from '@vueuse/core'
-// import { useMarkDown } from '@/composables'
+import { nanoid } from 'nanoid'
 import type { Block } from '@/types/editor'
+import { BlockEnum } from '@/types/editor'
 
 export const useEditorStore = defineStore('editor', () => {
-  const initialValue: Block[] = []
+  const initialValue: Block[] = [
+    {
+      id: nanoid(),
+      type: BlockEnum.H1,
+      value: 'Hello World',
+    },
+  ]
   const draft = useStorage('upload', initialValue)
   const showDrawer = ref(false)
 
