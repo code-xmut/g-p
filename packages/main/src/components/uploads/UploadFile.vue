@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { useDropzone } from 'vue3-dropzone'
 import { useRouter } from 'vue-router'
-import { useMarkDown } from '@/composables'
 import { useEditorStore } from '@/store'
 import { userApi } from '@/api'
-import { MarkDownEnum } from '@/types'
+import { BlockEnum } from '@/types'
 
 const router = useRouter()
 const store = useEditorStore()
@@ -16,7 +15,7 @@ const { getRootProps, getInputProps, ...rest } = useDropzone({
 
     const { data } = await userApi.uploadFile(formData)
 
-    store.insertBlock(useMarkDown(MarkDownEnum.IMG, data.url))
+    store.insertBlock({ id: '1', type: BlockEnum.IMG, value: data.url })
     router.push('/uploads/editor')
   },
 })

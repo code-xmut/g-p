@@ -1,5 +1,6 @@
-import { MarkDownEnum } from './editor'
+import { BlockEnum, MarkDownEnum } from './editor'
 
 export {
   MarkDownEnum,
+  BlockEnum,
 }

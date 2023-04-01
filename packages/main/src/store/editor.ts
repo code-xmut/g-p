@@ -1,14 +1,12 @@
 import { defineStore } from 'pinia'
 import { useStorage } from '@vueuse/core'
-import { useMarkDown } from '@/composables'
-import { MarkDownEnum } from '@/types'
+// import { useMarkDown } from '@/composables'
 import type { Block } from '@/types/editor'
 
 export const useEditorStore = defineStore('editor', () => {
-  const initialValue: string[] = []
+  const initialValue: Block[] = []
   const draft = useStorage('upload', initialValue)
   const showDrawer = ref(false)
-  const unSavedContent = ref<Block[]>([])
 
   const toggleDrawer = () => {
     showDrawer.value = !showDrawer.value
@@ -18,9 +16,8 @@ export const useEditorStore = defineStore('editor', () => {
     showDrawer.value = false
   }
 
-  const insertBlock = (block: string) => {
-    const b = useMarkDown(MarkDownEnum.HONE, block)
-    draft.value.push(b)
+  const insertBlock = (block: Block) => {
+    draft.value.push(block)
   }
 
   return {

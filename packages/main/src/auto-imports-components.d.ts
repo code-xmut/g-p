@@ -13,6 +13,7 @@ declare module '@vue/runtime-core' {
     Avatar: typeof import('./components/Avatar.vue')['default']
     Block: typeof import('./components/uploads/Block.vue')['default']
     Blocks: typeof import('./components/uploads/Blocks.vue')['default']
+    Blog: typeof import('./components/uploads/Block.vue')['default']
     Button: typeof import('./components/Base/Button.vue')['default']
     Buttons: typeof import('./components/uploads/Buttons.vue')['default']
     Card: typeof import('./components/Base/Card.vue')['default']

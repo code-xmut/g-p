@@ -2,16 +2,13 @@
 import { useEditorStore } from '@/store'
 
 const store = useEditorStore()
-
-const content = computed(() => {
-  return store.draft.join('')
-})
 </script>
 
 <template>
   <div class="ml-[15vw]" :class="{ 'ml-[3vw]': store.showDrawer }">
-    <textarea class="w-full outline-none resize-none text-3xl font-bold" placeholder="Give me a name" />
-    <Markdown :content="content" />
+    <div v-for="b in store.draft" :key="b.id">
+      <Block :block="b" />
+    </div>
   </div>
   <Divider line-height="4px">
     <Button
