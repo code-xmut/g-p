@@ -42,7 +42,7 @@ onUnmounted(() => {
 
 <template>
   <Icon class="w-6 h-6 cursor-pointer lg:hidden" :icon="navIcon" @click="showDrawer = !showDrawer" />
-  <Drawer :show="showDrawer" />
+  <NavDrawer :show="showDrawer" />
   <div class="flex justify-center items-center">
     <a href="#">
       <RouterLink to="/">

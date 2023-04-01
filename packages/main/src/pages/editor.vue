@@ -1,9 +1,13 @@
 <script setup lang="ts">
-const content = JSON.parse(localStorage.getItem('upload') || '')
+import { useEditorStore } from '@/store'
+
+const store = useEditorStore()
 </script>
 
 <template>
   <div>
-    <Markdown :content="content" />
+    <div v-for="b in store.draft" :key="b.id">
+      <Block :block="b" />
+    </div>
   </div>
 </template>

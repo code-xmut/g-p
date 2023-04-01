@@ -1,9 +1,9 @@
 import useRequest from './useRequest'
 import useIsMobile from './isMobile'
-import { useMarkDownImg } from './markdown'
+import { useMarkDown } from './markdown'
 
 export {
   useRequest,
   useIsMobile,
-  useMarkDownImg,
+  useMarkDown,
 }
