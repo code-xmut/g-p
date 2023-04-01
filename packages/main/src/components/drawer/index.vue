@@ -1,85 +1,34 @@
 <script setup lang="ts">
-withDefaults(defineProps<{
-  show: boolean
-}>(), {
+import { onClickOutside } from '@vueuse/core'
+
+interface Props {
+  show?: boolean
+}
+
+withDefaults(defineProps<Props>(), {
   show: false,
 })
 
-const drawerMenus = computed(() => {
-  return [
-    {
-      name: 'Home',
-      children: [
-        {
-          name: 'Home 1',
-        },
-        {
-          name: 'Home 2',
-        },
-        {
-          name: 'Home 3',
-        },
-        {
-          name: 'Home 4',
-        },
-        {
-          name: 'Home 5',
-        },
-        {
-          name: 'Home 6',
-        },
-        {
-          name: 'Home 7',
-        },
-        {
-          name: 'Home 8',
-        },
-        {
-          name: 'Home 9',
-        },
-        {
-          name: 'Home 10',
-        },
-      ],
-    },
-    {
-      name: 'About',
-      children: [
-        {
-          name: 'About 1',
-        },
-        {
-          name: 'About 2',
-        },
-      ],
-    },
-    {
-      name: 'Contact',
-      children: [
-        {
-          name: 'Contact 1',
-        },
-        {
-          name: 'Contact 2',
-        },
-        {
-          name: 'Contact 3',
-        },
-      ],
-    },
-  ]
+const emit = defineEmits(['close'])
+const target = ref<HTMLElement>()
+
+onClickOutside(target, () => {
+  emit('close')
 })
 </script>
 
 <template>
   <div
     v-if="show"
-    style="height: calc(100vh - 68px);"
-    class="w-full overflow-y-scroll absolute bottom-0 bg-white dark:bg-darkBg left-0 p-4 z-50"
+    ref="target"
+    class="w-96 shadow-2xl bg-white h-screen fixed right-0 z-10 px-4 py-8"
   >
-    <Input class="w-full" show-icon />
-    <template v-for="d in drawerMenus" :key="d.name">
-      <Collapse :title="d.name" :content="d.children" />
-    </template>
+    <Button class="btn-ghost mb-4 font-thin" text="close" @click="$emit('close')" />
+    <div class="px-4">
+      <h1 class="text-xl font-semibold">
+        Insert Block
+      </h1>
+      <slot />
+    </div>
   </div>
 </template>

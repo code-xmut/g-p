@@ -2,7 +2,7 @@
 import { Icon } from '@iconify/vue'
 
 interface Props {
-  icon: string
+  icon?: string
 }
 
 withDefaults(defineProps<Props>(), {
