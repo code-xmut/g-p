@@ -42,6 +42,7 @@ declare module '@vue/runtime-core' {
     Markdown: typeof import('./components/Markdown.vue')['default']
     NavDrawer: typeof import('./components/Drawer/NavDrawer.vue')['default']
     OtherLoginWays: typeof import('./components/Login/OtherLoginWays.vue')['default']
+    PcDrawer: typeof import('./components/uploads/Block/PcDrawer.vue')['default']
     Profile: typeof import('./components/Profile/index.vue')['default']
     ProfileInfo: typeof import('./components/Profile/ProfileInfo.vue')['default']
     ProfileTabs: typeof import('./components/Tabs/ProfileTabs.vue')['default']

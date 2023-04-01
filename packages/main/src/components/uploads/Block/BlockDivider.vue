@@ -13,8 +13,6 @@ const store = useEditorStore()
 <template>
   <Divider
     line-height="1"
-    :left-line-width="store.showDrawer ? '2/5' : '1/2'"
-    :right-line-width="store.showDrawer ? '3/5' : '1/2'"
     class="invisible group-hover:visible"
   >
     <Button

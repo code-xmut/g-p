@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { useEditorStore } from '@/store'
-
-const store = useEditorStore()
 </script>
 
 <template>
@@ -10,8 +7,6 @@ const store = useEditorStore()
       <Buttons />
       <RouterView />
     </div>
-    <Drawer :show="store.showDrawer" @close="store.closeDrawer">
-      <Blocks />
-    </Drawer>
+    <PcDrawer />
   </div>
 </template>

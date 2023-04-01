@@ -7,6 +7,7 @@ interface Props {
 
 withDefaults(defineProps<Props>(), {
   show: false,
+  placement: 'right',
 })
 
 const emit = defineEmits(['close'])
@@ -20,15 +21,10 @@ onClickOutside(target, () => {
 <template>
   <div
     v-if="show"
-    ref="target"
-    class="w-[20vw] shadow-2xl bg-[#2a303c] h-screen fixed right-0 z-10 px-4 py-8"
+    v-bind="$attrs" ref="target"
+    class="bottom-0 w-full md:w-[20vw] rounded-tl-md rounded-tr-md shadow-2xl bg-white h-96
+    md:h-screen fixed z-10 px-4 py-8"
   >
-    <Button class="btn-ghost mb-4 font-thin" text="close" @click="$emit('close')" />
-    <div class="px-4">
-      <h1 class="text-xl font-semibold">
-        Insert Block
-      </h1>
-      <slot />
-    </div>
+    <slot />
   </div>
 </template>
