@@ -18,6 +18,7 @@ export const useEditorStore = defineStore('editor', () => {
   const draft = useStorage('upload', initialValue)
   const showDrawer = ref(false)
   const currentBlock = ref<Block>(initialValue[0])
+  const showCancelModal = ref(false)
 
   const toggleDrawer = (block?: Block) => {
     showDrawer.value = !showDrawer.value
@@ -43,6 +44,10 @@ export const useEditorStore = defineStore('editor', () => {
     draft.value.splice(index + 1, 0, block)
   }
 
+  const resetDraft = () => {
+    draft.value = initialValue
+  }
+
   const saveDraft = async () => {
     const draftShot: ShotDraft = {
       title: draft.value[0].value,
@@ -57,11 +62,13 @@ export const useEditorStore = defineStore('editor', () => {
     draft,
     currentBlock,
     showDrawer,
+    showCancelModal,
     toggleDrawer,
     closeDrawer,
     pushBlock,
     updateBlock,
     insertBlock,
     saveDraft,
+    resetDraft,
   }
 })
