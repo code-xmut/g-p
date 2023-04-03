@@ -1,0 +1,56 @@
+<script setup lang="ts">
+interface Props {
+  show: boolean
+  noTitle?: boolean
+  title?: string
+  content?: string
+  fullScreen?: boolean
+  closeIcon?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  show: false,
+  noTitle: false,
+  title: 'Congratulations random Internet user!',
+  content: 'You\'ve been selected for a chance to get one year of subscription to use Wikipedia for free!',
+  fullScreen: false,
+  closeIcon: false,
+})
+
+const emit = defineEmits(['close'])
+
+const close = () => {
+  emit('close')
+}
+const isFullScreen = computed(() => {
+  return {
+    'w-screen': props.fullScreen,
+    'h-screen': props.fullScreen,
+    'top-0': props.fullScreen,
+  }
+})
+</script>
+
+<template>
+  <input id="my-modal" type="checkbox" class="modal-toggle">
+  <div v-if="show" class="modal modal-open">
+    <div
+      class="modal-box max-w-full lg:max-w-[50%]"
+      :class="isFullScreen"
+    >
+      <label v-if="closeIcon" for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2" @click="$emit('close')">✕</label>
+      <slot v-if="$slots.title" name="title" />
+      <h3 v-else-if="!noTitle" class="font-bold text-lg">
+        {{ title }}
+      </h3>
+      <slot v-if="$slots.content" name="content" />
+      <p v-else class="py-4">
+        {{ content }}
+      </p>
+      <div class="modal-action">
+        <slot v-if="$slots.action" name="action" />
+        <label v-else for="my-modal" class="btn" @click="close">Yay!</label>
+      </div>
+    </div>
+  </div>
+</template>

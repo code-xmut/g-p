@@ -1,4 +1,4 @@
-import { createShotDto, Shot, updateShotDto } from '@gp/types';
+import { createShotDto, Shot, ShotDraft, updateShotDto } from '@gp/types';
 import {
   Body,
   Controller,
@@ -18,6 +18,11 @@ export class ShotsController {
   @Post()
   async create(@Body() shot: createShotDto) {
     return this.shotsService.createShots(shot);
+  }
+
+  @Post('draft')
+  async createDraft(@Body() shot: ShotDraft) {
+    return this.shotsService.createShotDraft(shot);
   }
 
   @Get()

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { createShotDto, updateShotDto } from '@gp/types';
+import { ShotDraft, createShotDto, updateShotDto } from '@gp/types';
 import { Model } from 'mongoose';
 import { Shot, ShotDocument } from './shot.schema';
 
@@ -12,6 +12,11 @@ export class ShotsService {
   ) {}
 
   async createShots(shot: createShotDto): Promise<Shot> {
+    const createdShot = new this.shotModel(shot);
+    return createdShot.save();
+  }
+
+  async createShotDraft(shot: ShotDraft): Promise<Shot> {
     const createdShot = new this.shotModel(shot);
     return createdShot.save();
   }
