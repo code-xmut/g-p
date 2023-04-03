@@ -19,6 +19,7 @@ export const useEditorStore = defineStore('editor', () => {
   const showDrawer = ref(false)
   const currentBlock = ref<Block>(initialValue[0])
   const showCancelModal = ref(false)
+  const showContinueModal = ref(false)
 
   const toggleDrawer = (block?: Block) => {
     showDrawer.value = !showDrawer.value
@@ -63,6 +64,7 @@ export const useEditorStore = defineStore('editor', () => {
     currentBlock,
     showDrawer,
     showCancelModal,
+    showContinueModal,
     toggleDrawer,
     closeDrawer,
     pushBlock,

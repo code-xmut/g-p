@@ -26,19 +26,19 @@ const leaveEditor = (save = true) => {
     />
     <div class="space-x-4">
       <Button :disabled="disabled" class="btn-ghost" text="Save as draft" @click="store.saveDraft()" />
-      <Button :disabled="disabled" class="btn-secondary" text="Continue" />
+      <Button :disabled="disabled" class="btn-secondary" text="Continue" @click="store.showContinueModal = true" />
     </div>
   </div>
   <Modal
     :show="store.showCancelModal"
     title="退出并将当前内容保存为草稿？"
     content="你可以在草稿箱中找到它。"
-    @close="store.showCancelModal = false"
   >
     <template #action>
-      <Button text="cancel" @click="store.showCancelModal = false" />
-      <Button text="Don't save" @click="leaveEditor(false)" />
-      <Button text="confirm" @click="leaveEditor" />
+      <Button text="cancel" class="btn-ghost" @click="store.showCancelModal = false" />
+      <Button text="Don't save" class="btn-error" @click="leaveEditor(false)" />
+      <Button text="confirm" class="btn-primary" @click="leaveEditor" />
     </template>
   </Modal>
+  <ContinueModal />
 </template>

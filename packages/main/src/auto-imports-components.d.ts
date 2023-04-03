@@ -21,6 +21,7 @@ declare module '@vue/runtime-core' {
     Collapse: typeof import('./components/Collapse/index.vue')['default']
     Collections: typeof import('./components/Collections/index.vue')['default']
     CollectionsTab: typeof import('./components/Profile/CollectionsTab.vue')['default']
+    ContinueModal: typeof import('./components/uploads/ContinueModal.vue')['default']
     DarkMode: typeof import('./components/DarkMode.vue')['default']
     Divider: typeof import('./components/Base/Divider.vue')['default']
     Drawer: typeof import('./components/Drawer/index.vue')['default']

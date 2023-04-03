@@ -29,6 +29,7 @@ export type ShotDto = Shot;
 
 export type ShotDraft = Pick<Shot, 'title' | 'cover' | 'content' | 'state'>
 
-export type createShotDto = Pick<Shot, 'title' | 'description' | 'tags' | 'cover' | 'content' | 'serverUrl' | 'state'> & { [key: string]: any };
+export type createShotDto = Pick<Shot, 'title' | 'description' | 'tags' | 'cover' | 'content' | 'user' | 'serverUrl' | 'state'> 
+  & { [key: string]: any };
 
 export type updateShotDto = Partial<Pick<Shot, 'title' | 'description' | 'tags' | 'cover' | 'content' | 'serverUrl' | 'state'>> & { [key: string]: any };
