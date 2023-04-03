@@ -3,7 +3,7 @@ import {
   LoginUserDto,
   UpdateUserProfileDto,
 } from './user';
-import { Shot, ShotDto, createShotDto, updateShotDto } from './shot';
+import { PublishState, Shot, ShotDto, createShotDto, updateShotDto } from './shot';
 import { Comment, createCommentDto, updateCommentDto } from './comment';
 import { Tag, createTagDto, updateTagDto } from './tag'
 import { Collection,createCollectionDto, updateCollectionDto } from './collections';
@@ -16,6 +16,7 @@ export type {
   LoginUserDto,
   UpdateUserProfileDto,
   
+  PublishState,
   Shot,
   ShotDto,
   createShotDto,
