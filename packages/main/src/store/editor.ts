@@ -2,8 +2,10 @@ import { defineStore } from 'pinia'
 import { useStorage } from '@vueuse/core'
 import { nanoid } from 'nanoid'
 import { findIndex } from 'lodash-es'
+import type { ShotDraft } from '@gp/types'
 import type { Block } from '@/types/editor'
 import { BlockEnum } from '@/types/editor'
+import { shotApi } from '@/api'
 
 export const useEditorStore = defineStore('editor', () => {
   const initialValue: Block[] = [
@@ -41,6 +43,16 @@ export const useEditorStore = defineStore('editor', () => {
     draft.value.splice(index + 1, 0, block)
   }
 
+  const saveDraft = async () => {
+    const draftShot: ShotDraft = {
+      title: draft.value[0].value,
+      cover: draft.value[1].value,
+      content: JSON.stringify(draft.value),
+      state: 'draft',
+    }
+    const { data } = await shotApi.saveDraft(draftShot)
+  }
+
   return {
     draft,
     currentBlock,
@@ -50,5 +62,6 @@ export const useEditorStore = defineStore('editor', () => {
     pushBlock,
     updateBlock,
     insertBlock,
+    saveDraft,
   }
 })
