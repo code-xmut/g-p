@@ -1,5 +1,4 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { PublishState } from '@gp/types';
 
 @Schema({
   timestamps: true,
@@ -39,7 +38,7 @@ export class Shot {
   comments: string[];
 
   @Prop()
-  state: PublishState;
+  state: 'draft' | 'published';
 }
 export type ShotDocument = Shot & Document;
 export const ShotSchema = SchemaFactory.createForClass(Shot);
