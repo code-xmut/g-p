@@ -17,6 +17,7 @@ export type User = {
   [key: string]: any;
 }
 
+export type UserInfo = Omit<User, 'password'>
 
 export type CreateUserDto = Pick<User, "username" | "email" | "password"> & { [key: string]: any };
 
