@@ -8,8 +8,7 @@ export const useUserStore = defineStore('user', () => {
   const router = useRouter()
 
   const setUser = (_user: UserInfo) => {
-    user.value = _user
-    useStorage('user', _user)
+    user.value = useStorage('user', _user)
   }
 
   const logout = () => {
