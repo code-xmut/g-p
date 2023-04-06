@@ -8,10 +8,14 @@ onMounted(async () => {
   const { data } = await shotApi.findShots()
   shots.value = data as any
 })
+
+const isLogged = computed(() => {
+  return !!localStorage.getItem('token')
+})
 </script>
 
 <template>
-  <Hero />
+  <Hero v-if="!isLogged" />
   <div>
     <FilterSubNav />
   </div>

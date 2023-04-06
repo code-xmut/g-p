@@ -14,16 +14,13 @@ withDefaults(defineProps<DropDownProps>(), {
     :class="{
       'dropdown-hover': trigger === 'hover',
     }"
+    v-bind="$attrs"
   >
     <slot />
-    <ul
+    <template
       class="dropdown-content menu p-2 bg-white shadow text-gray-700 dark:bg-base-100 dark:text-gray-400 rounded-lg w-52"
     >
-      <li>
-        <a>
-          <RouterLink to="/blog">Blog</RouterLink>
-        </a>
-      </li>
-    </ul>
+      <slot name="content" />
+    </template>
   </div>
 </template>
