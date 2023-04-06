@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import { createI18n } from 'vue-i18n'
 import { registerMicroApps, start } from 'qiankun'
+import VueSelect from 'vue-select'
 import App from './App.vue'
 import router from './router'
 import zh from '@/locales/zh.json'
@@ -11,6 +12,8 @@ import { registerDirectives } from '@/utils'
 import './style.css'
 
 const app = createApp(App)
+  .component('vue-select', VueSelect)
+
 app.use(createPinia())
 app.use(createI18n({
   locale: 'zh',
@@ -25,13 +28,12 @@ registerDirectives(app, directives)
 
 app.mount('#app')
 
-/* 配置qiankun子应用 */
 registerMicroApps([
   {
     name: 'sub-vue3',
     entry: '//localhost:8080/',
     activeRule: '/blog',
-    container: '#subapp-viewport', // 子应用挂载的div
+    container: '#subapp-viewport',
     props: {
       routerBase: '/blog',
     },
