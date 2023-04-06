@@ -1,9 +1,19 @@
 <script setup lang="ts">
 import { useEditorStore } from '@/store'
 import { useIsMobile } from '@/composables'
+import { tagApi } from '@/api'
 
 const store = useEditorStore()
 const { isMobile } = useIsMobile()
+
+const selected = ref<string[]>([])
+const options = ref<string[]>([])
+const description = ref('')
+
+onMounted(async () => {
+  const { data } = await tagApi.findAllTags()
+  options.value = data.map(tag => tag.title)
+})
 </script>
 
 <template>
@@ -20,8 +30,9 @@ const { isMobile } = useIsMobile()
           <img width="800" height="600" :src="store.draft[1].value" alt="">
         </div>
         <div>
-          Tags: <Select :content="[{ name: 'foo' }, { name: 'bar' }]" />
-          <Input />
+          <span>description:</span>
+          <Input v-model:value="description" class="mb-2" />
+          <vue-select v-model="selected" multiple :options="options" />
         </div>
       </div>
     </template>
@@ -39,7 +50,15 @@ const { isMobile } = useIsMobile()
       <Button
         class="btn-primary"
         text="publish now"
+        @click="store.publishShot(selected, 'now publish')"
       />
     </template>
   </Modal>
 </template>
+
+<style scoped>
+::v-deep(.vs__dropdown-toggle) {
+  display: flex;
+  flex-direction: column;
+}
+</style>
