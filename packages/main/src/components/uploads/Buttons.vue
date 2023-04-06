@@ -1,21 +1,10 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
 import { useEditorStore } from '@/store'
 
 const store = useEditorStore()
-const router = useRouter()
 
 const disabled = computed(() => store.draft.length === 1)
 const isEditor = computed(() => window.location.href.includes('editor'))
-
-const leaveEditor = (save = true) => {
-  if (save)
-    store.saveDraft()
-
-  store.resetDraft()
-  store.showCancelModal = false
-  router.go(-2)
-}
 </script>
 
 <template>
@@ -36,8 +25,8 @@ const leaveEditor = (save = true) => {
   >
     <template #action>
       <Button text="cancel" class="btn-ghost" @click="store.showCancelModal = false" />
-      <Button text="Don't save" class="btn-error" @click="leaveEditor(false)" />
-      <Button text="confirm" class="btn-primary" @click="leaveEditor" />
+      <Button text="Don't save" class="btn-error" @click="store.leaveEditor(false)" />
+      <Button text="confirm" class="btn-primary" @click="store.leaveEditor()" />
     </template>
   </Modal>
   <ContinueModal />
