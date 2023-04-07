@@ -46,7 +46,7 @@ declare module '@vue/runtime-core' {
     OtherLoginWays: typeof import('./components/Login/OtherLoginWays.vue')['default']
     PcDrawer: typeof import('./components/uploads/Block/PcDrawer.vue')['default']
     Profile: typeof import('./components/Profile/index.vue')['default']
-    ProfileInfo: typeof import('./components/Profile/ProfileInfo.vue')['default']
+    ProfileInfo: typeof import('./components/Profile/index.vue')['default']
     ProfileTabs: typeof import('./components/Tabs/ProfileTabs.vue')['default']
     RecoverPassword: typeof import('./components/RecoverPassword/index.vue')['default']
     RecoverPasswordForm: typeof import('./components/RecoverPassword/RecoverPasswordForm.vue')['default']
