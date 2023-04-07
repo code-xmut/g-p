@@ -5,17 +5,7 @@ interface Props {
   collection: Collection
 }
 
-const props = defineProps<Props>()
-
-const designers = computed(() => {
-  // 计算collection中shots的user数量
-  const designers = new Set()
-  props.collection.shots?.forEach((shot) => {
-    designers.add(shot.user)
-  })
-
-  return designers.size
-})
+defineProps<Props>()
 </script>
 
 <template>
@@ -40,7 +30,7 @@ const designers = computed(() => {
             class="text-gray-900 dark:text-gray-500 my-3 group-hover:underline"
           />
           <div class="text-sm text-gray-500">
-            <span>{{ collection.shots?.length }} shots · {{ designers }} designer</span>
+            <span>{{ collection.shots?.length }} shots</span>
           </div>
         </Card>
       </div>
