@@ -2,7 +2,6 @@ import { createCollectionDto, updateCollectionDto } from '@gp/types';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { ShotDocument } from 'src/shots/shot.schema';
 import { ShotsService } from 'src/shots/shots.service';
 import { Collection } from './collection.schema';
 
@@ -59,26 +58,25 @@ export class CollectionService {
   async addShotToCollection(collectionId: string, shotId: string) {
     const collection = await this.collectionModel.findById(collectionId);
     const shot = await this.shotsService.findShotById(shotId);
+    const shots = new Set();
 
-    if (collection && collection.shots.includes(shotId)) {
+    collection.shots?.map((s) => shots.add(s));
+
+    if (collection && shots.has(shotId)) {
       throw new NotFoundException('Shot already in collection');
     }
 
-    collection.shots.push(shot.id);
+    collection.shots.push(shot as any);
 
     return await collection.save();
   }
 
   async removeShotFromCollection(collectionId: string, shotId: string) {
     const collection = await this.collectionModel.findById(collectionId);
-    const shot = await this.shotsService.findShotById(shotId);
 
-    if (collection && !collection.shots.includes(shotId)) {
-      throw new NotFoundException('Shot not in collection');
-    }
-
-    collection.shots = collection.shots.filter((s) => s !== shot.id);
-
+    collection.shots = collection.shots.filter(
+      (s) => s._id.toString() !== shotId,
+    );
     return await collection.save();
   }
 }

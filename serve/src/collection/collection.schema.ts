@@ -16,6 +16,6 @@ export class Collection {
   description: string;
 
   @Prop()
-  shots: string[];
+  shots: Shot[];
 }
 export const CollectionSchema = SchemaFactory.createForClass(Collection);
