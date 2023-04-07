@@ -1,5 +1,21 @@
 <script setup lang="ts">
+import type { Collection } from '@gp/types'
 
+interface Props {
+  collection: Collection
+}
+
+const props = defineProps<Props>()
+
+const designers = computed(() => {
+  // 计算collection中shots的user数量
+  const designers = new Set()
+  props.collection.shots?.forEach((shot) => {
+    designers.add(shot.user)
+  })
+
+  return designers.size
+})
 </script>
 
 <template>
@@ -20,11 +36,11 @@
             </li>
           </ul>
           <Link
-            text="登录页"
+            :text="collection.title"
             class="text-gray-900 dark:text-gray-500 my-3 group-hover:underline"
           />
           <div class="text-sm text-gray-500">
-            <span>3 shots · 3 designer</span>
+            <span>{{ collection.shots?.length }} shots · {{ designers }} designer</span>
           </div>
         </Card>
       </div>

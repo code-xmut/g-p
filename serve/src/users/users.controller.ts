@@ -12,6 +12,7 @@ import { ObjectId } from 'mongoose';
 import { JwtAuthGuards } from 'src/auth/jwt-auth.guard';
 import { User } from './schemas/user.schema';
 import { UsersService } from './users.service';
+import { UserInfo } from '@gp/types/user';
 
 @Controller('users')
 export class UsersController {
@@ -31,6 +32,13 @@ export class UsersController {
   @Get('username/:username')
   async isUserNameValid(@Param('username') username: string): Promise<boolean> {
     return this.usersService.isUserNameValid(username);
+  }
+
+  @Get('profile/:username')
+  async findUserInfoByUsername(
+    @Param('username') username: string,
+  ): Promise<UserInfo> {
+    return this.usersService.findUserInfoByUsername(username);
   }
 
   @Put('profile/:id')

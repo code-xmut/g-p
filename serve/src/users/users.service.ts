@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { isValidObjectId, Model, ObjectId } from 'mongoose';
 import type { CreateUserDto, UpdateUserProfileDto } from '@gp/types';
 import { User } from './schemas/user.schema';
+import { UserInfo } from '@gp/types/user';
 
 @Injectable()
 export class UsersService {
@@ -51,6 +52,18 @@ export class UsersService {
 
   async findOne(username: string): Promise<User | undefined> {
     return await this.userModel.findOne({ username });
+  }
+
+  async findUserInfoByUsername(
+    username: string,
+  ): Promise<UserInfo | undefined> {
+    const user = await this.userModel.findOne({ username });
+    if (user) {
+      const { password, ...userInfo } = user.toObject();
+      return userInfo;
+    }
+
+    throw new NotFoundException('User not found.');
   }
 
   async create(user: CreateUserDto): Promise<User> {
