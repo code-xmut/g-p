@@ -33,6 +33,71 @@ const resizeHandler = () => {
   }
 }
 
+const drawerMenus = computed(() => {
+  return [
+    {
+      name: 'Home',
+      children: [
+        {
+          name: 'Home 1',
+        },
+        {
+          name: 'Home 2',
+        },
+        {
+          name: 'Home 3',
+        },
+        {
+          name: 'Home 4',
+        },
+        {
+          name: 'Home 5',
+        },
+        {
+          name: 'Home 6',
+        },
+        {
+          name: 'Home 7',
+        },
+        {
+          name: 'Home 8',
+        },
+        {
+          name: 'Home 9',
+        },
+        {
+          name: 'Home 10',
+        },
+      ],
+    },
+    {
+      name: 'About',
+      children: [
+        {
+          name: 'About 1',
+        },
+        {
+          name: 'About 2',
+        },
+      ],
+    },
+    {
+      name: 'Contact',
+      children: [
+        {
+          name: 'Contact 1',
+        },
+        {
+          name: 'Contact 2',
+        },
+        {
+          name: 'Contact 3',
+        },
+      ],
+    },
+  ]
+})
+
 window.addEventListener('resize', resizeHandler)
 
 onUnmounted(() => {
@@ -42,7 +107,12 @@ onUnmounted(() => {
 
 <template>
   <Icon class="w-6 h-6 cursor-pointer lg:hidden" :icon="navIcon" @click="showDrawer = !showDrawer" />
-  <NavDrawer :show="showDrawer" />
+  <FullScreenDrawer :show="showDrawer">
+    <Input class="w-full" show-icon />
+    <template v-for="d in drawerMenus" :key="d.name">
+      <Collapse :title="d.name" :content="d.children" />
+    </template>
+  </FullScreenDrawer>
   <div class="flex justify-center items-center">
     <a href="#">
       <RouterLink to="/">
