@@ -1,3 +1,4 @@
+import { Shot } from '@gp/types';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 @Schema({
@@ -8,7 +9,7 @@ export class Likes {
   userId: string;
 
   @Prop()
-  shots: string[];
+  shots: Shot[];
 }
 export type LikesDocument = Likes & Document;
 export const LikesSchema = SchemaFactory.createForClass(Likes);
