@@ -1,15 +1,21 @@
 <script setup lang="ts">
-import type { Shot } from '@gp/types'
+import type { ShotDto } from '@gp/types'
+import { useShotStore } from '@/store'
 
 interface ShotProps {
-  shot?: Shot
+  shot: ShotDto
 }
 
-defineProps<ShotProps>()
+const props = defineProps<ShotProps>()
+const store = useShotStore()
+
+const toDetailPage = () => {
+  store.toShotDetail(props.shot)
+}
 </script>
 
 <template>
-  <div @click="$router.push(`/shots/${shot?._id}`)">
+  <div @click="toDetailPage">
     <div class="card min-h-[10vw] w-full cursor-pointer relative group">
       <figure><img class="rounded-lg" :src="shot?.cover" alt="Shoes"></figure>
       <ShotMask :title="shot?.title" />
