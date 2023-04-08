@@ -17,7 +17,10 @@ export const useCollectionStore = defineStore('collection', () => {
       return collection.value
 
     const { data } = await collectionsApi.findCollectionById(collectionId.value)
-    return data
+    if (data) {
+      collection.value = data
+      return data
+    }
   }
 
   const toCollectionPage = (c: Collection) => {
@@ -45,6 +48,7 @@ export const useCollectionStore = defineStore('collection', () => {
   }
 
   return {
+    collection,
     getCollection,
     showEditCollectionModal,
     showDeleteCollectionModal,

@@ -10,15 +10,11 @@ interface SubmitForm {
 }
 
 const store = useCollectionStore()
-const editCollectionForm = reactive<SubmitForm>({
-  title: '',
-  description: '',
-})
 
-const { form, submitter, status } = useForm({
+const { form, submitter } = useForm({
   form: () => ({
-    title: editCollectionForm.title,
-    description: editCollectionForm.description,
+    title: store.collection?.title,
+    description: store.collection?.description,
   } as SubmitForm),
 })
 
