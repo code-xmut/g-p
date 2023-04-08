@@ -25,6 +25,7 @@ declare module '@vue/runtime-core' {
     ContinueModal: typeof import('./components/uploads/ContinueModal.vue')['default']
     DarkMode: typeof import('./components/DarkMode.vue')['default']
     DeleteCollectionModal: typeof import('./components/Collections/DeleteCollectionModal.vue')['default']
+    DetailHeader: typeof import('./components/ShotDetail/DetailHeader.vue')['default']
     Divider: typeof import('./components/Base/Divider.vue')['default']
     Drawer: typeof import('./components/Drawer/index.vue')['default']
     Dropdown: typeof import('./components/Dropdown/index.vue')['default']

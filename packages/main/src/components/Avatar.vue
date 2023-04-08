@@ -3,11 +3,13 @@ interface AvatarProps {
   showStatus?: boolean
   sizeClass?: string
   userName?: string
+  src?: string
 }
 
 withDefaults(defineProps<AvatarProps>(), {
   showStatus: true,
   sizeClass: 'w-6 h-6',
+  src: '@/assets/images/image2.jpg',
 })
 </script>
 
@@ -18,7 +20,7 @@ withDefaults(defineProps<AvatarProps>(), {
         :class="[sizeClass]"
         class="rounded-full avatar-image"
       >
-        <img src="@/assets/images/image2.jpg">
+        <img :src="src">
       </div>
     </div>
     <p v-if="showStatus" class="ml-2 text-sm font-semibold text-gray-900 dark:text-gray-500">

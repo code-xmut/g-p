@@ -6,6 +6,8 @@ const { get, post } = useRequest()
 
 export const findShots = () => get('/shots')
 
+export const findShotById = (id: string) => <Promise<AxiosResponse<Shot>>>get(`/shots/${id}`)
+
 export const saveDraft = (shot: ShotDraft) => <Promise<AxiosResponse<Shot>>>post('/shots/draft', shot)
 
 export const createShot = (shot: createShotDto) => <Promise<AxiosResponse<Shot>>>(post('/shots', shot))

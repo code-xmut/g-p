@@ -9,8 +9,8 @@ defineProps<ShotProps>()
 </script>
 
 <template>
-  <div>
-    <div class="card w-full cursor-pointer relative group">
+  <div @click="$router.push(`/shots/${shot?._id}`)">
+    <div class="card min-h-[10vw] w-full cursor-pointer relative group">
       <figure><img class="rounded-lg" :src="shot?.cover" alt="Shoes"></figure>
       <ShotMask :title="shot?.title" />
     </div>
