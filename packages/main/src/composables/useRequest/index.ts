@@ -46,9 +46,35 @@ export default function useRequest() {
     }
   }
 
+  async function Delete<T>(url: string, config?: AxiosRequestConfig) {
+    try {
+      loading.value = true
+      const response = await serve.delete<T>(url, config)
+
+      return response
+    }
+    finally {
+      loading.value = false
+    }
+  }
+
+  async function Put<T>(url: string, data?: any, config?: AxiosRequestConfig) {
+    try {
+      loading.value = true
+      const response = await serve.put<T>(url, data, config)
+
+      return response
+    }
+    finally {
+      loading.value = false
+    }
+  }
+
   return {
     loading,
     get,
     post,
+    Delete,
+    Put,
   }
 }
