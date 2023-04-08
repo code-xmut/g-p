@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { ShotDto } from '@gp/types'
+import type { Shot } from '@gp/types'
 
 interface ShotProps {
-  shot?: ShotDto
+  shot?: Shot
 }
 
 defineProps<ShotProps>()
@@ -18,7 +18,7 @@ defineProps<ShotProps>()
       <Avatar :user-name="shot?.user" />
       <div class="flex space-x-2">
         <Action :text="shot?.likes" />
-        <Action icon="mdi:eye-outline" text="351" />
+        <Action icon="mdi:eye-outline" :text="shot?.collections" />
       </div>
     </div>
   </div>
