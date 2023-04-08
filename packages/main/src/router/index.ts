@@ -37,6 +37,11 @@ const router = createRouter({
           ],
         },
         {
+          path: 'shots/:id',
+          name: 'shots',
+          component: () => import('@/pages/shot-detail.vue'),
+        },
+        {
           path: 'collection',
           name: 'collection',
           component: () => import('@/pages/collections.vue'),

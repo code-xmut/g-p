@@ -5,6 +5,7 @@ enum MarkDownEnum {
   H3 = '### capalot',
   H4 = '#### capalot',
   H5 = '##### capalot',
+  TEXT = 'capalot',
 }
 
 enum BlockEnum {

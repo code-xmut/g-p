@@ -1,16 +1,22 @@
 <script setup lang="ts">
 import type { ShotDto } from '@gp/types'
+import { useShotStore } from '@/store'
 
 interface ShotProps {
-  shot?: ShotDto
+  shot: ShotDto
 }
 
-defineProps<ShotProps>()
+const props = defineProps<ShotProps>()
+const store = useShotStore()
+
+const toDetailPage = () => {
+  store.toShotDetail(props.shot)
+}
 </script>
 
 <template>
-  <div>
-    <div class="card w-full cursor-pointer relative group">
+  <div @click="toDetailPage">
+    <div class="card min-h-[10vw] w-full cursor-pointer relative group">
       <figure><img class="rounded-lg" :src="shot?.cover" alt="Shoes"></figure>
       <ShotMask :title="shot?.title" />
     </div>
@@ -18,7 +24,7 @@ defineProps<ShotProps>()
       <Avatar :user-name="shot?.user" />
       <div class="flex space-x-2">
         <Action :text="shot?.likes" />
-        <Action icon="mdi:eye-outline" text="351" />
+        <Action icon="mdi:eye-outline" :text="shot?.collections" />
       </div>
     </div>
   </div>

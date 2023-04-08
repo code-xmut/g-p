@@ -1,18 +1,31 @@
 <script setup lang="ts">
-defineProps<{
-  tabs: ITabs[]
-}>()
+import { useRoute, useRouter } from 'vue-router'
 
 interface ITabs {
   name: string
   slotName: string
+  routerName?: string
 }
+const props = defineProps<{
+  tabs: ITabs[]
+}>()
 
+const router = useRouter()
+const route = useRoute()
 const activeTab = ref(0)
 
 const activateTab = (index: number) => {
   activeTab.value = index
+  router.push({ name: props.tabs[index].routerName })
 }
+
+const highlightTab = () => {
+  const tab = props.tabs.find(t => t.routerName === route.name)
+  if (tab)
+    activeTab.value = props.tabs.indexOf(tab)
+}
+
+onMounted(highlightTab)
 </script>
 
 <template>
@@ -27,6 +40,6 @@ const activateTab = (index: number) => {
     </a>
   </div>
   <div class="tab-content py-6 px-4 lg:px-0">
-    <slot :name="tabs[activeTab].slotName" />
+    <RouterView />
   </div>
 </template>

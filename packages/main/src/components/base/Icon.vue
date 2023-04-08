@@ -12,5 +12,5 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <!-- plus icon -->
-  <Icon class="w-6 h-6" :icon="icon" />
+  <Icon :icon="icon" />
 </template>

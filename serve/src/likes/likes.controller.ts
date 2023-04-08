@@ -30,4 +30,9 @@ export class LikesController {
   async findLikesByUserId(@Param('userId') userId: string) {
     return await this.likesService.findLikesByUserId(userId);
   }
+
+  @Delete(':userId')
+  async deleteLikesByUserId(@Param('userId') userId: string) {
+    return await this.likesService.deleteLikesByUserId(userId);
+  }
 }

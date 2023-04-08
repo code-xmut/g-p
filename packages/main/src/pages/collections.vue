@@ -36,7 +36,7 @@ onMounted(async () => {
       <Shot :shot="s" />
     </li>
   </ul>
-  <CollectionModal />
+  <CollectionModal v-if="store.collection" />
   <Modal
     :show="store.showDeleteCollectionModal"
     title="are you sure you want to delete this collection?"
