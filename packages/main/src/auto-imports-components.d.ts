@@ -60,6 +60,7 @@ declare module '@vue/runtime-core' {
     RouterView: typeof import('vue-router')['RouterView']
     Select: typeof import('./components/Base/Select.vue')['default']
     Shot: typeof import('./components/Shot/index.vue')['default']
+    ShotActions: typeof import('./components/ShotDetail/ShotActions.vue')['default']
     ShotMask: typeof import('./components/Shot/ShotMask.vue')['default']
     Swap: typeof import('./components/Base/Swap.vue')['default']
     Tabs: typeof import('./components/Tabs/index.vue')['default']
