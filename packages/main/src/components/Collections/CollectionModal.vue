@@ -15,7 +15,7 @@ const editCollectionForm = reactive<SubmitForm>({
   description: '',
 })
 
-const { form, submitter } = useForm({
+const { form, submitter, status } = useForm({
   form: () => ({
     title: editCollectionForm.title,
     description: editCollectionForm.description,
