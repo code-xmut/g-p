@@ -34,28 +34,30 @@ const isFullScreen = computed(() => {
 </script>
 
 <template>
-  <input id="my-modal" type="checkbox" class="modal-toggle">
-  <div v-if="show" class="modal modal-open">
-    <div
-      class="modal-box max-w-full lg:max-w-[50%]"
-      v-bind="$attrs"
-      :class="isFullScreen"
-    >
-      <label v-if="closeIcon" for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2" @click="$emit('close')">✕</label>
-      <slot v-if="$slots.title" name="title" />
-      <h3 v-else-if="!noTitle" class="font-bold text-lg">
-        {{ title }}
-      </h3>
-      <slot v-if="$slots.content" name="content" />
-      <p v-else class="py-4">
-        {{ content }}
-      </p>
-      <div v-if="!noActions" class="modal-action">
-        <slot v-if="$slots.action" name="action" />
-        <template v-else>
-          <Button class="btn-ghost" text="cancel" @click="close" />
-          <Button class="btn-primary" text="confirm" @click="$emit('confirm')" />
-        </template>
+  <div>
+    <input id="my-modal" type="checkbox" class="modal-toggle">
+    <div v-if="show" class="modal modal-open">
+      <div
+        class="modal-box max-w-full lg:max-w-[50%]"
+        v-bind="$attrs"
+        :class="isFullScreen"
+      >
+        <label v-if="closeIcon" for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2" @click="$emit('close')">✕</label>
+        <slot v-if="$slots.title" name="title" />
+        <h3 v-else-if="!noTitle" class="font-bold text-lg">
+          {{ title }}
+        </h3>
+        <slot v-if="$slots.content" name="content" />
+        <p v-else class="py-4">
+          {{ content }}
+        </p>
+        <div v-if="!noActions" class="modal-action">
+          <slot v-if="$slots.action" name="action" />
+          <template v-else>
+            <Button class="btn-ghost" text="cancel" @click="close" />
+            <Button class="btn-primary" text="confirm" @click="$emit('confirm')" />
+          </template>
+        </div>
       </div>
     </div>
   </div>
