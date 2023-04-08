@@ -19,7 +19,7 @@ export class LikesService {
   async addShotToLikes(userId: string, shotId: string) {
     const likes = await this.likesModule.findOne({ userId });
     const shot = await this.shotsService.findShotById(shotId);
-    const shots = new Set();
+    const shots = new Set<string>();
 
     if (!likes) {
       await this.createLikes(userId);
@@ -33,6 +33,12 @@ export class LikesService {
 
     if (shots.has(shotId)) {
       throw new NotFoundException('Already liked');
+    }
+
+    for (const value of shots) {
+      const temp = await this.shotsService.findShotById(value);
+      likes.shots = [];
+      likes.shots.push(temp as any);
     }
 
     likes.shots.push(shot as any);
