@@ -7,7 +7,7 @@ const dropdownMenu = computed(() => {
   return [
     {
       name: 'Profile',
-      link: '/profile',
+      link: `/${store.user.name}`,
     },
     {
       name: 'Edit Profile',

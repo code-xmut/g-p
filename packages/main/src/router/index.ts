@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Layout from '../layouts/index.vue'
+import Profile from '../pages/profile.vue'
 
 const router = createRouter({
   history: createWebHistory('/'),
@@ -15,13 +16,29 @@ const router = createRouter({
           component: () => import('@/layouts/Main/index.vue'),
         },
         {
-          path: 'profile',
-          name: 'profile',
-          component: () => import('@/pages/profile.vue'),
+          path: '/:name',
+          component: Profile,
+          children: [
+            {
+              path: '',
+              name: 'work',
+              component: () => import('@/components/Profile/WorkTab.vue'),
+            },
+            {
+              path: 'collections',
+              name: 'collections',
+              component: () => import('@/components/Profile/CollectionsTab.vue'),
+            },
+            {
+              path: 'liked',
+              name: 'liked',
+              component: () => import('@/components/Profile/LikeShotsTab.vue'),
+            },
+          ],
         },
         {
-          path: 'collections',
-          name: 'collections',
+          path: 'collection',
+          name: 'collection',
           component: () => import('@/pages/collections.vue'),
         },
         {

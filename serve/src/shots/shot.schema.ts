@@ -25,13 +25,13 @@ export class Shot {
   @Prop()
   serverUrl: string;
 
-  @Prop()
+  @Prop({ default: 0 })
   likes: number;
 
-  @Prop()
+  @Prop({ default: 0 })
   shares: number;
 
-  @Prop()
+  @Prop({ default: 0 })
   collections: number;
 
   @Prop()
