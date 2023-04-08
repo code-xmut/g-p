@@ -36,10 +36,11 @@ const router = createRouter({
             },
           ],
         },
-        // {
-        //   path: 'collections',
-        //   component: () => import('@/pages/collections.vue'),
-        // },
+        {
+          path: 'collection',
+          name: 'collection',
+          component: () => import('@/pages/collections.vue'),
+        },
         {
           path: '/blog:catchAll(.*)',
           name: 'blog',
