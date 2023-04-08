@@ -30,9 +30,12 @@ onMounted(async () => {
   <div
     class="space-y-4 mb-4 flex flex-col md:px-4 md:flex-row md:justify-between md:items-center"
   >
+    <p class="text-2xl font-semibold text-gray-900 dark:text-gray-400 md:hidden">
+      {{ user?.name }}
+    </p>
     <Avatar :src="user?.avatar" :user-name="userName" size-class="w-14 h-14">
       <div class="flex flex-col">
-        <p class="text-xl font-semibold text-gray-900 dark:text-gray-400 ml-4">
+        <p class="text-xl font-semibold text-gray-900 dark:text-gray-400 ml-4 hidden md:block">
           {{ user?.name }}
         </p>
         <p class="flex ml-3 text-gray-700 dark:text-gray-400">
@@ -49,7 +52,7 @@ onMounted(async () => {
         </template>
       </Button>
     </div>
-    <div class="flex justify-between items-center md:hidden">
+    <div class="flex justify-between px-4 items-center md:hidden">
       <ul class="flex space-x-2">
         <li
           v-for="m in menus" :key="m.name"
