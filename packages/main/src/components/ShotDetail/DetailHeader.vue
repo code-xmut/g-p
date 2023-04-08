@@ -28,9 +28,19 @@ onMounted(async () => {
 
 <template>
   <div
-    class="space-y-4 mb-4 flex flex-col md:px-12 md:flex-row md:justify-between md:items-center"
+    class="space-y-4 mb-4 flex flex-col md:px-4 md:flex-row md:justify-between md:items-center"
   >
-    <Avatar :src="user?.avatar" :user-name="userName" size-class="w-10 h-10" />
+    <Avatar :src="user?.avatar" :user-name="userName" size-class="w-14 h-14">
+      <div class="flex flex-col">
+        <p class="text-xl font-semibold text-gray-900 dark:text-gray-400 ml-4">
+          {{ user?.name }}
+        </p>
+        <p class="flex ml-3 text-gray-700 dark:text-gray-400">
+          <Icon icon="material-symbols:location-on-outline" class="w-4 h-4" />
+          {{ user?.location }}
+        </p>
+      </div>
+    </Avatar>
     <div class="hidden md:flex md:items-center space-x-4">
       <Button text="Save" />
       <Button class="btn-secondary" text="Like">

@@ -15,7 +15,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="md:flex justify-between md:pr-10 md:pl-[10vw] xl:pl-[20vw]">
+  <div class="px-2 md:flex justify-between md:pr-10 md:pl-[10vw] xl:pl-[20vw]">
     <div>
       <DetailHeader user-name="rich4st" />
       <div v-if="shotContent">
