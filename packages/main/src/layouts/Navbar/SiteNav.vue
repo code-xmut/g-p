@@ -15,22 +15,12 @@ const navs = computed(() => {
   ]
 })
 
-const body = ref(document.body)
 const showDrawer = ref(false)
-const navIcon = computed(() => {
-  if (showDrawer.value)
-    body.value.classList.add('overflow-hidden')
-  else
-    body.value.classList.remove('overflow-hidden')
-
-  return showDrawer.value ? 'mdi:close' : 'mdi:menu'
-})
+const navIcon = computed(() => showDrawer.value ? 'mdi:close' : 'mdi:menu')
 
 const resizeHandler = () => {
-  if (window.innerWidth > 1024) {
+  if (window.innerWidth > 1024)
     showDrawer.value = false
-    body.value.classList.remove('overflow-hidden')
-  }
 }
 
 const drawerMenus = computed(() => {
@@ -107,7 +97,7 @@ onUnmounted(() => {
 
 <template>
   <Icon class="w-6 h-6 cursor-pointer lg:hidden" :icon="navIcon" @click="showDrawer = !showDrawer" />
-  <FullScreenDrawer :show="showDrawer">
+  <FullScreenDrawer :show="showDrawer" class="z-[60]">
     <Input class="w-full" show-icon />
     <template v-for="d in drawerMenus" :key="d.name">
       <Collapse :title="d.name" :content="d.children" />

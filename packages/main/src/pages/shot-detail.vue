@@ -1,16 +1,19 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
-import { shotApi } from '@/api'
 import { convertBlocks2MD } from '@/utils/convertBlocks2MD'
+import { useShotStore } from '@/store'
 
-const route = useRoute()
+const store = useShotStore()
 
-const shotId = route.fullPath.split('/')[2]
 const shotContent = ref('')
 
 onMounted(async () => {
-  const { data } = await shotApi.findShotById(shotId)
-  shotContent.value = convertBlocks2MD(JSON.parse(data.content))
+  const shot = await store.getShot()
+  try {
+    shotContent.value = convertBlocks2MD(JSON.parse(shot.content))
+  }
+  catch (error) {
+    console.error(error)
+  }
 })
 </script>
 
@@ -23,7 +26,10 @@ onMounted(async () => {
       </div>
     </div>
     <div class="hidden md:block">
-      <ShotActions />
+      <ShotActions v-model:show="store.showCommentDrawer" />
     </div>
+    <FullScreenDrawer v-model:show="store.showCommentDrawer" show-back>
+      <Comments />
+    </FullScreenDrawer>
   </div>
 </template>

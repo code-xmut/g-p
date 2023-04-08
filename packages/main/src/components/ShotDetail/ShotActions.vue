@@ -1,4 +1,14 @@
 <script setup lang="ts">
+interface Props {
+  show: boolean
+}
+
+withDefaults(defineProps<Props>(), {
+  show: false,
+})
+
+const emit = defineEmits(['update:show'])
+
 const actions = reactive([
   {
     name: 'share',
@@ -7,6 +17,7 @@ const actions = reactive([
   {
     name: 'comment',
     icon: 'mdi-comment',
+    cb: () => emit('update:show', true),
   },
   {
     name: 'info',
@@ -23,6 +34,7 @@ const actions = reactive([
     <li
       v-for="a in actions" :key="a.name"
       class="shadow-[0px_0px_0px_1px_#e7e7e9_inset] rounded-lg px-3 py-2.5 cursor-pointer"
+      @click="a.cb && a.cb()"
     >
       <Icon :icon="a.icon" />
     </li>

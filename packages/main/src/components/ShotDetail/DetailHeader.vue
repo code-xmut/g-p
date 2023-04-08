@@ -1,29 +1,12 @@
 <script setup lang="ts">
-import type { UserInfo } from '@gp/types/user'
-import { userApi } from '@/api'
+import { useShotStore } from '@/store'
 
 interface Props {
   userName: string
 }
 
-const props = defineProps<Props>()
-
-const user = ref<UserInfo | null>(null)
-const menus = reactive([
-  {
-    name: 'folder',
-    icon: 'mdi:folder',
-  },
-  {
-    name: 'like',
-    icon: 'mdi-heart',
-  },
-])
-
-onMounted(async () => {
-  const { data } = await userApi.getUser(props.userName)
-  user.value = data
-})
+defineProps<Props>()
+const store = useShotStore()
 </script>
 
 <template>
@@ -31,16 +14,16 @@ onMounted(async () => {
     class="space-y-4 mb-4 flex flex-col md:px-4 md:flex-row md:justify-between md:items-center"
   >
     <p class="text-2xl font-semibold text-gray-900 dark:text-gray-400 md:hidden">
-      {{ user?.name }}
+      {{ store.shotAuthor?.name }}
     </p>
-    <Avatar :src="user?.avatar" :user-name="userName" size-class="w-14 h-14">
+    <Avatar :src="store.shotAuthor?.avatar" :user-name="userName" size-class="w-14 h-14">
       <div class="flex flex-col">
         <p class="text-xl font-semibold text-gray-900 dark:text-gray-400 ml-4 hidden md:block">
-          {{ user?.name }}
+          {{ store.shotAuthor?.name }}
         </p>
-        <p class="flex ml-3 text-gray-700 dark:text-gray-400">
+        <p class="flex items-center ml-3 text-gray-700 dark:text-gray-400">
           <Icon icon="material-symbols:location-on-outline" class="w-4 h-4" />
-          {{ user?.location }}
+          {{ store.shotAuthor?.location }}
         </p>
       </div>
     </Avatar>
@@ -53,15 +36,8 @@ onMounted(async () => {
       </Button>
     </div>
     <div class="flex justify-between px-4 items-center md:hidden">
-      <ul class="flex space-x-2">
-        <li
-          v-for="m in menus" :key="m.name"
-          class="shadow-[0px_0px_0px_1px_#e7e7e9_inset] rounded-lg px-3 py-2.5 cursor-pointer"
-        >
-          <Icon :icon="m.icon" />
-        </li>
-      </ul>
-      <ShotActions />
+      <DetailMenus />
+      <ShotActions v-model:show="store.showCommentDrawer" />
     </div>
   </div>
 </template>
