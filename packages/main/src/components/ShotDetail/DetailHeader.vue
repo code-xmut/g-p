@@ -29,7 +29,7 @@ const store = useShotStore()
     </Avatar>
     <div class="hidden md:flex md:items-center space-x-4">
       <Button text="Save" />
-      <Button class="btn-secondary" text="Like">
+      <Button class="btn-secondary" text="Like" @click="store.likeShot()">
         <template #frontIcon>
           <Icon icon="mdi-heart" />
         </template>

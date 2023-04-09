@@ -2,7 +2,7 @@ import type { CommentDto, ShotDto, createCommentDto } from '@gp/types'
 import { defineStore } from 'pinia'
 import { useRoute, useRouter } from 'vue-router'
 import type { UserInfo } from '@gp/types/user'
-import { commentApi, shotApi, userApi } from '@/api'
+import { commentApi, likesApi, shotApi, userApi } from '@/api'
 import { useUser } from '@/composables'
 
 export const useShotStore = defineStore('collection', () => {
@@ -60,6 +60,12 @@ export const useShotStore = defineStore('collection', () => {
     }
   }
 
+  const likeShot = async () => {
+    const { data } = await likesApi.addShotToLikes(userId, shotId.value)
+    if (data)
+      return data
+  }
+
   return {
     showCommentDrawer,
     setShotId,
@@ -70,5 +76,6 @@ export const useShotStore = defineStore('collection', () => {
     getShot,
     getComments,
     createComment,
+    likeShot,
   }
 })
