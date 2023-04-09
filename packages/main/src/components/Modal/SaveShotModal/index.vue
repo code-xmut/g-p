@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useForm } from 'slimeform'
-import type { Collection } from '@gp/types'
+import type { Collection, createCollectionDto } from '@gp/types'
 import { useCollections, useUser } from '@/composables'
 
 interface Props {
@@ -11,20 +11,19 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   show: false,
 })
-const emit = defineEmits(['update:show'])
+defineEmits(['update:show'])
 
-interface SubmitForm {
-  title: string
-  description: string
-  userId: string
-
-  [key: string]: any
-}
-
-const { getCollections, isCollectionEmpty, saveShotToCollection, removeShotFromCollection } = useCollections()
+const {
+  getCollections,
+  isCollectionEmpty,
+  saveShotToCollection,
+  removeShotFromCollection,
+  createCollection,
+  setEmptyCollection,
+} = useCollections()
 const { userId } = useUser()
 
-const collectionForm = reactive<SubmitForm>({
+const collectionForm = reactive<createCollectionDto>({
   userId,
   title: '',
   description: '',
@@ -34,9 +33,10 @@ const createNewCollection = ref(false)
 
 const { form, submitter } = useForm({
   form: () => ({
+    userId: collectionForm.userId,
     title: collectionForm.title,
     description: collectionForm.description,
-  } as SubmitForm),
+  } as createCollectionDto & { [key: string]: any }),
 })
 
 const { submit } = submitter(async ({ form }) => {
@@ -44,6 +44,21 @@ const { submit } = submitter(async ({ form }) => {
     if (!form[key])
       delete form[key]
   })
+  const response = await createCollection(form)
+  if (response) {
+    form.title = ''
+    form.description = ''
+    collections.value = await getCollections()
+    setEmptyCollection(false)
+    createNewCollection.value = false
+  }
+})
+
+const showCreateForm = computed(() => {
+  if (isCollectionEmpty.value)
+    return true
+
+  return createNewCollection.value
 })
 
 const modalTitle = computed(() => {
@@ -70,7 +85,7 @@ const saveShot = async (collectionId: string) => {
 }
 
 const removeShot = async (collectionId: string) => {
-  const response = await removeShotFromCollection(collectionId, props.shotId)
+  await removeShotFromCollection(collectionId, props.shotId)
 }
 </script>
 
@@ -85,7 +100,7 @@ const removeShot = async (collectionId: string) => {
       </h1>
     </template>
     <template #content>
-      <form v-if="isCollectionEmpty || createNewCollection" @submit.prevent="submit">
+      <form v-if="showCreateForm" @submit.prevent="submit">
         <div class="flex flex-col">
           <label for="title" class="text-sm font-bold">Collection name</label>
           <Input v-model:value="form.title" class="w-full" />
@@ -100,7 +115,7 @@ const removeShot = async (collectionId: string) => {
         </div>
         <div class="mt-5 text-right space-x-4">
           <Button class="btn-ghost" text="cancel" @click="$emit('update:show', false)" />
-          <Button class="btn-primary" text="submit" type="submit" />
+          <Button class="btn-primary" text="Create" type="submit" />
         </div>
       </form>
       <div v-else>
