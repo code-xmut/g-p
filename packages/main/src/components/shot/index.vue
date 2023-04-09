@@ -7,6 +7,8 @@ interface ShotProps {
 }
 
 const props = defineProps<ShotProps>()
+defineEmits(['save', 'like'])
+
 const store = useShotStore()
 
 const toDetailPage = () => {
@@ -18,7 +20,7 @@ const toDetailPage = () => {
   <div @click="toDetailPage">
     <div class="card min-h-[10vw] w-full cursor-pointer relative group">
       <figure><img class="rounded-lg" :src="shot?.cover" alt="Shoes"></figure>
-      <ShotMask :title="shot?.title" />
+      <ShotMask :title="shot?.title" @save="$emit('save', shot._id)" @like="$emit('like', shot.id)" />
     </div>
     <div class="mt-2 flex justify-between items-center">
       <Avatar :user-name="shot?.user" />

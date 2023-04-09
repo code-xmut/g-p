@@ -7,7 +7,7 @@ withDefaults(defineProps<ShotProps>(), {
   title: 'Rich4st Shot Rich4st Shot Rich4st Shot Rich4st Shot Rich4st Shot',
 })
 
-// tailwindcss 设置文字最多两行，超出显示省略号
+defineEmits(['save', 'like'])
 </script>
 
 <template>
@@ -22,10 +22,12 @@ withDefaults(defineProps<ShotProps>(), {
       <Action
         v-tip="{ content: 'Save shot', placement: 'bottom' }"
         class="w-8 h-8 text-gray-300" icon="material-symbols:create-new-folder"
+        @click.stop="$emit('save')"
       />
       <Action
         v-tip="{ content: 'Like this shot', placement: 'bottom' }"
         class="w-8 h-8 text-gray-300"
+        @click.stop="$emit('like')"
       />
     </div>
   </div>
