@@ -5,7 +5,7 @@ import { useCollections, useUser } from '@/composables'
 
 interface Props {
   show: boolean
-  shotId: string
+  shotId?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
