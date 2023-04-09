@@ -2,7 +2,7 @@ import type { ShotDto } from '@gp/types'
 import { defineStore } from 'pinia'
 import { useRoute, useRouter } from 'vue-router'
 import type { UserInfo } from '@gp/types/user'
-import { shotApi, userApi } from '@/api'
+import { commentApi, shotApi, userApi } from '@/api'
 
 export const useShotStore = defineStore('collection', () => {
   const router = useRouter()
@@ -35,10 +35,16 @@ export const useShotStore = defineStore('collection', () => {
     return shot.value
   }
 
+  const getComments = async () => {
+    const { data } = await commentApi.findCommentsByShotId(shotId.value)
+    return data
+  }
+
   return {
     showCommentDrawer,
     shotAuthor,
     toShotDetail,
     getShot,
+    getComments,
   }
 })

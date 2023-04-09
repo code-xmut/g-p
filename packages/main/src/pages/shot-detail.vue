@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import type { CommentDto } from '@gp/types'
 import { convertBlocks2MD } from '@/utils/convertBlocks2MD'
 import { useShotStore } from '@/store'
 
 const store = useShotStore()
 
 const shotContent = ref('')
+const comments = ref<CommentDto[]>([])
 
 onMounted(async () => {
   const shot = await store.getShot()
@@ -14,6 +16,8 @@ onMounted(async () => {
   catch (error) {
     console.error(error)
   }
+
+  comments.value = await store.getComments()
 })
 </script>
 
@@ -30,7 +34,12 @@ onMounted(async () => {
     </div>
     <FullScreenDrawer v-model:show="store.showCommentDrawer" show-back>
       <CommentMenus />
-      <Comment />
+      <h3 class="text-2xl font-semibold text-gray-900 dark:text-gray-700 py-2">
+        FeedBack
+      </h3>
+      <div v-for="c in comments" :key="c._id">
+        <Comment :comment="c" />
+      </div>
     </FullScreenDrawer>
   </div>
 </template>
