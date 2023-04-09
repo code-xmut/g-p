@@ -4,7 +4,7 @@ import {
   UpdateUserProfileDto,
 } from './user';
 import { ShotDraft, Shot, ShotDto, createShotDto, updateShotDto } from './shot';
-import { Comment, createCommentDto, updateCommentDto } from './comment';
+import { Comment, CommentDto, createCommentDto, updateCommentDto } from './comment';
 import { Tag, createTagDto, updateTagDto } from './tag'
 import { Collection,createCollectionDto, updateCollectionDto } from './collections';
 import { Likes } from './likes';
@@ -23,6 +23,7 @@ export type {
   updateShotDto,
   
   Comment,
+  CommentDto,
   createCommentDto,
   updateCommentDto,
 
