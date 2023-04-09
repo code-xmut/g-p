@@ -21,6 +21,7 @@ withDefaults(
     v-bind="$attrs"
     :disabled="disabled"
   >
+    <slot v-if="$slots.default" />
     <slot v-if="$slots.frontIcon" name="frontIcon" />
     <span v-if="text !== ''">
       {{ text }}
