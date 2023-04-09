@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { watch } from 'vue'
 import { useIsMobile } from '@/composables'
 
 const props = withDefaults(defineProps<{
@@ -13,8 +12,8 @@ defineEmits(['update:show'])
 
 const { isMobile } = useIsMobile()
 
-watch(() => isMobile.value, (val) => {
-  if (val && props.show)
+watchEffect(() => {
+  if (props.show)
     document.body.classList.add('overflow-hidden')
   else
     document.body.classList.remove('overflow-hidden')
