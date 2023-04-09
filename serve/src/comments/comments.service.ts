@@ -1,9 +1,10 @@
 import { createCommentDto, updateCommentDto } from '@gp/types';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { ShotsService } from 'src/shots/shots.service';
 import { Comment } from './comments.schema';
+import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class CommentsService {
@@ -11,6 +12,7 @@ export class CommentsService {
     @InjectModel(Comment.name)
     private readonly commentModel: Model<Comment>,
     private readonly shotsService: ShotsService,
+    private readonly userService: UsersService,
   ) {}
 
   async createComment(comment: createCommentDto) {
@@ -24,7 +26,20 @@ export class CommentsService {
   }
 
   async findCommentsByShotId(shotId: string) {
-    return await this.commentModel.find({ shotId });
+    const comments = await this.commentModel.find({ shotId });
+
+    if (!comments) {
+      throw new NotFoundException('Comments not found');
+    }
+
+    // 遍历评论，将评论的作者信息添加到评论中
+    for (let i = 0; i < comments.length; i++) {
+      const comment = comments[i];
+      const user = await this.userService.findUserById(comment.user.toString());
+      comment.user = JSON.stringify(user);
+    }
+
+    return comments;
   }
 
   async findCommentById(id: string) {
