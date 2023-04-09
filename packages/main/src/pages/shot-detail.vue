@@ -29,7 +29,7 @@ onMounted(async () => {
       <ShotActions v-model:show="store.showCommentDrawer" />
     </div>
     <FullScreenDrawer v-model:show="store.showCommentDrawer" show-back>
-      <Comments />
+      <CommentMenus />
     </FullScreenDrawer>
   </div>
 </template>
