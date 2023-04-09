@@ -15,7 +15,7 @@ withDefaults(defineProps<AvatarProps>(), {
 
 <template>
   <div class="flex items-center">
-    <div class="avatar online">
+    <div class="avatar">
       <div
         :class="[sizeClass]"
         class="rounded-full avatar-image"

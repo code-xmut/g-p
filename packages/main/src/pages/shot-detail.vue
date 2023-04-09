@@ -30,6 +30,7 @@ onMounted(async () => {
     </div>
     <FullScreenDrawer v-model:show="store.showCommentDrawer" show-back>
       <CommentMenus />
+      <Comment />
     </FullScreenDrawer>
   </div>
 </template>

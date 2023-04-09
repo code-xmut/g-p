@@ -22,6 +22,7 @@ declare module '@vue/runtime-core' {
     CollectionModal: typeof import('./components/Collections/CollectionModal.vue')['default']
     Collections: typeof import('./components/Collections/index.vue')['default']
     CollectionsTab: typeof import('./components/Profile/CollectionsTab.vue')['default']
+    Comment: typeof import('./components/ShotDetail/Comment.vue')['default']
     CommentMenus: typeof import('./components/ShotDetail/CommentMenus.vue')['default']
     Comments: typeof import('./components/ShotDetail/CommentMenus.vue')['default']
     ContinueModal: typeof import('./components/uploads/ContinueModal.vue')['default']
