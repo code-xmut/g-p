@@ -30,7 +30,7 @@ onMounted(async () => {
     :class="{ 'md:pl-[5vw]': store.showCommentDrawer }"
   >
     <div class="w-full md:w-2/3">
-      <DetailHeader user-name="rich4st" />
+      <DetailHeader v-model:show-save-modal="store.showCollectionModal" user-name="rich4st" />
       <div v-if="shotContent">
         <Markdown :content="shotContent" />
       </div>
@@ -44,5 +44,6 @@ onMounted(async () => {
     <FullContentDrawer v-else v-model:show="store.showCommentDrawer" show-back>
       <DrawerContent />
     </FullContentDrawer>
+    <SaveShotModal v-model:show="store.showCollectionModal" :shot-id="store.shotId" />
   </div>
 </template>

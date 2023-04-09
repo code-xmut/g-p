@@ -7,6 +7,11 @@ export type Collection = {
   title: string;
   description?: string;
   shots?: Shot[];
+
+  createdAt?: Date;
+  updatedAt?: Date;
+
+  [key: string]: any;
 }
 
 export type createCollectionDto = {

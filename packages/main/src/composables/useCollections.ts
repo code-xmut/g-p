@@ -13,8 +13,23 @@ export const useCollections = () => {
     return data
   }
 
+  const saveShotToCollection = async (collectionId: string, shotId: string) => {
+    const { data } = await collectionsApi.saveShotToCollection(collectionId, shotId)
+    if (data)
+      return data
+    return false
+  }
+
+  const removeShotFromCollection = async (collectionId: string, shotId: string) => {
+    const { data } = await collectionsApi.removeShotFromCollection(collectionId, shotId)
+    if (data)
+      return data
+    return false
+  }
   return {
     isCollectionEmpty,
     getCollections,
+    saveShotToCollection,
+    removeShotFromCollection,
   }
 }

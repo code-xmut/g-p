@@ -3,9 +3,12 @@ import { useShotStore } from '@/store'
 
 interface Props {
   userName: string
+  showSaveModal?: boolean
 }
 
 defineProps<Props>()
+defineEmits(['update:show-save-modal'])
+
 const store = useShotStore()
 </script>
 
@@ -28,7 +31,7 @@ const store = useShotStore()
       </div>
     </Avatar>
     <div class="hidden md:flex md:items-center space-x-4">
-      <Button text="Save" />
+      <Button text="Save" @click="$emit('update:show-save-modal', true)" />
       <Button class="btn-secondary" text="Like" @click="store.likeShot()">
         <template #frontIcon>
           <Icon icon="mdi-heart" />

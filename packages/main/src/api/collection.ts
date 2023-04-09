@@ -11,3 +11,7 @@ export const deleteCollectionById = (collectionId = '') => <Promise<AxiosRespons
 export const findCollectionById = (collectionId = '') => <Promise<AxiosResponse<Collection>>>get(`/collection/${collectionId}`)
 
 export const updateCollectionById = (collectionId = '', data: Partial<Collection>) => <Promise<AxiosResponse<Collection>>>Put(`/collection/${collectionId}`, data)
+
+export const saveShotToCollection = (collectionId = '', shotId = '') => <Promise<AxiosResponse<Collection>>>Put(`/collection/${collectionId}/shot/${shotId}`)
+
+export const removeShotFromCollection = (collectionId = '', shotId = '') => <Promise<AxiosResponse<Collection>>>Delete(`/collection/${collectionId}/shot/${shotId}`)

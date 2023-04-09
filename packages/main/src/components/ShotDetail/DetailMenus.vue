@@ -7,6 +7,7 @@ const menus = reactive([
   {
     name: 'folder',
     icon: 'mdi:folder',
+    cb: () => store.showCollectionModal = true,
   },
   {
     name: 'like',
