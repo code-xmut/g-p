@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { onClickOutside } from '@vueuse/core'
+
 interface Props {
   show: boolean
   noTitle?: boolean
@@ -21,9 +23,14 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits(['close', 'confirm'])
 
+const target = ref<HTMLElement>()
+
 const close = () => {
   emit('close')
 }
+
+onClickOutside(target, close)
+
 const isFullScreen = computed(() => {
   return {
     'w-screen': props.fullScreen,
@@ -38,7 +45,8 @@ const isFullScreen = computed(() => {
     <input id="my-modal" type="checkbox" class="modal-toggle">
     <div v-if="show" class="modal modal-open">
       <div
-        class="modal-box max-w-full lg:max-w-[50%]"
+        ref="target"
+        class="modal-box max-w-full"
         v-bind="$attrs"
         :class="isFullScreen"
       >

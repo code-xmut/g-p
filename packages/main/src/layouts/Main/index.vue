@@ -3,6 +3,8 @@ import type { ShotDto } from '@gp/types/shot'
 import { shotApi } from '@/api'
 
 const shots = ref<ShotDto[]>()
+const showCollectionModal = ref(false)
+const shotId = ref()
 
 onMounted(async () => {
   const { data } = await shotApi.findShots()
@@ -12,6 +14,11 @@ onMounted(async () => {
 const isLogged = computed(() => {
   return !!localStorage.getItem('token')
 })
+
+const saveShot = async (id: string) => {
+  shotId.value = id
+  showCollectionModal.value = true
+}
 </script>
 
 <template>
@@ -23,9 +30,10 @@ const isLogged = computed(() => {
     <div class="min-h-screen dark:border-gray-700">
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-9">
         <div v-for="s in shots" :key="s._id">
-          <Shot :shot="s" />
+          <Shot :shot="s" @save="saveShot" />
         </div>
       </div>
     </div>
+    <SaveShotModal v-model:show="showCollectionModal" :shot-id="shotId" />
   </main>
 </template>

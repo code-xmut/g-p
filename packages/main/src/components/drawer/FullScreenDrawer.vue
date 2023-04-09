@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useIsMobile } from '@/composables'
+
 const props = withDefaults(defineProps<{
   show: boolean
   showBack?: boolean
@@ -8,10 +10,11 @@ const props = withDefaults(defineProps<{
 })
 defineEmits(['update:show'])
 
+const { isMobile } = useIsMobile()
+
 watchEffect(() => {
   if (props.show)
     document.body.classList.add('overflow-hidden')
-
   else
     document.body.classList.remove('overflow-hidden')
 })

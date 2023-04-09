@@ -54,6 +54,17 @@ export class UsersService {
     return await this.userModel.findOne({ username });
   }
 
+  async findUserById(id: string) {
+    const user = await this.userModel.findOne({ _id: id });
+    if (user) {
+      const { password, likes, collections, shots, ...userInfo } =
+        user.toObject();
+      return userInfo;
+    }
+
+    throw new NotFoundException('User not found.');
+  }
+
   async findUserInfoByUsername(
     username: string,
   ): Promise<UserInfo | undefined> {

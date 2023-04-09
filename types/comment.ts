@@ -11,6 +11,8 @@ export type Comment = {
   [key: string]: any;
 }
 
+export type CommentDto = Comment 
+
 export type createCommentDto = {
   content: string;
   user: string;

@@ -1,3 +1,4 @@
+import { UserInfo } from '@gp/types/user';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 @Schema({

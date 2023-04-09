@@ -56,6 +56,7 @@ importers:
       autoprefixer: ^10.4.13
       axios: ^1.3.4
       daisyui: ^2.51.3
+      dayjs: ^1.11.7
       eslint: ^8.35.0
       jsdom: ^21.1.0
       lint-staged: ^13.1.2
@@ -88,6 +89,7 @@ importers:
       '@vueuse/core': 9.13.0_vue@3.2.47
       axios: 1.3.4
       daisyui: 2.51.3_gbtt6ss3tbiz4yjtvdr6fbrj44
+      dayjs: 1.11.7
       lodash-es: 4.17.21
       marked: 4.2.12
       nanoid: 4.0.2
