@@ -1,23 +1,35 @@
-import type { ShotDto } from '@gp/types'
+import type { CommentDto, ShotDto, createCommentDto } from '@gp/types'
 import { defineStore } from 'pinia'
 import { useRoute, useRouter } from 'vue-router'
 import type { UserInfo } from '@gp/types/user'
 import { commentApi, shotApi, userApi } from '@/api'
+import { useUser } from '@/composables'
 
 export const useShotStore = defineStore('collection', () => {
   const router = useRouter()
   const route = useRoute()
 
   const showCommentDrawer = ref(false)
+  const comments = ref<CommentDto[]>([])
   const shot = ref<ShotDto | null>(null)
   const shotId = ref(route.fullPath.split('/')[2])
   const shotAuthor = ref<UserInfo | null>(null)
+  const { userId } = useUser()
+  const comment = ref<createCommentDto>({
+    content: '',
+    user: userId,
+    shotId: shotId.value,
+  })
 
   const toShotDetail = (s: ShotDto) => {
     if (s) {
       shot.value = s
       router.push(`/shots/${s._id}`)
     }
+  }
+
+  const setShotId = (id: string) => {
+    shotId.value = id
   }
 
   const setShotAuthor = async (author = 'rich4st') => {
@@ -37,14 +49,26 @@ export const useShotStore = defineStore('collection', () => {
 
   const getComments = async () => {
     const { data } = await commentApi.findCommentsByShotId(shotId.value)
-    return data
+    comments.value = data
+  }
+
+  const createComment = async () => {
+    const { data } = await commentApi.createComment(comment.value)
+    if (data) {
+      comment.value.content = ''
+      await getComments()
+    }
   }
 
   return {
     showCommentDrawer,
+    setShotId,
+    comments,
+    comment,
     shotAuthor,
     toShotDetail,
     getShot,
     getComments,
+    createComment,
   }
 })
