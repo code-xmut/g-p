@@ -1,5 +1,15 @@
-import { Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import {
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Query,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import { LikesService } from './likes.service';
+import { JwtAuthGuards } from 'src/auth/jwt-auth.guard';
 
 @Controller('likes')
 export class LikesController {
@@ -34,5 +44,24 @@ export class LikesController {
   @Delete(':userId')
   async deleteLikesByUserId(@Param('userId') userId: string) {
     return await this.likesService.deleteLikesByUserId(userId);
+  }
+
+  @UseGuards(JwtAuthGuards)
+  @Get('shots/page')
+  async findShotsWithStatus(
+    @Req() req,
+    @Query('page') page: number,
+    @Query('size') size: number,
+    @Query('sort') sort?: string,
+    @Query('order') order?: string,
+  ) {
+    const userId = req.headers.id;
+    return await this.likesService.findShotsWithStatus(
+      userId,
+      page,
+      size,
+      sort,
+      order,
+    );
   }
 }

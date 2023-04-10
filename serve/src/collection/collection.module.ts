@@ -14,5 +14,6 @@ import { ShotsModule } from 'src/shots/shots.module';
   ],
   controllers: [CollectionController],
   providers: [CollectionService],
+  exports: [CollectionService],
 })
 export class CollectionModule {}

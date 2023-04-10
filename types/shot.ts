@@ -19,6 +19,9 @@ export type Shot = {
   createdAt?: Date;
   updatedAt?: Date;
 
+  liked?: boolean;
+  collected?: boolean;
+
   [key: string]: any;
 }
 
