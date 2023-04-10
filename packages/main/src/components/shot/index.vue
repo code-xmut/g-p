@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { ShotDto } from '@gp/types'
+import { useRouter } from 'vue-router'
 import { useShotStore } from '@/store'
 
 interface ShotProps {
@@ -9,11 +10,18 @@ interface ShotProps {
 const props = defineProps<ShotProps>()
 defineEmits(['save', 'like'])
 
+const router = useRouter()
 const store = useShotStore()
+const { toShotDetail } = store
 
 const toDetailPage = () => {
   store.toShotDetail(props.shot)
 }
+
+onMounted(() => {
+  if (!toShotDetail)
+    router.go(0)
+})
 </script>
 
 <template>
