@@ -1,15 +1,19 @@
 <script setup lang="ts">
 import type { Collection } from '@gp/types'
+import { useRouter } from 'vue-router'
 import { collectionsApi } from '@/api'
 import { useCollectionStore } from '@/store'
 
 const store = useCollectionStore()
+const router = useRouter()
 
 const userId = JSON.parse(localStorage.getItem('user') || '{}')._id
 const collections = ref<Collection[]>([])
 onMounted(async () => {
   const { data } = await collectionsApi.findUserCollections(userId)
   collections.value = data
+  if (!store.toCollectionPage)
+    router.go(0)
 })
 </script>
 

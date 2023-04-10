@@ -3,6 +3,8 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Likes } from './likes.schema';
 import { ShotsService } from 'src/shots/shots.service';
+import { CollectionService } from 'src/collection/collection.service';
+import { Collection, Shot } from '@gp/types';
 
 @Injectable()
 export class LikesService {
@@ -10,6 +12,7 @@ export class LikesService {
     @InjectModel(Likes.name)
     private likesModule: Model<Likes>,
     private readonly shotsService: ShotsService,
+    private readonly collectionService: CollectionService,
   ) {}
 
   async createLikes(userId: string): Promise<Likes> {
@@ -68,5 +71,41 @@ export class LikesService {
 
   async deleteLikesByUserId(userId: string) {
     return await this.likesModule.findOneAndDelete({ userId });
+  }
+
+  async findShotsWithStatus(
+    userId: string,
+    page: number,
+    size: number,
+    sort?: string,
+    order?: string,
+  ) {
+    const shot = await this.shotsService.findPage(page, size, sort, order);
+    const likes = await this.findLikesByUserId(userId);
+    const collection = await this.collectionService.findCollectionByUserId(
+      userId,
+    );
+    const collectedShot: string[] = [];
+    collection.forEach((c) => {
+      c.shots.map((s) => {
+        collectedShot.push(s._id.toString());
+      });
+    });
+
+    const returnShot = JSON.parse(JSON.stringify(shot)) as Shot[];
+    returnShot.forEach((s) => {
+      likes.shots.forEach((l) => {
+        if (s._id.toString() === l._id.toString()) {
+          s.liked = true;
+        }
+      });
+      collectedShot.forEach((c) => {
+        if (s._id.toString() === c) {
+          s.collected = true;
+        }
+      });
+    });
+
+    return returnShot;
   }
 }
