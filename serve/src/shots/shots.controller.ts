@@ -85,6 +85,11 @@ export class ShotsController {
     return this.shotsService.likeShotById(id);
   }
 
+  @Put(':id/unlike')
+  async unlikeShotById(@Param('id') id: string) {
+    return this.shotsService.unlikeShotById(id);
+  }
+
   @Delete(':id')
   async deleteShotById(@Param('id') id: string) {
     return this.shotsService.deleteShotById(id);

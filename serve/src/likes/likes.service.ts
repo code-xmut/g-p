@@ -60,11 +60,8 @@ export class LikesService {
     return await this.likesModule.find();
   }
 
-  async findLikesByUserId(userId: string): Promise<Likes> {
+  async findLikesByUserId(userId: string) {
     const likes = await this.likesModule.findOne({ userId });
-    if (!likes) {
-      throw new NotFoundException('No likes found');
-    }
 
     return likes;
   }
@@ -94,16 +91,20 @@ export class LikesService {
 
     const returnShot = JSON.parse(JSON.stringify(shot)) as Shot[];
     returnShot.forEach((s) => {
-      likes.shots.forEach((l) => {
-        if (s._id.toString() === l._id.toString()) {
-          s.liked = true;
-        }
-      });
-      collectedShot.forEach((c) => {
-        if (s._id.toString() === c) {
-          s.collected = true;
-        }
-      });
+      if (likes) {
+        likes.shots.forEach((l) => {
+          if (s._id.toString() === l._id.toString()) {
+            s.liked = true;
+          }
+        });
+      }
+      if (collectedShot) {
+        collectedShot.forEach((c) => {
+          if (s._id.toString() === c) {
+            s.collected = true;
+          }
+        });
+      }
     });
 
     return returnShot;
