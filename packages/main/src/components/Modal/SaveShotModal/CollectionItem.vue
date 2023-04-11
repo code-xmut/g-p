@@ -3,6 +3,7 @@ import type { Collection } from '@gp/types'
 
 interface Props {
   collection: Collection
+  existed?: boolean
 }
 
 const props = defineProps<Props>()
@@ -18,7 +19,7 @@ const removeFromCollection = () => {
   checkedFlag.value = false
 }
 const addToCollection = () => {
-  if (checkedFlag.value) {
+  if (checkedFlag.value || props.existed) {
     removeFromCollection()
   }
   else {
@@ -34,6 +35,7 @@ const addToCollection = () => {
   <div
     ref="item"
     class="flex h-20 md:h-24 mt-2 p-2 rounded-md cursor-pointer shadow-[0px_0px_0px_1px_#e7e7e9_inset] relative"
+    :class="{ 'bg-primary': existed }"
     @click="addToCollection"
   >
     <img src="@/assets/images/image2.jpg" alt="">

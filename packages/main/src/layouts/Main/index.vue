@@ -7,7 +7,7 @@ const showCollectionModal = ref(false)
 const shotId = ref()
 
 onMounted(async () => {
-  const { data } = await shotApi.findShots()
+  const { data } = await shotApi.findShotsWithStatusByPage()
   shots.value = data as any
 })
 
@@ -34,6 +34,6 @@ const saveShot = async (id: string) => {
         </div>
       </div>
     </div>
-    <SaveShotModal v-model:show="showCollectionModal" :shot-id="shotId" />
+    <SaveShotModal v-if="shotId" v-model:show="showCollectionModal" :shot-id="shotId" />
   </main>
 </template>

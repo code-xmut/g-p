@@ -20,6 +20,7 @@ const {
   removeShotFromCollection,
   createCollection,
   setEmptyCollection,
+  shotExistCollections,
 } = useCollections()
 const { userId } = useUser()
 
@@ -67,9 +68,24 @@ const modalTitle = computed(() => {
   return 'Add to a collection'
 })
 
-onMounted(async () => {
+const loadData = async () => {
   collections.value = await getCollections()
+  const existedCollection = await shotExistCollections(props.shotId)
+
+  if (existedCollection && existedCollection.length > 0) {
+    collections.value = collections.value.filter((c) => {
+      if (existedCollection.includes(c._id))
+        c.existed = true
+      return c
+    })
+  }
+}
+
+watchEffect(() => {
+  if (props.show)
+    loadData()
 })
+
 watchEffect(() => {
   if (!props.show) {
     createNewCollection.value = false
@@ -80,8 +96,6 @@ watchEffect(() => {
 
 const saveShot = async (collectionId: string) => {
   const response = await saveShotToCollection(collectionId, props.shotId)
-  if (response)
-    alert('Shot added to collection')
 }
 
 const removeShot = async (collectionId: string) => {
@@ -121,7 +135,7 @@ const removeShot = async (collectionId: string) => {
       <div v-else>
         <div class="max-h-[40vh] overflow-y-scroll pr-3">
           <template v-for="c in collections" :key="c._id">
-            <CollectionItem :collection="c" @save="saveShot" @remove="removeShot" />
+            <CollectionItem :existed="c.existed" :collection="c" @save="saveShot" @remove="removeShot" />
           </template>
         </div>
         <div class="mt-5 flex justify-between">
