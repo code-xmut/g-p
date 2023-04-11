@@ -31,7 +31,7 @@ onMounted(() => {
       <ShotMask
         :collected="shot?.collected"
         :liked="shot?.liked"
-        :title="shot?.title" @save="$emit('save', shot._id)" @like="$emit('like', shot.id)"
+        :title="shot?.title" @save="$emit('save', shot._id)" @like="$emit('like', shot._id, shot.liked)"
       />
     </div>
     <div class="mt-2 flex justify-between items-center">

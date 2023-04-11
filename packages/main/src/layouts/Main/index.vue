@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import type { ShotDto } from '@gp/types/shot'
 import { shotApi } from '@/api'
+import { useShot } from '@/composables'
 
-const shots = ref<ShotDto[]>()
-const showCollectionModal = ref(false)
-const shotId = ref()
+const {
+  shots,
+  shotId,
+  showCollectionModal,
+  likeOrUnlikeShot,
+} = useShot()
 
 onMounted(async () => {
   const { data } = await shotApi.findShotsWithStatusByPage()
@@ -19,6 +22,10 @@ const saveShot = async (id: string) => {
   shotId.value = id
   showCollectionModal.value = true
 }
+
+const likeOrUnlikeShotFn = async (shotId: string, liked: boolean) => {
+  await likeOrUnlikeShot(shotId, liked)
+}
 </script>
 
 <template>
@@ -30,7 +37,7 @@ const saveShot = async (id: string) => {
     <div class="min-h-screen dark:border-gray-700">
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-9">
         <div v-for="s in shots" :key="s._id">
-          <Shot :shot="s" @save="saveShot" />
+          <Shot :shot="s" @save="saveShot" @like="likeOrUnlikeShotFn" />
         </div>
       </div>
     </div>
