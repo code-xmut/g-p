@@ -24,3 +24,6 @@ export const saveShotToCollection = (collectionId = '', shotId = '') =>
 
 export const removeShotFromCollection = (collectionId = '', shotId = '') =>
   <Promise<AxiosResponse<Collection>>>Delete(`/collection/${collectionId}/shot/${shotId}`)
+
+export const findShotExistCollections = (shotId = '') =>
+  <Promise<AxiosResponse<string[]>>>get(`/collection/exist/${shotId}`)

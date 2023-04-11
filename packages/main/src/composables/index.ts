@@ -3,6 +3,7 @@ import useIsMobile from './isMobile'
 import { useMarkDown } from './markdown'
 import { useUser } from './useUser'
 import { useCollections } from './useCollections'
+import { useShot } from './useShot'
 
 export {
   useRequest,
@@ -10,4 +11,5 @@ export {
   useMarkDown,
   useUser,
   useCollections,
+  useShot,
 }

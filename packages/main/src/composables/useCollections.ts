@@ -39,6 +39,13 @@ export const useCollections = () => {
     return false
   }
 
+  const shotExistCollections = async (shotId?: string) => {
+    const { data } = await collectionsApi.findShotExistCollections(shotId)
+    if (data)
+      return data
+    return false
+  }
+
   return {
     isCollectionEmpty,
     getCollections,
@@ -46,5 +53,6 @@ export const useCollections = () => {
     removeShotFromCollection,
     createCollection,
     setEmptyCollection,
+    shotExistCollections,
   }
 }

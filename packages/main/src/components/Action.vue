@@ -15,7 +15,7 @@ withDefaults(defineProps<ActionProps>(), {
   <div class="flex items-center">
     <Icon
       :icon="icon"
-      class="w-4 h-4 cursor-pointer hover:text-red-500"
+      class="w-4 h-4 cursor-pointer"
       v-bind="$attrs"
     />
     <span v-if="text" class="ml-1">

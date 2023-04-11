@@ -83,6 +83,12 @@ export class ShotsService {
     });
   }
 
+  async unlikeShotById(id: string) {
+    return await this.shotModel.findByIdAndUpdate(id, {
+      $inc: { likes: -1 },
+    });
+  }
+
   async deleteShotById(id: string) {
     return await this.shotModel.findByIdAndDelete(id);
   }

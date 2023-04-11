@@ -60,13 +60,53 @@ export class LikesService {
     return await this.likesModule.find();
   }
 
-  async findLikesByUserId(userId: string): Promise<Likes> {
+  async addShotStatus(userId: string, shots: Shot[]) {
+    const likes = await this.findLikesByUserId(userId);
+    const collection = await this.collectionService.findCollectionByUserId(
+      userId,
+    );
+
+    const collectedShot: string[] = [];
+    collection.forEach((c) => {
+      c.shots.map((s) => {
+        collectedShot.push(s._id.toString());
+      });
+    });
+
+    const returnShot = JSON.parse(JSON.stringify(shots)) as Shot[];
+    returnShot.forEach((s) => {
+      if (likes) {
+        likes.shots.forEach((l) => {
+          if (s._id.toString() === l._id.toString()) {
+            s.liked = true;
+          }
+        });
+      }
+      if (collectedShot) {
+        collectedShot.forEach((c) => {
+          if (s._id.toString() === c) {
+            s.collected = true;
+          }
+        });
+      }
+    });
+
+    return returnShot;
+  }
+
+  async findLikesByUserId(userId: string) {
     const likes = await this.likesModule.findOne({ userId });
-    if (!likes) {
-      throw new NotFoundException('No likes found');
-    }
 
     return likes;
+  }
+
+  async findUserLikesWithStatus(userId: string) {
+    const likes = await this.findLikesByUserId(userId);
+    // const likesWithStatus = await this.addShotStatus(userId, likes.shots);
+    const likedShots = JSON.parse(JSON.stringify(likes)) as Likes;
+    likedShots.shots = await this.addShotStatus(userId, likes.shots);
+
+    return likedShots;
   }
 
   async deleteLikesByUserId(userId: string) {
@@ -81,31 +121,38 @@ export class LikesService {
     order?: string,
   ) {
     const shot = await this.shotsService.findPage(page, size, sort, order);
-    const likes = await this.findLikesByUserId(userId);
-    const collection = await this.collectionService.findCollectionByUserId(
-      userId,
-    );
-    const collectedShot: string[] = [];
-    collection.forEach((c) => {
-      c.shots.map((s) => {
-        collectedShot.push(s._id.toString());
+    if (userId) {
+      const likes = await this.findLikesByUserId(userId);
+      const collection = await this.collectionService.findCollectionByUserId(
+        userId,
+      );
+      const collectedShot: string[] = [];
+      collection.forEach((c) => {
+        c.shots.map((s) => {
+          collectedShot.push(s._id.toString());
+        });
       });
-    });
 
-    const returnShot = JSON.parse(JSON.stringify(shot)) as Shot[];
-    returnShot.forEach((s) => {
-      likes.shots.forEach((l) => {
-        if (s._id.toString() === l._id.toString()) {
-          s.liked = true;
+      const returnShot = JSON.parse(JSON.stringify(shot)) as Shot[];
+      returnShot.forEach((s) => {
+        if (likes) {
+          likes.shots.forEach((l) => {
+            if (s._id.toString() === l._id.toString()) {
+              s.liked = true;
+            }
+          });
+        }
+        if (collectedShot) {
+          collectedShot.forEach((c) => {
+            if (s._id.toString() === c) {
+              s.collected = true;
+            }
+          });
         }
       });
-      collectedShot.forEach((c) => {
-        if (s._id.toString() === c) {
-          s.collected = true;
-        }
-      });
-    });
 
-    return returnShot;
+      return returnShot;
+    }
+    return shot;
   }
 }

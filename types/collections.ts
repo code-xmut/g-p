@@ -1,7 +1,7 @@
 import { Shot } from './shot'
 
 export type Collection = {
-  _id?: string;
+  _id: string;
 
   userId: string;
   title: string;
@@ -10,6 +10,8 @@ export type Collection = {
 
   createdAt?: Date;
   updatedAt?: Date;
+
+  existed?: boolean;
 
   [key: string]: any;
 }

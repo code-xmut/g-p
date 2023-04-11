@@ -28,7 +28,11 @@ onMounted(() => {
   <div @click="toDetailPage">
     <div class="card min-h-[10vw] w-full cursor-pointer relative group">
       <figure><img class="rounded-lg" :src="shot?.cover" alt="Shoes"></figure>
-      <ShotMask :title="shot?.title" @save="$emit('save', shot._id)" @like="$emit('like', shot.id)" />
+      <ShotMask
+        :collected="shot?.collected"
+        :liked="shot?.liked"
+        :title="shot?.title" @save="$emit('save', shot._id)" @like="$emit('like', shot._id, shot.liked)"
+      />
     </div>
     <div class="mt-2 flex justify-between items-center">
       <Avatar :user-name="shot?.user" />

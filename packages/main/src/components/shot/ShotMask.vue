@@ -1,13 +1,22 @@
 <script setup lang="ts">
 interface ShotProps {
   title?: string
+  collected?: boolean
+  liked?: boolean
 }
 
-withDefaults(defineProps<ShotProps>(), {
+const props = withDefaults(defineProps<ShotProps>(), {
   title: 'Rich4st Shot Rich4st Shot Rich4st Shot Rich4st Shot Rich4st Shot',
 })
 
 defineEmits(['save', 'like'])
+
+const collectionTipText = computed(() => {
+  return props.collected ? 'Remove from collection' : 'Save shot'
+})
+const likeTipText = computed(() => {
+  return props.liked ? 'Unlike this shot' : 'Like this shot'
+})
 </script>
 
 <template>
@@ -20,13 +29,16 @@ defineEmits(['save', 'like'])
     </span>
     <div class="flex space-x-2">
       <Action
-        v-tip="{ content: 'Save shot', placement: 'bottom' }"
-        class="w-8 h-8 text-gray-300" icon="material-symbols:create-new-folder"
+        v-tip="{ content: collectionTipText, placement: 'bottom' }"
+        class="w-8 h-8"
+        :class="{ 'text-pink-500': collected }"
+        icon="material-symbols:create-new-folder"
         @click.stop="$emit('save')"
       />
       <Action
-        v-tip="{ content: 'Like this shot', placement: 'bottom' }"
-        class="w-8 h-8 text-gray-300"
+        v-tip="{ content: likeTipText, placement: 'bottom' }"
+        class="w-8 h-8"
+        :class="{ 'text-pink-500': liked }"
         @click.stop="$emit('like')"
       />
     </div>
