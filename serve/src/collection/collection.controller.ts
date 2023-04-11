@@ -7,6 +7,7 @@ import {
   Param,
   Post,
   Put,
+  Req,
 } from '@nestjs/common';
 import { CollectionService } from './collection.service';
 
@@ -27,6 +28,12 @@ export class CollectionController {
   @Get(':id')
   async findCollectionById(@Param('id') id: string) {
     return await this.collectionService.findCollectionById(id);
+  }
+
+  @Get('exist/:shotId')
+  async findCollectionByShotId(@Req() req, @Param('shotId') shotId: string) {
+    const userId = req.headers.id;
+    return await this.collectionService.shotExistCollections(userId, shotId);
   }
 
   @Get('user/:userId')

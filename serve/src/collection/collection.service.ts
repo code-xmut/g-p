@@ -79,4 +79,19 @@ export class CollectionService {
     );
     return await collection.save();
   }
+
+  async shotExistCollections(userId: string, shotId: string) {
+    const collections = await this.collectionModel.find({ userId });
+
+    const collectionIds = [];
+    collections.map((c) => {
+      c.shots.map((s) => {
+        if (s._id.toString() === shotId) {
+          collectionIds.push(c.id);
+        }
+      });
+    });
+
+    return collectionIds;
+  }
 }
