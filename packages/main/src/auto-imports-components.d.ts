@@ -9,6 +9,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    About: typeof import('./components/__test__/About.vue')['default']
     Action: typeof import('./components/Action.vue')['default']
     Avatar: typeof import('./components/Avatar.vue')['default']
     Block: typeof import('./components/uploads/Block/index.vue')['default']
@@ -47,6 +48,7 @@ declare module '@vue/runtime-core' {
     Hero: typeof import('./components/Hero/index.vue')['default']
     HeroFooter: typeof import('./components/Hero/HeroFooter.vue')['default']
     HeroImage: typeof import('./components/Hero/HeroImage.vue')['default']
+    Home: typeof import('./components/__test__/Home.vue')['default']
     Icon: typeof import('./components/Base/Icon.vue')['default']
     Input: typeof import('./components/Base/Input.vue')['default']
     LikeShotsTab: typeof import('./components/Profile/LikeShotsTab.vue')['default']
