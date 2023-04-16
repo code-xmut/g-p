@@ -1,18 +1,34 @@
 <script setup lang="ts">
 interface OptionsProps {
-  content?: { name: string }[]
+  placeholder?: string
+  content?: { name: string; value?: string }[]
 }
 
-defineProps<OptionsProps>()
+withDefaults(defineProps<OptionsProps>(), {
+  placeholder: '请选择',
+})
+
+const emit = defineEmits(['change'])
+
+const onChange = (e: Event) => {
+  const target = e.target as HTMLSelectElement
+  const value = target.options[target.selectedIndex].dataset.value
+  emit('change', value)
+}
 </script>
 
 <template>
-  <select class="select select-primary w-full max-w-xs">
+  <select
+    class="select select-primary w-full"
+    @change="onChange"
+  >
     <option disabled selected>
-      What is the best TV show?
+      {{ placeholder }}
     </option>
     <template v-for="o in content" :key="o.name">
-      <option>{{ o.name }}</option>
+      <option :data-value="o.value">
+        {{ o.name }}
+      </option>
     </template>
   </select>
 </template>

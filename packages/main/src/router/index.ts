@@ -47,6 +47,23 @@ const router = createRouter({
           component: () => import('@/pages/collections.vue'),
         },
         {
+          path: 'account',
+          name: 'account',
+          component: () => import('@/pages/account.vue'),
+          children: [
+            {
+              path: '',
+              name: 'general',
+              component: () => import('@/components/Account/Tabs/GeneralTab.vue'),
+            },
+            {
+              path: 'profile',
+              name: 'edit-profile',
+              component: () => import('@/components/Account/Tabs/EditProfileTab.vue'),
+            },
+          ],
+        },
+        {
           path: '/blog:catchAll(.*)',
           name: 'blog',
           component: () => import('@/pages/blog.vue'),

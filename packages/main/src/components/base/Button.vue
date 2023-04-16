@@ -14,7 +14,7 @@ withDefaults(
 
 <template>
   <button
-    class="btn"
+    class="btn btn-secondary"
     :class="[
       { 'opacity-50 cursor-not-allowed': disabled },
     ]"

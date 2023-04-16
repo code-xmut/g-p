@@ -10,6 +10,7 @@ export interface Props {
   rule?: string
   customRule?: string
   isError?: boolean
+  required?: boolean
 }
 withDefaults(defineProps<Props>(), {
   showIcon: false,
@@ -34,7 +35,10 @@ const emitValue = (e: Event) => {
       <slot v-if="$slots.icon" name="icon" />
       <Icon v-else class="w-6 h-6" icon="mdi:magnify" />
     </div>
-    <label v-if="label" class="block mb-2 text-sm font-medium text-gray-600 dark:text-white">{{ label }}</label>
+    <label v-if="label" class="block mb-2 text-md font-medium text-gray-600 dark:text-white">
+      {{ label }}
+      <span v-if="required" class="text-red-600">*</span>
+    </label>
     <input
       v-bind="$attrs"
       class="input input-bordered bg-white text-gray-800 dark:bg-cardBg dark:text-gray-400"
