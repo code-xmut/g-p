@@ -10,6 +10,9 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     About: typeof import('./components/__test__/About.vue')['default']
+    Account: typeof import('./components/Account/index.vue')['default']
+    AccountHeader: typeof import('./components/Account/AccountHeader.vue')['default']
+    AccountMenu: typeof import('./components/Account/AccountMenu.vue')['default']
     Action: typeof import('./components/Action.vue')['default']
     Avatar: typeof import('./components/Avatar.vue')['default']
     Block: typeof import('./components/uploads/Block/index.vue')['default']
@@ -40,10 +43,12 @@ declare module '@vue/runtime-core' {
     DrawerContent: typeof import('./components/ShotDetail/DrawerContent.vue')['default']
     Dropdown: typeof import('./components/Dropdown/index.vue')['default']
     EditorDrawer: typeof import('./components/Drawer/EditorDrawer.vue')['default']
+    EditProfileTab: typeof import('./components/Account/Tabs/EditProfileTab.vue')['default']
     FilterSet: typeof import('./components/Shot/FilterSet.vue')['default']
     FilterSubNav: typeof import('./components/FilterSubNav.vue')['default']
     FullContentDrawer: typeof import('./components/Drawer/FullContentDrawer.vue')['default']
     FullScreenDrawer: typeof import('./components/Drawer/FullScreenDrawer.vue')['default']
+    GeneralTab: typeof import('./components/Account/Tabs/GeneralTab.vue')['default']
     HeadingBlock: typeof import('./components/uploads/Block/HeadingBlock.vue')['default']
     Hero: typeof import('./components/Hero/index.vue')['default']
     HeroFooter: typeof import('./components/Hero/HeroFooter.vue')['default']

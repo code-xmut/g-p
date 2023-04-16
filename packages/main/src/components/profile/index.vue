@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import type { UserInfo } from '@gp/types/user'
+import { useUser } from '@/composables'
 
-const user: UserInfo = computed(() => JSON.parse(localStorage.getItem('user') || '{}'))
+const {
+  user,
+} = useUser()
 </script>
 
 <template>
   <div class="flex flex-col space-y-4 md:flex-row">
-    <Avatar size-class="w-24 w-24 ml-10 md:ml-0 md:w-48 md:h-48" :show-status="false" />
+    <Avatar size-class="w-24 w-24 ml-10 md:ml-0 md:w-48 md:h-48" :show-status="false" :src="user.avatar" />
     <div class="flex flex-col justify-between ml-10">
       <h1 class="text-5xl text-gray-900 dark:text-gray-500">
         {{ user.name }}

@@ -23,5 +23,5 @@ export type CreateUserDto = Pick<User, "username" | "email" | "password"> & { [k
 
 export type LoginUserDto = Pick<CreateUserDto, "password"> & Partial<Pick<CreateUserDto, "username" | "email">> & { [key: string]: any };
 
-export type UpdateUserProfileDto = Partial<Pick<User, "name" | "bio" | "location">>;
+export type UpdateUserProfileDto = Partial<Pick<User,"_id" | "name" | "bio" | "location">>;
 

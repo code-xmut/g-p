@@ -13,7 +13,7 @@ const dropdownMenu = computed(() => {
     },
     {
       name: 'Edit Profile',
-      link: '/edit-profile',
+      link: '/account/profile',
     },
     {
       name: 'Account Settings',
@@ -43,6 +43,7 @@ const dropdownMenu = computed(() => {
     <Dropdown class="dropdown-end">
       <Avatar
         class="ml-8" :show-status="false" size-class="w-10 h-10"
+        :src="store.user.avatar"
       />
       <template #content>
         <ul v-for="d in dropdownMenu" :key="d.name" class="group px-1 my-1">
