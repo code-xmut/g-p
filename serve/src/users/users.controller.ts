@@ -53,4 +53,12 @@ export class UsersController {
   async getUserByUsername(@Param('userName') userName: string): Promise<User> {
     return this.usersService.findOne(userName);
   }
+
+  @Put('security/:id')
+  async updatePassword(
+    @Param('id') id: string,
+    @Body() PasswordInfo: { oldPassword: string; newPassword: string },
+  ) {
+    return this.usersService.updatePassword(PasswordInfo, id);
+  }
 }

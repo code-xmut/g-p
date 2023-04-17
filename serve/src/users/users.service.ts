@@ -86,4 +86,18 @@ export class UsersService {
 
     throw new NotFoundException('Username already exists.');
   }
+
+  async updatePassword(
+    PasswordInfo: { oldPassword: string; newPassword: string },
+    UserId: string,
+  ) {
+    const user = await this.userModel.findById(UserId);
+    if (user && user.password === PasswordInfo.oldPassword) {
+      user.password = PasswordInfo.newPassword;
+      await user.save();
+      return true;
+    }
+
+    return false;
+  }
 }
