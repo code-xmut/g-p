@@ -12,6 +12,7 @@ const {
   uploadAvatarFile,
   updateUserInfo,
   updateAvatar,
+  deleteUserAvatar,
 } = useUser()
 
 const { getInputProps } = useDropzone({
@@ -74,11 +75,11 @@ const open = () => {
   <div class="flex items-center space-x-4 mb-5 w-full">
     <Avatar
       size-class="w-20"
-      src="https://images.pexels.com/photos/450038/pexels-photo-450038.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+      :src="user.avatar"
     />
     <div>
       <Button text="上传新头像" class="mr-4" :class="{ hidden: uploadAvatar }" @click="uploadAvatar = true" />
-      <Button class="btn-error btn-outline" text="删除头像" />
+      <Button class="btn-error btn-outline" text="删除头像" @click="deleteUserAvatar" />
       <div v-if="uploadAvatar">
         <div class="my-4">
           <input v-bind="getInputProps()">
@@ -95,7 +96,7 @@ const open = () => {
         <TextArea v-else v-model:value="form[f.key]" :label="f.label" />
       </template>
       <div class="flex justify-end mt-8">
-        <Button text="保存个人信息" type="submit" />
+        <Button text="保存个人信息" type="submit" class="w-full md:w-fit" />
       </div>
     </form>
   </div>

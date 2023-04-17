@@ -7,6 +7,8 @@ export const useUser = () => {
   const userName = JSON.parse(localStorage.getItem('user') || '{}').name
   const user = ref<UserInfo>(JSON.parse(localStorage.getItem('user') || '{}'))
   const newAvatarUrl = ref('')
+  const defaultAvatar = ref('https://cdn.dribbble.com/assets/avatar-default-e370af14535cdbf137637a27ee1a8e451253edc80be429050bc29d59b1f7cda0.gif')
+
   const router = useRouter()
 
   const setUserInfo = (_user: UserInfo) => {
@@ -37,6 +39,15 @@ export const useUser = () => {
     return false
   }
 
+  const deleteUserAvatar = async () => {
+    // alert with cancel and confirm buttons
+    const isDelete = confirm('确认删除头像?')
+    if (isDelete) {
+      newAvatarUrl.value = defaultAvatar.value
+      await updateAvatar()
+    }
+  }
+
   return {
     user,
     userId,
@@ -45,5 +56,6 @@ export const useUser = () => {
     updateUserInfo,
     uploadAvatarFile,
     updateAvatar,
+    deleteUserAvatar,
   }
 }
