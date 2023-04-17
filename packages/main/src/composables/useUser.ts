@@ -40,11 +40,18 @@ export const useUser = () => {
   }
 
   const deleteUserAvatar = async () => {
-    // alert with cancel and confirm buttons
     const isDelete = confirm('确认删除头像?')
     if (isDelete) {
       newAvatarUrl.value = defaultAvatar.value
       await updateAvatar()
+    }
+  }
+
+  const updateGeneral = async (generalInfo: { username: string; email: string }) => {
+    const { data } = await userApi.updateGeneralInfo(generalInfo, userId)
+    if (data) {
+      setUserInfo(data)
+      router.go(0)
     }
   }
 
@@ -57,5 +64,6 @@ export const useUser = () => {
     uploadAvatarFile,
     updateAvatar,
     deleteUserAvatar,
+    updateGeneral,
   }
 }

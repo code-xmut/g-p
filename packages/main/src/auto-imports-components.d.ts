@@ -81,6 +81,7 @@ declare module '@vue/runtime-core' {
     Shot: typeof import('./components/Shot/index.vue')['default']
     ShotActions: typeof import('./components/ShotDetail/ShotActions.vue')['default']
     ShotMask: typeof import('./components/Shot/ShotMask.vue')['default']
+    SlimeForm: typeof import('./components/Base/SlimeForm.vue')['default']
     Swap: typeof import('./components/Base/Swap.vue')['default']
     Tabs: typeof import('./components/Tabs/index.vue')['default']
     TextArea: typeof import('./components/Base/TextArea.vue')['default']
