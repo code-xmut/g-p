@@ -16,3 +16,9 @@ export const updateUserAvatar = (avatar: string, userId: string) =>
 
 export const updateUserInfo = (userInfo: UpdateUserProfileDto) =>
   <Promise<AxiosResponse<UserInfo>>>Put(`/users/profile/${userInfo._id}`, userInfo)
+
+export const updateGeneralInfo = (generalInfo: { username: string; email: string }, userId: string) =>
+  <Promise<AxiosResponse<UserInfo>>>Put(`/users/profile/${userId}`, generalInfo)
+
+export const updatePassword = (passwordInfo: { oldPassword: string; newPassword: string }, userId: string) =>
+  <Promise<AxiosResponse<UserInfo>>>Put(`/users/security/${userId}`, passwordInfo)

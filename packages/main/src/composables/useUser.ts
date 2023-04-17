@@ -7,6 +7,8 @@ export const useUser = () => {
   const userName = JSON.parse(localStorage.getItem('user') || '{}').name
   const user = ref<UserInfo>(JSON.parse(localStorage.getItem('user') || '{}'))
   const newAvatarUrl = ref('')
+  const defaultAvatar = ref('https://cdn.dribbble.com/assets/avatar-default-e370af14535cdbf137637a27ee1a8e451253edc80be429050bc29d59b1f7cda0.gif')
+
   const router = useRouter()
 
   const setUserInfo = (_user: UserInfo) => {
@@ -37,6 +39,34 @@ export const useUser = () => {
     return false
   }
 
+  const deleteUserAvatar = async () => {
+    const isDelete = confirm('确认删除头像?')
+    if (isDelete) {
+      newAvatarUrl.value = defaultAvatar.value
+      await updateAvatar()
+    }
+  }
+
+  const updateGeneral = async (generalInfo: { username: string; email: string }) => {
+    const { data } = await userApi.updateGeneralInfo(generalInfo, userId)
+    if (data) {
+      setUserInfo(data)
+      router.go(0)
+    }
+  }
+
+  const updatePassword = async (PasswordInfo: { oldPassword: string; newPassword: string }) => {
+    const { data } = await userApi.updatePassword(PasswordInfo, userId)
+    if (data) {
+      confirm('密码修改成功, 请重新登录')
+      localStorage.removeItem('user')
+      router.push({ name: 'auth', query: { pattern: 'login' } })
+    }
+    else {
+      alert('密码修改失败, 请确认旧密码是否正确')
+    }
+  }
+
   return {
     user,
     userId,
@@ -45,5 +75,8 @@ export const useUser = () => {
     updateUserInfo,
     uploadAvatarFile,
     updateAvatar,
+    deleteUserAvatar,
+    updateGeneral,
+    updatePassword,
   }
 }

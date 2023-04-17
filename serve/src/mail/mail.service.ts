@@ -21,14 +21,18 @@ export class MailService {
   async sendEmail(email: string) {
     const code = await this.generateCode();
     await this.cacheManager.set(email, code, 1000 * 60);
-    await this.mailerService.sendMail({
-      to: email,
-      from: process.env.MAIL_USER,
-      subject: '验证码',
-      text: `您的验证码为${code}`,
-    });
+    await this.mailerService
+      .sendMail({
+        to: email,
+        from: process.env.MAIL_USER,
+        subject: '验证码',
+        text: `您的验证码为${code}`,
+      })
+      .catch((err) => {
+        return err;
+      });
 
-    return code;
+    return true;
   }
 
   async verifyCode(email: string, code: string) {
