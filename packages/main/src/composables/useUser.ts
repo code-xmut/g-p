@@ -55,6 +55,18 @@ export const useUser = () => {
     }
   }
 
+  const updatePassword = async (PasswordInfo: { oldPassword: string; newPassword: string }) => {
+    const { data } = await userApi.updatePassword(PasswordInfo, userId)
+    if (data) {
+      confirm('密码修改成功, 请重新登录')
+      localStorage.removeItem('user')
+      router.push({ name: 'auth', query: { pattern: 'login' } })
+    }
+    else {
+      alert('密码修改失败, 请确认旧密码是否正确')
+    }
+  }
+
   return {
     user,
     userId,
@@ -65,5 +77,6 @@ export const useUser = () => {
     updateAvatar,
     deleteUserAvatar,
     updateGeneral,
+    updatePassword,
   }
 }

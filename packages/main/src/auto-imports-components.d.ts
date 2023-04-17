@@ -77,6 +77,7 @@ declare module '@vue/runtime-core' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SaveShotModal: typeof import('./components/Modal/SaveShotModal/index.vue')['default']
+    SecurityTab: typeof import('./components/Account/Tabs/SecurityTab.vue')['default']
     Select: typeof import('./components/Base/Select.vue')['default']
     Shot: typeof import('./components/Shot/index.vue')['default']
     ShotActions: typeof import('./components/ShotDetail/ShotActions.vue')['default']

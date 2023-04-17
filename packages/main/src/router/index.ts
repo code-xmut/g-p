@@ -61,6 +61,11 @@ const router = createRouter({
               name: 'edit-profile',
               component: () => import('@/components/Account/Tabs/EditProfileTab.vue'),
             },
+            {
+              path: 'security',
+              name: 'security',
+              component: () => import('@/components/Account/Tabs/SecurityTab.vue'),
+            },
           ],
         },
         {

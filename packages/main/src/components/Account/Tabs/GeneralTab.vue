@@ -24,11 +24,9 @@ const form = reactive({
 </script>
 
 <template>
-  <div>
-    <SlimeForm
-      v-model:forms="forms"
-      :_form="form"
-      @submit="updateGeneral(form)"
-    />
-  </div>
+  <SlimeForm
+    v-model:forms="forms"
+    :_form="form"
+    @submit="updateGeneral(form)"
+  />
 </template>
