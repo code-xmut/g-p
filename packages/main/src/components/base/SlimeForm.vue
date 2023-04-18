@@ -22,7 +22,7 @@ const { submit } = submitter(() => {
 <template>
   <form @submit.prevent="submit">
     <template v-for="f in forms" :key="f.key">
-      <Input v-if="!f.textarea" v-model:value="form[f.key]" :label="f.label" :required="f.required" class="w-full" />
+      <Input v-if="!f.textarea" v-model:value="form[f.key]" :type="f.type" :label="f.label" :required="f.required" class="w-full" />
       <TextArea v-else v-model:value="form[f.key]" :label="f.label" />
     </template>
     <div class="flex justify-end mt-8">
