@@ -2,10 +2,12 @@ import type { CreateUserDto, UpdateUserProfileDto } from '@gp/types';
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Post,
   Put,
+  Req,
   UseGuards,
 } from '@nestjs/common';
 import { ObjectId } from 'mongoose';
@@ -60,5 +62,10 @@ export class UsersController {
     @Body() PasswordInfo: { oldPassword: string; newPassword: string },
   ) {
     return this.usersService.updatePassword(PasswordInfo, id);
+  }
+
+  @Delete('destory')
+  async deleteUserById(@Req() req: any) {
+    return this.usersService.deleteUserById(req.header.id);
   }
 }

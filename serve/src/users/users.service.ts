@@ -100,4 +100,8 @@ export class UsersService {
 
     return false;
   }
+
+  async deleteUserById(id: string) {
+    return await this.userModel.findOneAndDelete({ _id: id });
+  }
 }
