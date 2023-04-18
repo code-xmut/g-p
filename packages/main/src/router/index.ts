@@ -69,6 +69,11 @@ const router = createRouter({
           ],
         },
         {
+          path: 'account/destory',
+          name: 'destory',
+          component: () => import('@/components/Account/Tabs/DeleteAccountTab.vue'),
+        },
+        {
           path: '/blog:catchAll(.*)',
           name: 'blog',
           component: () => import('@/pages/blog.vue'),

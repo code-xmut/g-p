@@ -67,6 +67,25 @@ export const useUser = () => {
     }
   }
 
+  const logout = () => {
+    localStorage.removeItem('token')
+    localStorage.removeItem('user')
+    localStorage.removeItem('upload')
+
+    if (router.currentRoute.value.path === '/')
+      router.go(0)
+    else
+      router.push('/')
+  }
+
+  const DeleteAccount = async () => {
+    const isDelete = confirm('最后一次询问，此操作将删除您的所有数据，无法恢复，是否继续')
+    if (isDelete) {
+      await userApi.deleteUser()
+      logout()
+    }
+  }
+
   return {
     user,
     userId,
@@ -78,5 +97,6 @@ export const useUser = () => {
     deleteUserAvatar,
     updateGeneral,
     updatePassword,
+    DeleteAccount,
   }
 }

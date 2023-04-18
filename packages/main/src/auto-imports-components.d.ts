@@ -34,6 +34,7 @@ declare module '@vue/runtime-core' {
     CommentsEditor: typeof import('./components/ShotDetail/CommentEditor.vue')['default']
     ContinueModal: typeof import('./components/uploads/ContinueModal.vue')['default']
     DarkMode: typeof import('./components/DarkMode.vue')['default']
+    DeleteAccountTab: typeof import('./components/Account/Tabs/DeleteAccountTab.vue')['default']
     DeleteCollectionModal: typeof import('./components/Collections/DeleteCollectionModal.vue')['default']
     DetailDrawer: typeof import('./components/ShotDetail/DetailDrawer.vue')['default']
     DetailHeader: typeof import('./components/ShotDetail/DetailHeader.vue')['default']

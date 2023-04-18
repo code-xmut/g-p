@@ -30,7 +30,7 @@ const menus = reactive<IMenu[]>([
   },
   {
     name: '删除账户',
-    value: '/account/delete-account',
+    value: '/account/destory',
   },
 ])
 
@@ -51,7 +51,7 @@ onMounted(() => highlightMenu(route.path))
       <li>
         <RouterLink
           :to="m.value"
-          :class="{ 'font-semibold': m.value === activeMenu }"
+          :class="{ 'font-semibold': m.value === activeMenu, 'dark:text-secondary': m.value === activeMenu }"
           @click="highlightMenu(m.value)"
         >
           {{ m.name }}
