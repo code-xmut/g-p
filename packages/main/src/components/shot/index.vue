@@ -26,8 +26,8 @@ onMounted(() => {
 
 <template>
   <div @click="toDetailPage">
-    <div class="card min-h-[10vw] w-full cursor-pointer relative group">
-      <figure><img class="rounded-lg" :src="shot?.cover" alt="Shoes"></figure>
+    <div class="card md:h-48 lg:h-72 xl:h-[320px]  w-full cursor-pointer relative group">
+      <img class="rounded-lg h-full object-cover" :src="shot?.cover" alt="Shoes">
       <ShotMask
         :collected="shot?.collected"
         :liked="shot?.liked"
