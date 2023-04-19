@@ -69,8 +69,16 @@ export class ShotsService {
     return await this.shotModel.find().sort({ likes: -1 });
   }
 
-  async findShotsTotal() {
-    return await this.shotModel.countDocuments();
+  async findShotsTotal(q = '') {
+    return await this.shotModel
+      .find({
+        $or: [
+          { title: { $regex: q, $options: 'i' } },
+          { description: { $regex: q, $options: 'i' } },
+          { tags: { $regex: q, $options: 'i' } },
+        ],
+      })
+      .count();
   }
 
   async shotFuseSearch(pattern: string) {
