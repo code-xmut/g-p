@@ -52,6 +52,7 @@ export class LikesController {
     @Req() req,
     @Query('page') page: number,
     @Query('size') size: number,
+    @Query('q') q: string,
     @Query('sort') sort?: string,
     @Query('order') order?: string,
   ) {
@@ -60,6 +61,7 @@ export class LikesController {
       userId,
       page,
       size,
+      q,
       sort,
       order,
     );

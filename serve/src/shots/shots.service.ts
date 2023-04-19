@@ -25,12 +25,24 @@ export class ShotsService {
     return await this.shotModel.find();
   }
 
-  async findPage(page: number, size: number, sort?: string, order?: string) {
+  async findPage(
+    page: number,
+    size: number,
+    q?: string,
+    sort?: string,
+    order?: string,
+  ) {
     return await this.shotModel
-      .find()
+      .find({
+        $or: [
+          { title: { $regex: q, $options: 'i' } },
+          { description: { $regex: q, $options: 'i' } },
+          { tags: { $regex: q, $options: 'i' } },
+        ],
+      })
+      .sort({ [sort]: order === 'asc' ? 1 : -1 })
       .skip((page - 1) * size)
-      .limit(size)
-      .sort({ [sort]: order } as any);
+      .limit(size);
   }
 
   findShotByTag(tag: string): Promise<ShotDocument[]> {
