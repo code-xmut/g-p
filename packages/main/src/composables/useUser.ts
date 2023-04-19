@@ -15,6 +15,13 @@ export const useUser = () => {
     localStorage.setItem('user', JSON.stringify(_user))
   }
 
+  const isLogged = computed((): boolean => {
+    const token = localStorage.getItem('token') || '{}'
+    if (token === '{}')
+      return false
+    return true
+  })
+
   const uploadAvatarFile = async (avatar: FormData) => {
     const { data } = await userApi.uploadFile(avatar)
     if (data && data.url)
@@ -90,6 +97,7 @@ export const useUser = () => {
     user,
     userId,
     userName,
+    isLogged,
     setUserInfo,
     updateUserInfo,
     uploadAvatarFile,
@@ -97,6 +105,7 @@ export const useUser = () => {
     deleteUserAvatar,
     updateGeneral,
     updatePassword,
+    logout,
     DeleteAccount,
   }
 }

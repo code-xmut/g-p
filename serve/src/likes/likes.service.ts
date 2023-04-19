@@ -117,12 +117,14 @@ export class LikesService {
     userId: string,
     page: number,
     size: number,
+    q = '',
     sort?: string,
     order?: string,
   ) {
-    const shot = await this.shotsService.findPage(page, size, sort, order);
+    const shot = await this.shotsService.findPage(page, size, q, sort, order);
     if (userId) {
       const likes = await this.findLikesByUserId(userId);
+      console.log(likes);
       const collection = await this.collectionService.findCollectionByUserId(
         userId,
       );
@@ -151,7 +153,13 @@ export class LikesService {
         }
       });
 
-      return returnShot;
+      const total = await this.shotsService.findShotsTotal(q);
+      const hasNext = page * size < total;
+
+      return {
+        hasNext,
+        shots: returnShot,
+      };
     }
     return shot;
   }

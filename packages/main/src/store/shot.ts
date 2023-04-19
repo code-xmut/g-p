@@ -8,7 +8,6 @@ import { useUser } from '@/composables'
 export const useShotStore = defineStore('collection', () => {
   const router = useRouter()
   const route = useRoute()
-
   const showCommentDrawer = ref(false)
   const showCollectionModal = ref(false)
   const comments = ref<CommentDto[]>([])

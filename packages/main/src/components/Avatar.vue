@@ -24,7 +24,7 @@ withDefaults(defineProps<AvatarProps>(), {
       </div>
     </div>
     <slot v-if="$slots.default" />
-    <p v-else-if="showStatus" class="ml-2 text-sm font-semibold text-gray-900 dark:text-gray-500">
+    <p v-else-if="showStatus" class="ml-4 font-semibold text-gray-900 dark:text-gray-500">
       {{ userName }}
     </p>
   </div>

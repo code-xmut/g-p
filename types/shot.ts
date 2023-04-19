@@ -36,3 +36,8 @@ export type createShotDto = Pick<Shot, 'title' | 'description' | 'tags' | 'cover
   & { [key: string]: any };
 
 export type updateShotDto = Partial<Pick<Shot, 'title' | 'description' | 'tags' | 'cover' | 'content' | 'serverUrl' | 'state'>> & { [key: string]: any };
+
+export type ShotPageDocument = {
+  hasNext: boolean;
+  shots: Shot[];
+}
