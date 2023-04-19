@@ -6,6 +6,9 @@ import { useUser } from '@/composables'
 export const useShot = () => {
   const shots = ref<ShotDto[]>([])
   const shotId = ref()
+  const page = ref(0)
+  const size = ref(8)
+  const hasNext = ref(true)
   const showCollectionModal = ref(false)
   const { userId } = useUser()
 
@@ -17,16 +20,6 @@ export const useShot = () => {
   const unlikeShot = async (id: string) => {
     await likesApi.removeShotFormLikes(userId, id)
     await shotApi.unlikeShotById(id)
-  }
-
-  const updateShotsLikes = (id: string, like = 1) => {
-    shots.value = shots.value?.map((s) => {
-      if (s._id === id) {
-        s.liked = true
-        s.likes += like
-      }
-      return s
-    })
   }
 
   const likeOrUnlikeShot = useDebounceFn(async (id: string, isLiked: boolean) => {
@@ -52,12 +45,23 @@ export const useShot = () => {
     }
   }, 500)
 
+  const loadShots = async () => {
+    page.value += 1
+    const { data } = await shotApi.findShotsWithStatusByPage(page.value, size.value)
+    shots.value.push(...data.shots)
+    hasNext.value = data.hasNext
+  }
+
   return {
     shots,
     shotId,
+    page,
+    size,
+    hasNext,
     showCollectionModal,
     likeShot,
     unlikeShot,
     likeOrUnlikeShot,
+    loadShots,
   }
 }

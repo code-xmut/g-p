@@ -1,17 +1,29 @@
 <script setup lang="ts">
-import { shotApi } from '@/api'
-import { useShot } from '@/composables'
+import { useReachBottom, useShot } from '@/composables'
 
 const {
   shots,
   shotId,
+  hasNext,
   showCollectionModal,
   likeOrUnlikeShot,
+  loadShots,
 } = useShot()
+const {
+  reachBottom,
+  removeScrollListener,
+} = useReachBottom()
 
 onMounted(async () => {
-  const { data } = await shotApi.findShotsWithStatusByPage()
-  shots.value = data as any
+  await loadShots()
+})
+
+watchEffect(async () => {
+  if (reachBottom.value) {
+    await loadShots()
+    if (!hasNext.value)
+      removeScrollListener()
+  }
 })
 
 const isLogged = computed(() => {
@@ -40,6 +52,9 @@ const likeOrUnlikeShotFn = async (shotId: string, liked: boolean) => {
           <Shot :shot="s" @save="saveShot" @like="likeOrUnlikeShotFn" />
         </div>
       </div>
+      <p v-if="!hasNext" class="text-center mt-4 text-sm">
+        您已到达列表末尾
+      </p>
     </div>
     <SaveShotModal v-if="shotId" v-model:show="showCollectionModal" :shot-id="shotId" />
   </main>

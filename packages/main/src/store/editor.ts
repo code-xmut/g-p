@@ -86,6 +86,7 @@ export const useEditorStore = defineStore('editor', () => {
       showContinueModal.value = false
       router.push({ name: 'home' })
       alert('Shot published!')
+      resetDraft()
     }
   }
 

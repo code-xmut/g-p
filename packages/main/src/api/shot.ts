@@ -1,8 +1,8 @@
-import type { Shot, ShotDraft, ShotDto, createShotDto } from '@gp/types'
+import type { Shot, ShotDraft, ShotDto, ShotPageDocument, createShotDto } from '@gp/types'
 import type { AxiosResponse } from 'axios'
 import { useRequest } from '@/composables'
 
-const { get, post, Put, Delete } = useRequest()
+const { get, post, Put } = useRequest()
 
 export const findShots = () => get('/shots')
 
@@ -13,7 +13,7 @@ export const saveDraft = (shot: ShotDraft) => <Promise<AxiosResponse<Shot>>>post
 export const createShot = (shot: createShotDto) => <Promise<AxiosResponse<Shot>>>(post('/shots', shot))
 
 export const findShotsWithStatusByPage = (page = 1, size = 9) =>
-  <Promise<AxiosResponse<ShotDto[]>>>(get(`likes/shots/page?page=${page}&size=${size}`))
+  <Promise<AxiosResponse<ShotPageDocument>>>(get(`likes/shots/page?page=${page}&size=${size}`))
 
 export const likeShotById = (shotId: string) =>
   <Promise<AxiosResponse<ShotDto>>>(Put(`/shots/${shotId}/like`))
