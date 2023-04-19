@@ -151,7 +151,13 @@ export class LikesService {
         }
       });
 
-      return returnShot;
+      const total = await this.shotsService.findShotsTotal();
+      const hasNext = page * size < total;
+
+      return {
+        hasNext,
+        shots: returnShot,
+      };
     }
     return shot;
   }

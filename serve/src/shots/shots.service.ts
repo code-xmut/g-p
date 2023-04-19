@@ -57,6 +57,10 @@ export class ShotsService {
     return await this.shotModel.find().sort({ likes: -1 });
   }
 
+  async findShotsTotal() {
+    return await this.shotModel.countDocuments();
+  }
+
   async shotFuseSearch(pattern: string) {
     return await this.shotModel.find({
       $or: [
