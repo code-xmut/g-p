@@ -4,6 +4,7 @@ import { Icon } from '@iconify/vue'
 interface Props {
   title: string
   content: Array<any>
+  link?: boolean
 }
 
 withDefaults(defineProps<Props>(), {
@@ -34,8 +35,14 @@ const checked = ref(false)
         <p
           v-for="c in content"
           :key="c.name"
+          class="font-medium"
         >
-          {{ c.name }}
+          <RouterLink v-if="link" :to="c.link">
+            {{ c.name }}
+          </RouterLink>
+          <span v-else>
+            {{ c.name }}
+          </span>
         </p>
       </template>
     </div>

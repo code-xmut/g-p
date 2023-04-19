@@ -1,5 +1,11 @@
 <script setup lang="ts">
 import SiteActionsLogged from './SiteActionsLogged.vue'
+import { useIsMobile, useShot } from '@/composables'
+
+const { isMobile } = useIsMobile()
+const {
+  q,
+} = useShot()
 
 const logged = computed((): boolean => {
   const token = localStorage.getItem('token') || '{}'
@@ -10,11 +16,9 @@ const logged = computed((): boolean => {
 </script>
 
 <template>
-  <ul class="flex justify-center items-center space-x-2">
-    <li class="hidden lg:block">
-      <div class="hidden md:block">
-        <Input show-icon />
-      </div>
+  <ul v-if="!isMobile" class="flex justify-center items-center space-x-2">
+    <li>
+      <Input v-model:value="q" show-icon />
     </li>
     <template v-if="!logged">
       <li>
@@ -23,7 +27,7 @@ const logged = computed((): boolean => {
           @click="$router.push({ name: 'auth', query: { pattern: 'login' } })"
         />
       </li>
-      <li class="hidden lg:block">
+      <li v-if="!isMobile">
         <Button
           class="btn btn-secondary" text="Sign up"
           @click="$router.push({ name: 'auth', query: { pattern: 'register' } })"

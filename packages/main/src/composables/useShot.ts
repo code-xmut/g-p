@@ -8,6 +8,7 @@ export const useShot = () => {
   const shotId = ref()
   const page = ref(0)
   const size = ref(8)
+  const q = ref('')
   const hasNext = ref(true)
   const showCollectionModal = ref(false)
   const { userId } = useUser()
@@ -47,7 +48,7 @@ export const useShot = () => {
 
   const loadShots = async () => {
     page.value += 1
-    const { data } = await shotApi.findShotsWithStatusByPage(page.value, size.value)
+    const { data } = await shotApi.findShotsWithStatusByPage(page.value, size.value, q.value)
     shots.value.push(...data.shots)
     hasNext.value = data.hasNext
   }
@@ -57,6 +58,7 @@ export const useShot = () => {
     shotId,
     page,
     size,
+    q,
     hasNext,
     showCollectionModal,
     likeShot,
