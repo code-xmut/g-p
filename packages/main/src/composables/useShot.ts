@@ -2,6 +2,7 @@ import type { ShotDto } from '@gp/types'
 import { useDebounceFn } from '@vueuse/core'
 import { likesApi, shotApi } from '@/api'
 import { useUser } from '@/composables'
+import router from '@/router'
 
 export const useShot = () => {
   const shots = ref<ShotDto[]>([])
@@ -53,6 +54,13 @@ export const useShot = () => {
     hasNext.value = data.hasNext
   }
 
+  const toSearchPage = () => {
+    router.push(`/search/${q.value}`)
+    setTimeout(() => {
+      q.value = ''
+    }, 0)
+  }
+
   return {
     shots,
     shotId,
@@ -65,5 +73,6 @@ export const useShot = () => {
     unlikeShot,
     likeOrUnlikeShot,
     loadShots,
+    toSearchPage,
   }
 }

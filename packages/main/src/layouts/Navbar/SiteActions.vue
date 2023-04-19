@@ -5,6 +5,7 @@ import { useIsMobile, useShot } from '@/composables'
 const { isMobile } = useIsMobile()
 const {
   q,
+  toSearchPage,
 } = useShot()
 
 const logged = computed((): boolean => {
@@ -18,7 +19,7 @@ const logged = computed((): boolean => {
 <template>
   <ul v-if="!isMobile" class="flex justify-center items-center space-x-2">
     <li>
-      <Input v-model:value="q" show-icon />
+      <Input v-model:value="q" show-icon @keydown.enter="toSearchPage()" />
     </li>
     <template v-if="!logged">
       <li>

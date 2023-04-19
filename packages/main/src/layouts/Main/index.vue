@@ -46,7 +46,7 @@ const likeOrUnlikeShotFn = async (shotId: string, liked: boolean) => {
     <FilterSubNav />
   </div>
   <main class="py-2 px-[3vw]">
-    <div class="min-h-screen dark:border-gray-700">
+    <div class="min-h-fit dark:border-gray-700">
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-9">
         <div v-for="s in shots" :key="s._id">
           <Shot :shot="s" @save="saveShot" @like="likeOrUnlikeShotFn" />

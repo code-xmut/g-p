@@ -74,6 +74,11 @@ const router = createRouter({
           component: () => import('@/components/Account/Tabs/DeleteAccountTab.vue'),
         },
         {
+          path: 'search/:query',
+          name: 'search',
+          component: () => import('@/pages/search.vue'),
+        },
+        {
           path: '/blog:catchAll(.*)',
           name: 'blog',
           component: () => import('@/pages/blog.vue'),
