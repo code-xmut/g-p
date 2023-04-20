@@ -1,10 +1,13 @@
 import type { ShotDto } from '@gp/types'
 import { useDebounceFn } from '@vueuse/core'
-import { likesApi, shotApi } from '@/api'
+import { useRouter } from 'vue-router'
+import type { UserInfo } from '@gp/types/user'
+import { likesApi, shotApi, userApi } from '@/api'
 import { useUser } from '@/composables'
 
 export const useShot = () => {
   const shots = ref<ShotDto[]>([])
+  const users = ref<UserInfo[]>([])
   const shotId = ref()
   const page = ref(0)
   const size = ref(8)
@@ -12,6 +15,7 @@ export const useShot = () => {
   const hasNext = ref(true)
   const showCollectionModal = ref(false)
   const { userId } = useUser()
+  const router = useRouter()
 
   const likeShot = async (id: string) => {
     await likesApi.addShotToLikes(userId, id)
@@ -46,19 +50,32 @@ export const useShot = () => {
     }
   }, 500)
 
-  const loadShotsFN = async (resetPage?: boolean) => {
+  const loadShotsFN = async (resetPage?: boolean, qType = 'shots') => {
     if (resetPage === true) {
       page.value = 0
       shots.value = []
       hasNext.value = true
     }
     page.value += 1
-    const { data } = await shotApi.findShotsWithStatusByPage(page.value, size.value, q.value)
-    shots.value.push(...data.shots)
+    if (qType === 'shots') {
+      const { data } = await shotApi.findShotsWithStatusByPage(page.value, size.value, q.value)
+      shots.value.push(...data.shots)
 
-    hasNext.value = data.hasNext
+      hasNext.value = data.hasNext
+    }
+    else {
+      const { data } = await userApi.searchUsers(q.value)
+      users.value.push(...data)
+    }
   }
   const loadShots = useDebounceFn(loadShotsFN, 200)
+
+  const searchByType = async (_q: string, _qType: 'members' | 'shots') => {
+    if (_qType === 'shots')
+      router.push(`/search/${_q}`)
+    else
+      router.push(`/search/${_q}`)
+  }
 
   return {
     shots,
@@ -72,5 +89,6 @@ export const useShot = () => {
     unlikeShot,
     likeOrUnlikeShot,
     loadShots,
+    searchByType,
   }
 }

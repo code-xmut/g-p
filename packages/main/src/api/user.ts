@@ -24,3 +24,5 @@ export const updatePassword = (passwordInfo: { oldPassword: string; newPassword:
   <Promise<AxiosResponse<UserInfo>>>Put(`/users/security/${userId}`, passwordInfo)
 
 export const deleteUser = () => <Promise<AxiosResponse<UserInfo>>>Delete('/users/destory')
+
+export const searchUsers = (q: string) => <Promise<AxiosResponse<UserInfo[]>>>get(`/users/search/${q}`)
