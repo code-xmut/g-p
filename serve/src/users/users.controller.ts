@@ -68,4 +68,9 @@ export class UsersController {
   async deleteUserById(@Req() req: any) {
     return this.usersService.deleteUserById(req.header.id);
   }
+
+  @Get('search/:name')
+  async findUsersByName(@Param('name') name: string) {
+    return this.usersService.findUsersByName(name);
+  }
 }

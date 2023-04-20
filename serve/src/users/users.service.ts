@@ -77,6 +77,26 @@ export class UsersService {
     throw new NotFoundException('User not found.');
   }
 
+  async findUsersByName(name: string): Promise<UserInfo | undefined> {
+    const users = await this.userModel
+      .find({
+        $or: [
+          { name: { $regex: name, $options: 'i' } },
+          { email: { $regex: name, $options: 'i' } },
+        ],
+      })
+      .then((users) => users.map((user) => user.toObject()));
+
+    if (users) {
+      return users.map((user) => {
+        const { password, likes, collections, shots, ...userInfo } = user;
+        return userInfo;
+      });
+    }
+
+    throw new NotFoundException('User not found.');
+  }
+
   async create(user: CreateUserDto): Promise<User> {
     const isUserNameAvailable = await this.isUserNameValid(user.username);
 
