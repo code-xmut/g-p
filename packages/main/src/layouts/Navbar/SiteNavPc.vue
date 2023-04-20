@@ -11,7 +11,7 @@ defineProps<Props>()
     <ul class="space-x-6 ml-6 text-sm hidden md:flex md:items-center">
       <li>
         <RouterLink to="/">
-          <img src="@/assets/images/image2.jpg" class="w-12 h-12 rounded-full" alt="">
+          <img src="@/assets/images/logo.jpg" class="w-12 h-12 rounded-full" alt="">
         </RouterLink>
       </li>
       <li

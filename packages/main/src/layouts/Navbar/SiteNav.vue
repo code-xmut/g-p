@@ -3,12 +3,11 @@ import { Icon } from '@iconify/vue'
 import { useRoute } from 'vue-router'
 import SiteNavPc from './SiteNavPc.vue'
 import SiteActionsLogged from './SiteActionsLogged.vue'
-import { useIsMobile, useShot } from '@/composables'
+import { useIsMobile } from '@/composables'
 
 const route = useRoute()
 const { isMobile } = useIsMobile()
-const { q, toSearchPage } = useShot()
-
+const q = ref('')
 const navs = computed(() => {
   return [
     {
@@ -67,7 +66,7 @@ watchEffect(() => {
   <div v-if="isMobile" class="text-lg font-semibold text-gray-600">
     <Icon class="w-6 h-6 cursor-pointer lg:hidden" :icon="navIcon" @click="showDrawer = !showDrawer" />
     <FullScreenDrawer :show="showDrawer" class="z-[60]">
-      <Input v-model:value="q" class="w-full" show-icon @keydown.enter="toSearchPage" />
+      <Input v-model:value="q" class="w-full" show-icon @keydown.enter="$router.push(`/search/${q}`)" />
       <div v-for="d in navs" :key="d.name">
         <Collapse v-if="d.children" link :title="d.name" :content="d.children" />
         <RouterLink v-else :to="d.link" class="block pt-2 border-b pb-6">
@@ -80,7 +79,12 @@ watchEffect(() => {
     </FullScreenDrawer>
   </div>
   <SiteNavPc v-else :navs="pcSiteNavs" />
-  <RouterLink v-if="isMobile" to="/">
-    <img src="@/assets/images/image2.jpg" class="w-12 h-12 rounded-full" alt="">
-  </RouterLink>
+  <template v-if="isMobile">
+    <div>
+      <RouterLink to="/">
+        <img src="@/assets/images/logo.jpg" class="w-12 h-12 rounded-full" alt="">
+      </RouterLink>
+    </div>
+    <DarkMode />
+  </template>
 </template>
