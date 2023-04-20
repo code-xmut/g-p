@@ -2,7 +2,6 @@ import type { ShotDto } from '@gp/types'
 import { useDebounceFn } from '@vueuse/core'
 import { likesApi, shotApi } from '@/api'
 import { useUser } from '@/composables'
-import router from '@/router'
 
 export const useShot = () => {
   const shots = ref<ShotDto[]>([])
@@ -47,19 +46,19 @@ export const useShot = () => {
     }
   }, 500)
 
-  const loadShots = async () => {
+  const loadShotsFN = async (resetPage?: boolean) => {
+    if (resetPage === true) {
+      page.value = 0
+      shots.value = []
+      hasNext.value = true
+    }
     page.value += 1
     const { data } = await shotApi.findShotsWithStatusByPage(page.value, size.value, q.value)
     shots.value.push(...data.shots)
+
     hasNext.value = data.hasNext
   }
-
-  const toSearchPage = () => {
-    router.push(`/search/${q.value}`)
-    setTimeout(() => {
-      q.value = ''
-    }, 0)
-  }
+  const loadShots = useDebounceFn(loadShotsFN, 200)
 
   return {
     shots,
@@ -73,6 +72,5 @@ export const useShot = () => {
     unlikeShot,
     likeOrUnlikeShot,
     loadShots,
-    toSearchPage,
   }
 }

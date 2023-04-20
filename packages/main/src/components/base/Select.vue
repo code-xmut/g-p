@@ -19,7 +19,7 @@ const onChange = (e: Event) => {
 
 <template>
   <select
-    class="select select-primary w-full"
+    class="select select-primary"
     @change="onChange"
   >
     <option disabled selected>

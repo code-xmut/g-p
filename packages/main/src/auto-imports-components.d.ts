@@ -78,6 +78,8 @@ declare module '@vue/runtime-core' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SaveShotModal: typeof import('./components/Modal/SaveShotModal/index.vue')['default']
+    SearchContent: typeof import('./components/search/SearchInput.vue')['default']
+    SearchInput: typeof import('./components/search/SearchInput.vue')['default']
     SecurityTab: typeof import('./components/Account/Tabs/SecurityTab.vue')['default']
     Select: typeof import('./components/Base/Select.vue')['default']
     Shot: typeof import('./components/Shot/index.vue')['default']
