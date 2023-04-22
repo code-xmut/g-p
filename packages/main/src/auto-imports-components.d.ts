@@ -90,6 +90,7 @@ declare module '@vue/runtime-core' {
     Tabs: typeof import('./components/Tabs/index.vue')['default']
     TextArea: typeof import('./components/Base/TextArea.vue')['default']
     UploadFile: typeof import('./components/uploads/UploadFile.vue')['default']
+    UserInfoCard: typeof import('./components/search/UserInfoCard.vue')['default']
     WorkCard: typeof import('./components/Profile/WorkCard.vue')['default']
     WorkTab: typeof import('./components/Profile/WorkTab.vue')['default']
   }

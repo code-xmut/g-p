@@ -5,6 +5,7 @@ import { userApi } from '@/api'
 export const useUser = () => {
   const userId = JSON.parse(localStorage.getItem('user') || '{}')._id
   const userName = JSON.parse(localStorage.getItem('user') || '{}').name
+  const userUserName = JSON.parse(localStorage.getItem('user') || '{}').username
   const user = ref<UserInfo>(JSON.parse(localStorage.getItem('user') || '{}'))
   const newAvatarUrl = ref('')
   const defaultAvatar = ref('https://cdn.dribbble.com/assets/avatar-default-e370af14535cdbf137637a27ee1a8e451253edc80be429050bc29d59b1f7cda0.gif')
@@ -97,6 +98,7 @@ export const useUser = () => {
     user,
     userId,
     userName,
+    userUserName,
     isLogged,
     setUserInfo,
     updateUserInfo,

@@ -54,6 +54,7 @@ export const useShot = () => {
     if (resetPage === true) {
       page.value = 0
       shots.value = []
+      users.value = []
       hasNext.value = true
     }
     page.value += 1
@@ -68,17 +69,18 @@ export const useShot = () => {
       users.value.push(...data)
     }
   }
-  const loadShots = useDebounceFn(loadShotsFN, 200)
+  const loadShotsOrMembers = useDebounceFn(loadShotsFN, 200)
 
   const searchByType = async (_q: string, _qType: 'members' | 'shots') => {
     if (_qType === 'shots')
       router.push(`/search/${_q}`)
     else
-      router.push(`/search/${_q}`)
+      router.push(`/members/search/${_q}`)
   }
 
   return {
     shots,
+    users,
     shotId,
     page,
     size,
@@ -88,7 +90,7 @@ export const useShot = () => {
     likeShot,
     unlikeShot,
     likeOrUnlikeShot,
-    loadShots,
+    loadShotsOrMembers,
     searchByType,
   }
 }
