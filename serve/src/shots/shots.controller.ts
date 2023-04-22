@@ -8,6 +8,7 @@ import {
   Post,
   Put,
   Query,
+  Req,
 } from '@nestjs/common';
 import { ShotsService } from './shots.service';
 
@@ -93,5 +94,10 @@ export class ShotsController {
   @Delete(':id')
   async deleteShotById(@Param('id') id: string) {
     return this.shotsService.deleteShotById(id);
+  }
+
+  @Get('user/:username')
+  async findShotsByUserId(@Param('username') UserName: string) {
+    return this.shotsService.findShotsByUserName(UserName);
   }
 }

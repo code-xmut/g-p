@@ -97,6 +97,10 @@ export class ShotsService {
     });
   }
 
+  async findShotsByUserName(UserName: string) {
+    return await this.shotModel.find({ user: UserName });
+  }
+
   async updateShotById(id: string, shot: updateShotDto) {
     return await this.shotModel.findByIdAndUpdate(id, shot);
   }

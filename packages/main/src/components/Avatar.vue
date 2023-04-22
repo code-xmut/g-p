@@ -9,7 +9,7 @@ interface AvatarProps {
 withDefaults(defineProps<AvatarProps>(), {
   showStatus: true,
   sizeClass: 'w-6 h-6',
-  src: '@/assets/images/image2.jpg',
+  src: 'https://cdn.dribbble.com/assets/avatar-default-e370af14535cdbf137637a27ee1a8e451253edc80be429050bc29d59b1f7cda0.gif',
 })
 </script>
 

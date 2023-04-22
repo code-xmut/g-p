@@ -5,12 +5,13 @@ import { useReachBottom, useShot } from '@/composables'
 
 const {
   shots,
+  users,
   shotId,
   hasNext,
   q,
   showCollectionModal,
   likeOrUnlikeShot,
-  loadShots,
+  loadShotsOrMembers,
   searchByType,
 } = useShot()
 const {
@@ -21,19 +22,25 @@ const route = useRoute()
 const qType = ref('shots')
 
 watch(() => route.fullPath, async () => {
-  q.value = route.fullPath.split('/')[2]
-  await loadShots(true, qType.value)
+  q.value = route.fullPath.split('/').at(-1) as string
+  if (route.fullPath.split('/').length === 4)
+    qType.value = 'members'
+  else
+    qType.value = 'shots'
+  await loadShotsOrMembers(true, qType.value)
 }, {
   immediate: true,
 })
 
 watchEffect(async () => {
   if (reachBottom.value) {
-    await loadShots()
+    await loadShotsOrMembers()
     if (!hasNext.value)
       removeScrollListener()
   }
 })
+
+const currentSearchQ = computed(() => decodeURI(route.fullPath.split('/').at(-1) as string))
 
 const saveShot = async (id: string) => {
   shotId.value = id
@@ -57,13 +64,25 @@ const search = (_q: string, _qType: 'shots' | 'members') => {
     <div class="md:flex md:justify-center">
       <SearchInput v-model:q-type="qType" @search="search" />
     </div>
-    <FilterSubNav />
+    <h1 class="font-bold text-4xl text-center my-3">
+      {{ currentSearchQ }}
+    </h1>
+    <FilterSubNav v-if="qType === 'shots'" />
     <div class="py-2 px-[3vw]">
       <div class="min-h-fit dark:border-gray-700">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-9">
-          <div v-for="s in shots" :key="s._id">
-            <Shot v-show="qType === 'shots'" :shot="s" @save="saveShot" @like="likeOrUnlikeShotFn" />
-          </div>
+          <template v-if="qType === 'shots'">
+            <div v-for="s in shots" :key="s._id">
+              <Shot v-show="qType === 'shots'" :shot="s" @save="saveShot" @like="likeOrUnlikeShotFn" />
+            </div>
+          </template>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <template v-if="qType === 'members'">
+            <div v-for="u in users" :key="u._id">
+              <UserInfoCard :user="u" />
+            </div>
+          </template>
         </div>
         <p v-if="!hasNext" class="text-center mt-4 text-sm">
           您已到达列表末尾

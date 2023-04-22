@@ -79,6 +79,11 @@ const router = createRouter({
           component: () => import('@/pages/search.vue'),
         },
         {
+          path: 'members/search/:query',
+          name: 'members-search',
+          component: () => import('@/pages/search.vue'),
+        },
+        {
           path: '/blog:catchAll(.*)',
           name: 'blog',
           component: () => import('@/pages/blog.vue'),

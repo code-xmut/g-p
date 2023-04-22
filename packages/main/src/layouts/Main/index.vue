@@ -7,7 +7,7 @@ const {
   hasNext,
   showCollectionModal,
   likeOrUnlikeShot,
-  loadShots,
+  loadShotsOrMembers,
 } = useShot()
 const {
   reachBottom,
@@ -15,12 +15,12 @@ const {
 } = useReachBottom()
 
 onMounted(async () => {
-  await loadShots()
+  await loadShotsOrMembers()
 })
 
 watchEffect(async () => {
   if (reachBottom.value) {
-    await loadShots()
+    await loadShotsOrMembers()
     if (!hasNext.value)
       removeScrollListener()
   }

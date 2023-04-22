@@ -20,3 +20,6 @@ export const likeShotById = (shotId: string) =>
 
 export const unlikeShotById = (shotId: string) =>
   <Promise<AxiosResponse<ShotDto>>>(Put(`/shots/${shotId}/unlike`))
+
+export const findUserShots = (UserName: string) =>
+  <Promise<AxiosResponse<ShotDto[]>>>(get(`/shots/user/${UserName}`))

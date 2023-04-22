@@ -7,6 +7,9 @@ import { useRouter } from 'vue-router'
 import type { Block } from '@/types/editor'
 import { BlockEnum } from '@/types/editor'
 import { shotApi } from '@/api'
+import { useUser } from '@/composables'
+
+const { userUserName } = useUser()
 
 export const useEditorStore = defineStore('editor', () => {
   const initialValue: Block[] = [
@@ -77,7 +80,7 @@ export const useEditorStore = defineStore('editor', () => {
       description,
       tags,
       content: JSON.stringify(draft.value),
-      user: 'capalot',
+      user: userUserName,
       serverUrl: 'https://capalot.com',
       state: 'published',
     }
