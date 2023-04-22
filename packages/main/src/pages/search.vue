@@ -34,7 +34,7 @@ watch(() => route.fullPath, async () => {
 
 watchEffect(async () => {
   if (reachBottom.value) {
-    await loadShotsOrMembers()
+    await loadShotsOrMembers(false, qType.value)
     if (!hasNext.value)
       removeScrollListener()
   }

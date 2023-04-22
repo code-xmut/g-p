@@ -77,7 +77,22 @@ export class UsersService {
     throw new NotFoundException('User not found.');
   }
 
-  async findUsersByName(name: string): Promise<UserInfo | undefined> {
+  async findUsersByNameTotal(name: string): Promise<number> {
+    return await this.userModel
+      .find({
+        $or: [
+          { name: { $regex: name, $options: 'i' } },
+          { email: { $regex: name, $options: 'i' } },
+        ],
+      })
+      .countDocuments();
+  }
+
+  async findUsersByName(
+    name: string,
+    page = 1,
+    size = 6,
+  ): Promise<UserInfo | undefined> {
     const users = await this.userModel
       .find({
         $or: [
@@ -85,13 +100,24 @@ export class UsersService {
           { email: { $regex: name, $options: 'i' } },
         ],
       })
+      .skip((page - 1) * size)
+      .limit(size)
       .then((users) => users.map((user) => user.toObject()));
 
     if (users) {
-      return users.map((user) => {
+      const returnUsers = users.map((user) => {
         const { password, likes, collections, shots, ...userInfo } = user;
         return userInfo;
       });
+
+      const total = await this.findUsersByNameTotal(name);
+      const hasNext = page * size < total;
+
+      return {
+        users: returnUsers,
+        hasNext,
+        total,
+      };
     }
 
     throw new NotFoundException('User not found.');

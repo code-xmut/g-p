@@ -1,8 +1,26 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
+import { useThrottleFn } from '@vueuse/core'
+import { tagApi } from '@/api'
 
 const show = ref(false)
 const showFilter = ref(false)
+const q = ref('')
+const associatedTags = ref<string[]>([])
+
+const getAssociatedTags = useThrottleFn(async () => {
+  if (q.value === '') {
+    associatedTags.value = []
+    return
+  }
+  const { data } = await tagApi.findAssociateTags(q.value)
+  associatedTags.value = data
+}, 500)
+
+watchEffect(() => {
+  if (q.value !== '')
+    getAssociatedTags()
+})
 
 const filterSets = computed(() => {
   return [
@@ -80,6 +98,10 @@ const filterSets = computed(() => {
     },
   ]
 })
+
+const choose = (tag: string) => {
+  q.value = tag
+}
 </script>
 
 <template>
@@ -99,7 +121,19 @@ const filterSets = computed(() => {
       </Button>
     </div>
     <div v-show="showFilter" class="flex flex-col lg:flex-row justify-between pt-4 pb-2">
-      <FilterSet />
+      <div>
+        <div>
+          {{ filterSets[0].title }}
+        </div>
+        <div class="mt-2">
+          <Dropdown>
+            <Input v-model:value="q" show-icon />
+            <template #content>
+              <SearchAssociateTags v-if="associatedTags" v-model:q="q" :tags="associatedTags" @choose="choose" />
+            </template>
+          </Dropdown>
+        </div>
+      </div>
       <template v-for="set in filterSets" :key="set.title">
         <FilterSet :title="set.title">
           <Select :content="set.content" />

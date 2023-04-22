@@ -2,6 +2,7 @@ import {
   CreateUserDto,
   LoginUserDto,
   UpdateUserProfileDto,
+  UserPageDocument,
 } from './user';
 import { ShotDraft, Shot, ShotDto, createShotDto, updateShotDto, ShotPageDocument } from './shot';
 import { Comment, CommentDto, createCommentDto, updateCommentDto } from './comment';
@@ -15,6 +16,7 @@ export type {
   CreateUserDto,
   LoginUserDto,
   UpdateUserProfileDto,
+  UserPageDocument,
   
   Shot,
   ShotDraft,

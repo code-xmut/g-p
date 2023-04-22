@@ -44,4 +44,9 @@ export class TagsController {
   async deleteTagById(@Param('id') id: string) {
     return await this.tagsService.deleteTagById(id);
   }
+
+  @Get('associate/:q')
+  async findAssociateTags(@Param('q') q: string) {
+    return await this.tagsService.findAssociateTags(q);
+  }
 }

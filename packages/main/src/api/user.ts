@@ -1,5 +1,5 @@
 import type { AxiosResponse } from 'axios'
-import type { UpdateUserProfileDto, UserInfo } from '@gp/types/user'
+import type { UpdateUserProfileDto, UserInfo, UserPageDocument } from '@gp/types/user'
 import { useRequest } from '@/composables'
 
 const { get, post, Put, Delete } = useRequest()
@@ -25,4 +25,5 @@ export const updatePassword = (passwordInfo: { oldPassword: string; newPassword:
 
 export const deleteUser = () => <Promise<AxiosResponse<UserInfo>>>Delete('/users/destory')
 
-export const searchUsers = (q: string) => <Promise<AxiosResponse<UserInfo[]>>>get(`/users/search/${q}`)
+export const searchUsers = (q: string, page = 1, size = 6) =>
+  <Promise<AxiosResponse<UserPageDocument>>>get(`/users/search/${q}?page=${page}&size=${size}`)

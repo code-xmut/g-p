@@ -31,6 +31,14 @@ export class TagsService {
     return await this.tagModel.findByIdAndUpdate(id, tag);
   }
 
+  async findAssociateTags(q: string) {
+    return await this.tagModel
+      .find({ title: { $regex: q, $options: 'i' } })
+      .then((tags) => {
+        return tags.map((tag) => tag.title);
+      });
+  }
+
   async deleteTagById(id: string) {
     return await this.tagModel.findByIdAndDelete(id);
   }
