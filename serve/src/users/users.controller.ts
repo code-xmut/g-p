@@ -7,6 +7,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
   Req,
   UseGuards,
 } from '@nestjs/common';
@@ -70,7 +71,11 @@ export class UsersController {
   }
 
   @Get('search/:name')
-  async findUsersByName(@Param('name') name: string) {
-    return this.usersService.findUsersByName(name);
+  async findUsersByName(
+    @Param('name') name: string,
+    @Query('page') page: number,
+    @Query('size') size: number,
+  ) {
+    return this.usersService.findUsersByName(name, page, size);
   }
 }
