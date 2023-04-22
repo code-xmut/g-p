@@ -65,8 +65,10 @@ export const useShot = () => {
       hasNext.value = data.hasNext
     }
     else {
-      const { data } = await userApi.searchUsers(q.value)
-      users.value.push(...data)
+      const { data } = await userApi.searchUsers(q.value, page.value, size.value)
+      users.value.push(...data.users)
+
+      hasNext.value = data.hasNext
     }
   }
   const loadShotsOrMembers = useDebounceFn(loadShotsFN, 200)

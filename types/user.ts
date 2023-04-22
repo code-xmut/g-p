@@ -25,3 +25,8 @@ export type LoginUserDto = Pick<CreateUserDto, "password"> & Partial<Pick<Create
 
 export type UpdateUserProfileDto = Partial<Pick<User,"_id" | "name" | "bio" | "location">>;
 
+export type UserPageDocument = {
+  total: number;
+  users: UserInfo[];
+  hasNext: boolean;
+}

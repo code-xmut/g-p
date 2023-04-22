@@ -47,7 +47,7 @@ onUnmounted(() => {
       </div>
     </div>
     <p
-      v-if="userThreeComponents.length === 0 && coverHeight !== 0" class="text-center text-gray-500 bg-gray-50 dark:bg-gray-700
+      v-if="userThreeComponents.length === 0 && coverHeight > 0" class="text-center text-gray-500 bg-gray-50 dark:bg-gray-600
       rounded-lg flex justify-center items-center"
       :style="{ height: `${coverHeight}px` }"
     >
