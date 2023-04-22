@@ -19,7 +19,8 @@ const onChange = (e: Event) => {
 
 <template>
   <select
-    class="select select-primary"
+    class="select select-primary bg-white dark:bg-darkBg"
+    v-bind="$attrs"
     @change="onChange"
   >
     <option disabled selected>
