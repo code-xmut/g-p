@@ -4,7 +4,7 @@
 
 <template>
   <div
-    class="card w-full min-h-[200px] text-gray-900 dark:text-gray-500 cursor-pointer relative group"
+    class="w-full shadow-[0_2px_8px_2px_rgba(13,12,34,0.08)] border dark:border-gray-600 rounded-lg cursor-pointer px-5 py-6"
     v-bind="$attrs"
   >
     <slot />
