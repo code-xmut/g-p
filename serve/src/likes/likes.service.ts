@@ -174,10 +174,18 @@ export class LikesService {
     page: number,
     size: number,
     q = '',
+    condition = '',
     sort?: string,
     order?: string,
   ) {
-    const shot = await this.shotsService.findPage(page, size, q, sort, order);
+    const shot = await this.shotsService.findPage(
+      page,
+      size,
+      q,
+      condition,
+      sort,
+      order,
+    );
     if (userId) {
       const likes = await this.findLikesByUserId(userId);
       const collection = await this.collectionService.findCollectionByUserId(

@@ -7,6 +7,7 @@ const {
   shots,
   users,
   shotId,
+  resetPage,
   hasNext,
   q,
   showCollectionModal,
@@ -27,14 +28,16 @@ watch(() => route.fullPath, async () => {
     qType.value = 'members'
   else
     qType.value = 'shots'
-  await loadShotsOrMembers(true, qType.value)
+  resetPage.value = true
+  await loadShotsOrMembers(qType.value)
 }, {
   immediate: true,
 })
 
 watchEffect(async () => {
+  resetPage.value = false
   if (reachBottom.value) {
-    await loadShotsOrMembers(false, qType.value)
+    await loadShotsOrMembers(qType.value)
     if (!hasNext.value)
       removeScrollListener()
   }

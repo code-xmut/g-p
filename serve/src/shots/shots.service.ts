@@ -29,20 +29,26 @@ export class ShotsService {
     page: number,
     size: number,
     q?: string,
+    condition = '',
     sort?: string,
     order?: string,
   ) {
-    return await this.shotModel
-      .find({
-        $or: [
-          { title: { $regex: q, $options: 'i' } },
-          { description: { $regex: q, $options: 'i' } },
-          { tags: { $regex: q, $options: 'i' } },
-        ],
-      })
-      .sort({ [sort]: order === 'asc' ? 1 : -1 })
-      .skip((page - 1) * size)
-      .limit(size);
+    switch (condition) {
+      case 'tag':
+        return await this.findPageByTag(page, size, q, sort, order);
+      default:
+        return await this.shotModel
+          .find({
+            $or: [
+              { title: { $regex: q, $options: 'i' } },
+              { description: { $regex: q, $options: 'i' } },
+              { tags: { $regex: q, $options: 'i' } },
+            ],
+          })
+          .sort({ [sort]: order === 'asc' ? 1 : -1 })
+          .skip((page - 1) * size)
+          .limit(size);
+    }
   }
 
   async findPageByTag(

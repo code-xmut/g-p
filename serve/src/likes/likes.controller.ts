@@ -53,6 +53,7 @@ export class LikesController {
     @Query('page') page: number,
     @Query('size') size: number,
     @Query('q') q: string,
+    @Query('condition') condition: string,
     @Query('sort') sort?: string,
     @Query('order') order?: string,
   ) {
@@ -62,6 +63,7 @@ export class LikesController {
       page,
       size,
       q,
+      condition,
       sort,
       order,
     );
