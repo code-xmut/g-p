@@ -20,8 +20,13 @@ export const useReachBottom = () => {
     window.removeEventListener('scroll', handleScroll)
   }
 
+  const addScrollListener = () => {
+    window.addEventListener('scroll', handleScroll)
+  }
+
   return {
     reachBottom,
     removeScrollListener,
+    addScrollListener,
   }
 }

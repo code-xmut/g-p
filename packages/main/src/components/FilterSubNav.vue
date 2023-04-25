@@ -3,6 +3,8 @@ import { Icon } from '@iconify/vue'
 import { useThrottleFn } from '@vueuse/core'
 import { tagApi } from '@/api'
 
+defineEmits(['searchByTag'])
+
 const show = ref(false)
 const showFilter = ref(false)
 const q = ref('')
@@ -25,45 +27,7 @@ watchEffect(() => {
 const filterSets = computed(() => {
   return [
     {
-      title: 'Colors',
-      content: [
-        {
-          name: 'Black',
-        },
-        {
-          name: 'Blue',
-        },
-        {
-          name: 'Brown',
-        },
-        {
-          name: 'Gray',
-        },
-        {
-          name: 'Green',
-        },
-        {
-          name: 'Orange',
-        },
-        {
-          name: 'Pink',
-        },
-        {
-          name: 'Purple',
-        },
-        {
-          name: 'Red',
-        },
-        {
-          name: 'Teal',
-        },
-        {
-          name: 'White',
-        },
-        {
-          name: 'Yellow',
-        },
-      ],
+      title: 'Tag',
     },
     {
       title: 'TimeFrame',
@@ -127,7 +91,7 @@ const choose = (tag: string) => {
         </div>
         <div class="mt-2">
           <Dropdown>
-            <Input v-model:value="q" show-icon />
+            <Input v-model:value="q" show-icon @keydown.enter="$emit('searchByTag', q)" />
             <template #content>
               <SearchAssociateTags v-if="associatedTags" v-model:q="q" :tags="associatedTags" @choose="choose" />
             </template>

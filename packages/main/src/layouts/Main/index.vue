@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { useDebounceFn } from '@vueuse/core'
 import { useReachBottom, useShot } from '@/composables'
 
 const {
+  q,
   shots,
   shotId,
+  resetPage,
   hasNext,
   showCollectionModal,
   likeOrUnlikeShot,
@@ -12,18 +15,18 @@ const {
 const {
   reachBottom,
   removeScrollListener,
+  addScrollListener,
 } = useReachBottom()
+const condition = ref('')
 
 onMounted(async () => {
   await loadShotsOrMembers()
 })
 
 watchEffect(async () => {
-  if (reachBottom.value) {
-    await loadShotsOrMembers()
-    if (!hasNext.value)
-      removeScrollListener()
-  }
+  resetPage.value = false
+  if (reachBottom.value)
+    await loadShotsOrMembers('shots', condition.value)
 })
 
 const isLogged = computed(() => {
@@ -38,12 +41,20 @@ const saveShot = async (id: string) => {
 const likeOrUnlikeShotFn = async (shotId: string, liked: boolean) => {
   await likeOrUnlikeShot(shotId, liked)
 }
+
+const searchByTagFn = async (_q: string) => {
+  q.value = _q
+  condition.value = 'tag'
+  resetPage.value = true
+  await loadShotsOrMembers('shots', condition.value)
+}
+const searchByTag = useDebounceFn(searchByTagFn, 200)
 </script>
 
 <template>
   <Hero v-if="!isLogged" />
   <div>
-    <FilterSubNav />
+    <FilterSubNav @search-by-tag="searchByTag" />
   </div>
   <main class="py-2 px-[3vw]">
     <div class="min-h-fit dark:border-gray-700">

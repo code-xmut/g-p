@@ -12,6 +12,7 @@ export const useShot = () => {
   const page = ref(0)
   const size = ref(8)
   const q = ref('')
+  const resetPage = ref(false)
   const hasNext = ref(true)
   const showCollectionModal = ref(false)
   const { userId } = useUser()
@@ -50,8 +51,8 @@ export const useShot = () => {
     }
   }, 500)
 
-  const loadShotsFN = async (resetPage?: boolean, qType = 'shots') => {
-    if (resetPage === true) {
+  const loadShotsFN = async (qType = 'shots', condition = '') => {
+    if (resetPage.value === true) {
       page.value = 0
       shots.value = []
       users.value = []
@@ -59,7 +60,7 @@ export const useShot = () => {
     }
     page.value += 1
     if (qType === 'shots') {
-      const { data } = await shotApi.findShotsWithStatusByPage(page.value, size.value, q.value)
+      const { data } = await shotApi.findShotsWithStatusByPage(page.value, size.value, q.value, condition)
       shots.value.push(...data.shots)
 
       hasNext.value = data.hasNext
@@ -87,6 +88,7 @@ export const useShot = () => {
     page,
     size,
     q,
+    resetPage,
     hasNext,
     showCollectionModal,
     likeShot,
