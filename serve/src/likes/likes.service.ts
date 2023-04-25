@@ -113,6 +113,62 @@ export class LikesService {
     return await this.likesModule.findOneAndDelete({ userId });
   }
 
+  async findShotsWithStatusByTag(
+    userId: string,
+    page: number,
+    size: number,
+    q = '',
+    sort?: string,
+    order?: string,
+  ) {
+    const shot = await this.shotsService.findPageByTag(
+      page,
+      size,
+      q,
+      sort,
+      order,
+    );
+    if (userId) {
+      const likes = await this.findLikesByUserId(userId);
+      const collection = await this.collectionService.findCollectionByUserId(
+        userId,
+      );
+      const collectedShot: string[] = [];
+      collection.forEach((c) => {
+        c.shots.map((s) => {
+          collectedShot.push(s._id.toString());
+        });
+      });
+
+      const returnShot = JSON.parse(JSON.stringify(shot)) as Shot[];
+      returnShot.forEach((s) => {
+        if (likes) {
+          likes.shots.forEach((l) => {
+            if (s._id.toString() === l._id.toString()) {
+              s.liked = true;
+            }
+          });
+        }
+        if (collectedShot) {
+          collectedShot.forEach((c) => {
+            if (s._id.toString() === c) {
+              s.collected = true;
+            }
+          });
+        }
+      });
+
+      const total = await this.shotsService.findShotsTotal(q);
+      const hasNext = page * size < total;
+
+      return {
+        hasNext,
+        shots: returnShot,
+      };
+    }
+    return shot;
+  }
+
   async findShotsWithStatus(
     userId: string,
     page: number,

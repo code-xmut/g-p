@@ -45,6 +45,20 @@ export class ShotsService {
       .limit(size);
   }
 
+  async findPageByTag(
+    page: number,
+    size: number,
+    tag: string,
+    sort?: string,
+    order?: string,
+  ) {
+    return await this.shotModel
+      .find({ tags: tag })
+      .sort({ [sort]: order === 'asc' ? 1 : -1 })
+      .skip((page - 1) * size)
+      .limit(size);
+  }
+
   findShotByTag(tag: string): Promise<ShotDocument[]> {
     return this.shotModel.find({ tags: tag });
   }
