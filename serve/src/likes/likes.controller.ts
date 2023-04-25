@@ -66,4 +66,24 @@ export class LikesController {
       order,
     );
   }
+
+  @Get('shots/page/:tag')
+  async findShotsWithStatusByTag(
+    @Param('tag') tag: string,
+    @Query('page') page: number,
+    @Query('size') size: number,
+    @Req() req: any,
+    @Query('sort') sort?: string,
+    @Query('order') order?: string,
+  ) {
+    const userId = req.headers.id;
+    return await this.likesService.findShotsWithStatusByTag(
+      userId,
+      page,
+      size,
+      tag,
+      sort,
+      order,
+    );
+  }
 }
