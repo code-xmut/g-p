@@ -47,7 +47,7 @@ export class ShotsService {
               { tags: { $regex: q, $options: 'i' } },
             ],
           })
-          .sort({ [sort]: order === 'asc' ? 1 : -1 })
+          .sort({ [sort]: order === 'desc' ? 1 : -1 })
           .skip((page - 1) * size)
           .limit(size);
     }
