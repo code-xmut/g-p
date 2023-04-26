@@ -36,6 +36,8 @@ export class ShotsService {
     switch (condition) {
       case 'tag':
         return await this.findPageByTag(page, size, q, sort, order);
+      case 'time':
+        return await this.findPageByCreateTime(page, size, q);
       default:
         return await this.shotModel
           .find({
@@ -49,6 +51,16 @@ export class ShotsService {
           .skip((page - 1) * size)
           .limit(size);
     }
+  }
+
+  async findPageByCreateTime(page: number, size: number, time?: string) {
+    return await this.shotModel
+      .find({
+        createdAt: { $gte: new Date(time) },
+      })
+      .sort({ createdAt: -1 })
+      .skip((page - 1) * size)
+      .limit(size);
   }
 
   async findPageByTag(
