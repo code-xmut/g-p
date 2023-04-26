@@ -12,6 +12,7 @@ export const useShot = () => {
   const page = ref(0)
   const size = ref(8)
   const q = ref('')
+  const sort = ref('createdAt')
   const resetPage = ref(false)
   const hasNext = ref(true)
   const showCollectionModal = ref(false)
@@ -60,7 +61,7 @@ export const useShot = () => {
     }
     page.value += 1
     if (qType === 'shots') {
-      const { data } = await shotApi.findShotsWithStatusByPage(page.value, size.value, q.value, condition)
+      const { data } = await shotApi.findShotsWithStatusByPage(page.value, size.value, q.value, condition, sort.value)
       shots.value.push(...data.shots)
 
       hasNext.value = data.hasNext
@@ -88,6 +89,7 @@ export const useShot = () => {
     page,
     size,
     q,
+    sort,
     resetPage,
     hasNext,
     showCollectionModal,
