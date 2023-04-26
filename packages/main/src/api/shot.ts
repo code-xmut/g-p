@@ -12,8 +12,9 @@ export const saveDraft = (shot: ShotDraft) => <Promise<AxiosResponse<Shot>>>post
 
 export const createShot = (shot: createShotDto) => <Promise<AxiosResponse<Shot>>>(post('/shots', shot))
 
-export const findShotsWithStatusByPage = (page = 1, size = 9, q = '', condition = '') =>
-  <Promise<AxiosResponse<ShotPageDocument>>>(get(`likes/shots/page?page=${page}&size=${size}&q=${q}&condition=${condition}`))
+export const findShotsWithStatusByPage = (page = 1, size = 9, q = '', condition = '', sort?: string) =>
+  <Promise<AxiosResponse<ShotPageDocument>>>(
+    get(`likes/shots/page?page=${page}&size=${size}&q=${q}&condition=${condition}&sort=${sort}`))
 
 export const likeShotById = (shotId: string) =>
   <Promise<AxiosResponse<ShotDto>>>(Put(`/shots/${shotId}/like`))

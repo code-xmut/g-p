@@ -3,12 +3,22 @@ import { Icon } from '@iconify/vue'
 import { useThrottleFn } from '@vueuse/core'
 import { tagApi } from '@/api'
 
-const emit = defineEmits(['searchByTag', 'searchByTime'])
+const emit = defineEmits(['searchByTag', 'searchByTime', 'sortBy'])
 
 const show = ref(false)
 const showFilter = ref(false)
 const q = ref('')
 const associatedTags = ref<string[]>([])
+const sortCondition = reactive([
+  {
+    label: 'Popular',
+    value: 'collections',
+  },
+  {
+    label: 'Newest',
+    value: 'likes',
+  },
+])
 
 const getAssociatedTags = useThrottleFn(async () => {
   if (q.value === '') {
@@ -84,17 +94,26 @@ const onChange = (title: string, _q: string) => {
     emit('searchByTime', timeStr)
   }
 }
+
+const onSortConditionClick = (condition: string) => {
+  emit('sortBy', condition)
+}
 </script>
 
 <template>
   <div class="px-[3vw]">
     <div class="pt-8 flex justify-between items-center">
-      <Dropdown :show-content="show" trigger="click">
-        <Button text="Popular" @click="show = !show">
-          <template #icon>
-            <Swap />
-          </template>
-        </Button>
+      <Dropdown>
+        <Button text="Popular" />
+        <template #content>
+          <ul class="flex flex-col space-y-2">
+            <li v-for="s in sortCondition" :key="s.label" @click="onSortConditionClick(s.value)">
+              <a>
+                {{ s.label }}
+              </a>
+            </li>
+          </ul>
+        </template>
       </Dropdown>
       <Button text="Filters" class="btn-secondary" @click="showFilter = !showFilter">
         <template #frontIcon>
