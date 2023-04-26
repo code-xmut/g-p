@@ -3,7 +3,7 @@ import { Icon } from '@iconify/vue'
 import { useThrottleFn } from '@vueuse/core'
 import { tagApi } from '@/api'
 
-defineEmits(['searchByTag'])
+const emit = defineEmits(['searchByTag', 'searchByTime'])
 
 const show = ref(false)
 const showFilter = ref(false)
@@ -27,22 +27,23 @@ watchEffect(() => {
 const filterSets = computed(() => {
   return [
     {
-      title: 'Tag',
-    },
-    {
       title: 'TimeFrame',
       content: [
         {
-          name: 'Last 24 Hours',
+          name: '最近24小时',
+          hour: 24,
         },
         {
-          name: 'Last 7 Days',
+          name: '最近7天',
+          hour: 24 * 7,
         },
         {
-          name: 'Last 30 Days',
+          name: '最近1月',
+          hour: 24 * 30,
         },
         {
-          name: 'Last 12 Months',
+          name: '最近1年',
+          hour: 24 * 365,
         },
       ],
     },
@@ -51,12 +52,15 @@ const filterSets = computed(() => {
       content: [
         {
           name: 'Most Popular',
+          sort: 'popular',
         },
         {
-          name: 'Most Downloaded',
+          name: 'Most Collections',
+          sort: 'collections',
         },
         {
-          name: 'Most Viewed',
+          name: 'Most Views',
+          sort: 'views',
         },
       ],
     },
@@ -65,6 +69,20 @@ const filterSets = computed(() => {
 
 const choose = (tag: string) => {
   q.value = tag
+}
+
+const onChange = (title: string, _q: string) => {
+  if (title === 'TimeFrame') {
+    const selectedSet = filterSets.value
+      .find(set => set.title === title) as { title: string; content: { name: string; hour: number }[] }
+    const selectedItem = selectedSet?.content.find(item => item.name === _q)
+
+    const now = new Date().getTime()
+    const time = now - (selectedItem?.hour ?? 0) * 60 * 60 * 1000 + 8 * 60 * 60 * 1000
+    const timeStr = new Date(time).toISOString()
+
+    emit('searchByTime', timeStr)
+  }
 }
 </script>
 
@@ -86,9 +104,7 @@ const choose = (tag: string) => {
     </div>
     <div v-show="showFilter" class="flex flex-col lg:flex-row justify-between pt-4 pb-2">
       <div>
-        <div>
-          {{ filterSets[0].title }}
-        </div>
+        <p>Tag</p>
         <div class="mt-2">
           <Dropdown>
             <Input v-model:value="q" show-icon @keydown.enter="$emit('searchByTag', q)" />
@@ -100,7 +116,7 @@ const choose = (tag: string) => {
       </div>
       <template v-for="set in filterSets" :key="set.title">
         <FilterSet :title="set.title">
-          <Select :content="set.content" />
+          <Select :title="set.title" :content="set.content" @change="onChange" />
         </FilterSet>
       </template>
     </div>
