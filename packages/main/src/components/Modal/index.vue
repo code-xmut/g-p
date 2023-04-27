@@ -46,7 +46,7 @@ const isFullScreen = computed(() => {
     <div v-if="show" class="modal modal-open">
       <div
         ref="target"
-        class="modal-box max-w-full"
+        class="modal-box max-w-full bg-white dark:bg-darkBg"
         v-bind="$attrs"
         :class="isFullScreen"
       >
