@@ -5,7 +5,6 @@ import { tagApi } from '@/api'
 
 const emit = defineEmits(['searchByTag', 'searchByTime', 'sortBy'])
 
-const show = ref(false)
 const showFilter = ref(false)
 const q = ref('')
 const associatedTags = ref<string[]>([])

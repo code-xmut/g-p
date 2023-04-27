@@ -91,6 +91,16 @@ export class ShotsController {
     return this.shotsService.unlikeShotById(id);
   }
 
+  @Put(':id/collect')
+  async collectShotById(@Param('id') id: string) {
+    return this.shotsService.collectShotById(id);
+  }
+
+  @Put(':id/unCollect')
+  async unCollectShotById(@Param('id') id: string) {
+    return this.shotsService.unCollectShotById(id);
+  }
+
   @Delete(':id')
   async deleteShotById(@Param('id') id: string) {
     return this.shotsService.deleteShotById(id);

@@ -137,6 +137,18 @@ export class ShotsService {
     return await this.shotModel.findByIdAndUpdate(id, shot);
   }
 
+  async collectShotById(id: string) {
+    return await this.shotModel.findByIdAndUpdate(id, {
+      $inc: { collections: 1 },
+    });
+  }
+
+  async unCollectShotById(id: string) {
+    return await this.shotModel.findByIdAndUpdate(id, {
+      $inc: { collections: -1 },
+    });
+  }
+
   async likeShotById(id: string) {
     return await this.shotModel.findByIdAndUpdate(id, {
       $inc: { likes: 1 },

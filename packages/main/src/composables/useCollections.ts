@@ -1,6 +1,6 @@
 import type { createCollectionDto } from '@gp/types'
 import { useUser } from './useUser'
-import { collectionsApi } from '@/api'
+import { collectionsApi, shotApi } from '@/api'
 
 export const useCollections = () => {
   const isCollectionEmpty = ref(false)
@@ -18,17 +18,21 @@ export const useCollections = () => {
     isCollectionEmpty.value = value
   }
 
-  const saveShotToCollection = async (collectionId: string, shotId?: string) => {
+  const saveShotToCollection = async (collectionId: string, shotId: string) => {
     const { data } = await collectionsApi.saveShotToCollection(collectionId, shotId)
-    if (data)
+    if (data) {
+      await shotApi.collectShotById(shotId)
       return data
+    }
     return false
   }
 
-  const removeShotFromCollection = async (collectionId: string, shotId?: string) => {
+  const removeShotFromCollection = async (collectionId: string, shotId: string) => {
     const { data } = await collectionsApi.removeShotFromCollection(collectionId, shotId)
-    if (data)
+    if (data) {
+      await shotApi.unCollectShotById(shotId)
       return data
+    }
     return false
   }
 
