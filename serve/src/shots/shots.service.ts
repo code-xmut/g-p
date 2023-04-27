@@ -47,6 +47,8 @@ export class ShotsService {
               { tags: { $regex: q, $options: 'i' } },
             ],
           })
+          .where('state')
+          .equals('published')
           .sort({ [sort]: order === 'desc' ? 1 : -1 })
           .skip((page - 1) * size)
           .limit(size);
@@ -58,6 +60,8 @@ export class ShotsService {
       .find({
         createdAt: { $gte: new Date(time) },
       })
+      .where('state')
+      .equals('published')
       .sort({ createdAt: -1 })
       .skip((page - 1) * size)
       .limit(size);
@@ -72,6 +76,8 @@ export class ShotsService {
   ) {
     return await this.shotModel
       .find({ tags: tag })
+      .where('state')
+      .equals('published')
       .sort({ [sort]: order === 'asc' ? 1 : -1 })
       .skip((page - 1) * size)
       .limit(size);
