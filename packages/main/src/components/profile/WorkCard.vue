@@ -1,9 +1,17 @@
 <script setup lang="ts">
+import type { ShotDto } from '@gp/types'
+import { shotApi } from '@/api'
+
+const shots = ref<ShotDto[]>([])
+onMounted(async () => {
+  const { data } = await shotApi.findUserShots('rich4st')
+  shots.value = data
+})
 </script>
 
 <template>
   <ul class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-    <li>
+    <li v-if="shots.length === 0">
       <Card class="min-h-[320px] lg:min-h-[360px] border-2 border-dashed flex flex-col justify-center items-center">
         <h1 class="text-3xl md:text-xl xl:text-3xl text-gray-900 dark:text-gray-500">
           Upload your first shot
@@ -14,8 +22,13 @@
         <Button text="Upload your first shot" class="btn-secondary" @click="$router.push('/uploads')" />
       </Card>
     </li>
-    <li v-for="i in 5" :key="i">
-      <Card class="min-h-[320px] lg:min-h-[360px] empty-shot-item" />
+    <template v-if="shots.length === 0">
+      <li v-for="i in 5" :key="i">
+        <Card class="min-h-[320px] lg:min-h-[360px] empty-shot-item border-0" />
+      </li>
+    </template>
+    <li v-for="shot in shots" :key="shot._id">
+      <Shot is-draft :shot="shot" />
     </li>
   </ul>
 </template>
