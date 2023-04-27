@@ -27,3 +27,12 @@ export const findUserShots = (UserName: string) =>
 
 export const findShotsPageByTag = (tag: string, page = 1, size = 9) =>
   <Promise<AxiosResponse<ShotPageDocument>>>(get(`likes/shots/page/${tag}?page=${page}&size=${size}`))
+
+export const collectShotById = (shotId: string) =>
+  <Promise<AxiosResponse<ShotDto>>>(Put(`/shots/${shotId}/collect`))
+
+export const unCollectShotById = (shotId: string) =>
+  <Promise<AxiosResponse<ShotDto>>>(Put(`/shots/${shotId}/unCollect`))
+
+export const findUserDraft = (UserName: string) =>
+  <Promise<AxiosResponse<ShotDto[]>>>(get(`/shots/user/draft/${UserName}`))

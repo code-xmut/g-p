@@ -65,7 +65,7 @@ const showCreateForm = computed(() => {
 const modalTitle = computed(() => {
   if (isCollectionEmpty.value)
     return 'Create new collection'
-  return 'Add to a collection'
+  return '添加到收藏夹'
 })
 
 const loadData = async () => {
@@ -95,11 +95,11 @@ watchEffect(() => {
 })
 
 const saveShot = async (collectionId: string) => {
-  const response = await saveShotToCollection(collectionId, props.shotId)
+  await saveShotToCollection(collectionId, props.shotId ?? '')
 }
 
 const removeShot = async (collectionId: string) => {
-  await removeShotFromCollection(collectionId, props.shotId)
+  await removeShotFromCollection(collectionId, props.shotId ?? '')
 }
 </script>
 
@@ -121,11 +121,7 @@ const removeShot = async (collectionId: string) => {
         </div>
         <div class="flex flex-col mt-4">
           <label for="description" class="text-sm font-bold">Description(optional)</label>
-          <textarea
-            v-model="form.description"
-            class="textarea textarea-bordered h-20"
-            placeholder="Collection Description"
-          />
+          <TextArea v-model="form.description" placeholder="Collection Description" />
         </div>
         <div class="mt-5 text-right space-x-4">
           <Button class="btn-ghost" text="cancel" @click="$emit('update:show', false)" />
@@ -139,8 +135,8 @@ const removeShot = async (collectionId: string) => {
           </template>
         </div>
         <div class="mt-5 flex justify-between">
-          <Button class="btn-secondary" text="Done" @click="$emit('update:show', false)" />
-          <Button class="btn-outline" text="Create new" @click="createNewCollection = true" />
+          <Button class="btn-secondary" text="完成" @click="$emit('update:show', false)" />
+          <Button class="btn-outline" text="新建" @click="createNewCollection = true" />
         </div>
       </div>
     </template>

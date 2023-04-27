@@ -40,6 +40,7 @@ declare module '@vue/runtime-core' {
     DetailHeader: typeof import('./components/ShotDetail/DetailHeader.vue')['default']
     DetailMenus: typeof import('./components/ShotDetail/DetailMenus.vue')['default']
     Divider: typeof import('./components/Base/Divider.vue')['default']
+    DraftTab: typeof import('./components/Profile/DraftTab.vue')['default']
     Drawer: typeof import('./components/Drawer/index.vue')['default']
     DrawerContent: typeof import('./components/ShotDetail/DrawerContent.vue')['default']
     Dropdown: typeof import('./components/Dropdown/index.vue')['default']

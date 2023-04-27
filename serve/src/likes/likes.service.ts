@@ -22,7 +22,6 @@ export class LikesService {
   async addShotToLikes(userId: string, shotId: string) {
     const likes = await this.likesModule.findOne({ userId });
     const shot = await this.shotsService.findShotById(shotId);
-    const shots = new Set<string>();
 
     if (!likes) {
       await this.createLikes(userId);
@@ -32,17 +31,11 @@ export class LikesService {
       return await likes.save();
     }
 
-    likes.shots.map((shot) => shots.add(shot._id.toString()));
-
-    if (shots.has(shotId)) {
-      throw new NotFoundException('Already liked');
-    }
-
-    for (const value of shots) {
-      const temp = await this.shotsService.findShotById(value);
-      likes.shots = [];
-      likes.shots.push(temp as any);
-    }
+    likes.shots.map((shot) => {
+      if (shot._id.toString() === shotId) {
+        throw new NotFoundException('Already liked');
+      }
+    });
 
     likes.shots.push(shot as any);
 

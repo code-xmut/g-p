@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div class="flex justify-between">
+  <div class="flex justify-between bg-white dark:bg-darkBg">
     <div class="w-full">
       <Buttons />
       <RouterView />

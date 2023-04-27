@@ -47,6 +47,8 @@ export class ShotsService {
               { tags: { $regex: q, $options: 'i' } },
             ],
           })
+          .where('state')
+          .equals('published')
           .sort({ [sort]: order === 'desc' ? 1 : -1 })
           .skip((page - 1) * size)
           .limit(size);
@@ -58,6 +60,8 @@ export class ShotsService {
       .find({
         createdAt: { $gte: new Date(time) },
       })
+      .where('state')
+      .equals('published')
       .sort({ createdAt: -1 })
       .skip((page - 1) * size)
       .limit(size);
@@ -72,6 +76,8 @@ export class ShotsService {
   ) {
     return await this.shotModel
       .find({ tags: tag })
+      .where('state')
+      .equals('published')
       .sort({ [sort]: order === 'asc' ? 1 : -1 })
       .skip((page - 1) * size)
       .limit(size);
@@ -91,6 +97,10 @@ export class ShotsService {
 
   async findShotsAndDescByCreatedAt() {
     return await this.shotModel.find().sort({ createdAt: -1 });
+  }
+
+  async findUserDraft(UserName: string) {
+    return await this.shotModel.find({ user: UserName, state: 'draft' });
   }
 
   async findShotsAndSorAscByLikes() {
@@ -135,6 +145,18 @@ export class ShotsService {
 
   async updateShotById(id: string, shot: updateShotDto) {
     return await this.shotModel.findByIdAndUpdate(id, shot);
+  }
+
+  async collectShotById(id: string) {
+    return await this.shotModel.findByIdAndUpdate(id, {
+      $inc: { collections: 1 },
+    });
+  }
+
+  async unCollectShotById(id: string) {
+    return await this.shotModel.findByIdAndUpdate(id, {
+      $inc: { collections: -1 },
+    });
   }
 
   async likeShotById(id: string) {

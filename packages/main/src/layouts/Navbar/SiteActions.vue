@@ -19,6 +19,9 @@ const logged = computed((): boolean => {
     <li>
       <Input v-model:value="q" show-icon @keydown.enter="$router.push(`/search/${q}`)" />
     </li>
+    <li>
+      <DarkMode />
+    </li>
     <template v-if="!logged">
       <li>
         <Link

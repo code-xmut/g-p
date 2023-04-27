@@ -91,6 +91,16 @@ export class ShotsController {
     return this.shotsService.unlikeShotById(id);
   }
 
+  @Put(':id/collect')
+  async collectShotById(@Param('id') id: string) {
+    return this.shotsService.collectShotById(id);
+  }
+
+  @Put(':id/unCollect')
+  async unCollectShotById(@Param('id') id: string) {
+    return this.shotsService.unCollectShotById(id);
+  }
+
   @Delete(':id')
   async deleteShotById(@Param('id') id: string) {
     return this.shotsService.deleteShotById(id);
@@ -99,5 +109,10 @@ export class ShotsController {
   @Get('user/:username')
   async findShotsByUserId(@Param('username') UserName: string) {
     return this.shotsService.findShotsByUserName(UserName);
+  }
+
+  @Get('user/draft/:username')
+  async findUserDraft(@Param('username') UserName: string) {
+    return this.shotsService.findUserDraft(UserName);
   }
 }
