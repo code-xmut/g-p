@@ -33,3 +33,6 @@ export const collectShotById = (shotId: string) =>
 
 export const unCollectShotById = (shotId: string) =>
   <Promise<AxiosResponse<ShotDto>>>(Put(`/shots/${shotId}/unCollect`))
+
+export const findUserDraft = (UserName: string) =>
+  <Promise<AxiosResponse<ShotDto[]>>>(get(`/shots/user/draft/${UserName}`))

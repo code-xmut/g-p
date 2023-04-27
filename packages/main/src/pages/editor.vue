@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { useEditorStore } from '@/store'
 
+const draft = localStorage.getItem('upload')
 const store = useEditorStore()
+
+store.draft = draft ? JSON.parse(draft) : []
 </script>
 
 <template>

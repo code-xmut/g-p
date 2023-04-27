@@ -8,9 +8,9 @@ const tabs = reactive([
     routerName: 'work',
   },
   {
-    name: 'Boosted Shot',
-    slotName: 'BoostedShot',
-    routerName: 'boosted',
+    name: 'Draft',
+    slotName: 'Draft',
+    routerName: 'draft',
   },
   {
     name: 'Collections',

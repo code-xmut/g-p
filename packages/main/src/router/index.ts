@@ -25,6 +25,11 @@ const router = createRouter({
               component: () => import('@/components/Profile/WorkTab.vue'),
             },
             {
+              path: 'draft',
+              name: 'draft',
+              component: () => import('@/components/Profile/DraftTab.vue'),
+            },
+            {
               path: 'collections',
               name: 'collections',
               component: () => import('@/components/Profile/CollectionsTab.vue'),
