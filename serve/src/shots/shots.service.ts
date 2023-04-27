@@ -99,6 +99,10 @@ export class ShotsService {
     return await this.shotModel.find().sort({ createdAt: -1 });
   }
 
+  async findUserDraft(UserName: string) {
+    return await this.shotModel.find({ user: UserName, state: 'draft' });
+  }
+
   async findShotsAndSorAscByLikes() {
     return await this.shotModel.find().sort({ likes: 1 });
   }

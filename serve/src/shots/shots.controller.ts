@@ -110,4 +110,9 @@ export class ShotsController {
   async findShotsByUserId(@Param('username') UserName: string) {
     return this.shotsService.findShotsByUserName(UserName);
   }
+
+  @Get('user/draft/:username')
+  async findUserDraft(@Param('username') UserName: string) {
+    return this.shotsService.findUserDraft(UserName);
+  }
 }
