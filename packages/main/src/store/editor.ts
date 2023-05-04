@@ -51,6 +51,27 @@ export const useEditorStore = defineStore('editor', () => {
     draft.value.splice(index + 1, 0, block)
   }
 
+  const removeBlock = (id: string) => {
+    const index = findIndex(draft.value, item => item.id === id)
+    if (index === 0)
+      return
+    draft.value.splice(index, 1)
+  }
+
+  const moveBlockUp = (id: string) => {
+    const index = findIndex(draft.value, item => item.id === id)
+    const block = draft.value[index]
+    draft.value.splice(index, 1)
+    draft.value.splice(index - 1, 0, block)
+  }
+
+  const moveBlockDown = (id: string) => {
+    const index = findIndex(draft.value, item => item.id === id)
+    const block = draft.value[index]
+    draft.value.splice(index, 1)
+    draft.value.splice(index + 1, 0, block)
+  }
+
   const resetDraft = () => {
     draft.value = initialValue
   }
@@ -121,6 +142,9 @@ export const useEditorStore = defineStore('editor', () => {
     pushBlock,
     updateBlock,
     insertBlock,
+    removeBlock,
+    moveBlockUp,
+    moveBlockDown,
     saveDraft,
     leaveEditor,
     resetDraft,

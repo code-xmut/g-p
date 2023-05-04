@@ -1,19 +1,23 @@
 <script setup lang="ts">
 interface DropDownProps {
   trigger?: 'click' | 'hover' | 'open'
+  placement?: 'bottom' | 'left' | 'right'
 }
 
-withDefaults(defineProps<DropDownProps>(), {
+const props = withDefaults(defineProps<DropDownProps>(), {
   trigger: 'hover',
+  placement: 'bottom',
+})
+
+const placement = computed(() => {
+  return `dropdown-${props.placement}`
 })
 </script>
 
 <template>
   <div
     class="dropdown"
-    :class="{
-      'dropdown-hover': trigger === 'hover',
-    }"
+    :class="[placement, trigger === 'hover' ? 'dropdown-hover' : 'dropdown-click',]"
     v-bind="$attrs"
   >
     <slot />

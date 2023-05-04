@@ -47,14 +47,40 @@ const onDraftImgClick = (block: Block) => {
       :class="{ 'lg:mx-0': store.showDrawer, 'lg:ml-[10vw]': store.showDrawer, 'lg:mr-[30vw]': store.showDrawer }"
     >
       <input ref="uploadFileRef" hidden type="file" />
-      <img v-tip="{ content: '点击上传图片', placement: 'right'}" v-if="block.type === BlockEnum.IMG" class="py-4 cursor-pointer" :src="block.value" alt="" @click="onDraftImgClick(block)">
-      <textarea
-        v-else-if="block.type === BlockEnum.TEXT"
-        :value="block.value" class="w-full caret-pink-500 rounded-sm outline-2 hover:outline focus:outline focus:outline-pink-500
-        outline-offset-8 bg-transparent font-bold py-2 group"
-        @input="updateBlockValue"
-      />
-      <HeadingBlock v-else :block="block" />
+      <Dropdown placement="right">
+        <img v-if="block.type === BlockEnum.IMG" class="py-4 cursor-pointer" :src="block.value" alt="" >
+        <textarea
+          v-else-if="block.type === BlockEnum.TEXT"
+          :value="block.value" class="w-full caret-pink-500 rounded-sm outline-2 hover:outline focus:outline focus:outline-pink-500
+          outline-offset-8 bg-transparent font-bold py-2 group"
+          @input="updateBlockValue"
+        />
+        <HeadingBlock v-else :block="block" />
+        <template #content>
+          <ul>
+            <li @click="store.removeBlock(block.id)">
+              <a class="flex items-center">
+                <Icon icon="material-symbols:delete-outline-sharp" />删除块
+              </a>
+            </li>
+            <li @click="store.moveBlockUp(block.id)">
+              <a class="flex items-center">
+                <Icon icon="mdi:arrow-up" />上移块
+              </a>
+            </li>
+            <li @click="store.moveBlockDown(block.id)">
+              <a class="flex items-center">
+                <Icon icon="mdi:arrow-down" />下移块
+              </a>
+            </li>
+            <li v-if="block.type === BlockEnum.IMG" @click="onDraftImgClick(block)">
+              <a class="flex items-center">
+                <Icon icon="ic:outline-change-circle" />更换图片
+              </a>
+            </li>
+          </ul>
+        </template>
+      </Dropdown>
     </div>
     <BlockDivider :block="block" />
   </div>
