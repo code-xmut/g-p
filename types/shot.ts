@@ -30,7 +30,7 @@ export type Shot = {
  */
 export type ShotDto = Shot;
 
-export type ShotDraft = Pick<Shot, 'title' | 'cover' | 'content' | 'state'>
+export type ShotDraft = Pick<Shot, 'title' | 'cover' | 'content' | 'state' | 'user'> & { _id?: string }
 
 export type createShotDto = Pick<Shot, 'title' | 'description' | 'tags' | 'cover' | 'content' | 'user' | 'serverUrl' | 'state'> 
   & { [key: string]: any };

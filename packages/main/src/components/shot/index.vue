@@ -21,7 +21,7 @@ const toDetailPage = () => {
 
 const continueDraft = () => {
   localStorage.setItem('upload', props.shot.content)
-  router.push({ name: 'editor' })
+  router.push({ name: 'editor', query: { id: props.shot._id } })
 }
 
 const onShotClick = () => {

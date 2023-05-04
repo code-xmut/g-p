@@ -17,8 +17,15 @@ export class ShotsService {
   }
 
   async createShotDraft(shot: ShotDraft): Promise<Shot> {
-    const createdShot = new this.shotModel(shot);
-    return createdShot.save();
+    if (!shot._id) {
+      const createdShot = new this.shotModel(shot);
+      return createdShot.save();
+    } else {
+      const existShot = await this.shotModel.findById(shot._id);
+      if (existShot) {
+        return await this.shotModel.findByIdAndUpdate(shot._id, shot);
+      }
+    }
   }
 
   async findAll() {
