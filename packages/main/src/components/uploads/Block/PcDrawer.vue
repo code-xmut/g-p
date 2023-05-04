@@ -9,7 +9,7 @@ const store = useEditorStore()
     <Button class="btn-ghost mb-4 font-thin" text="close" @click="store.toggleDrawer()" />
     <div class="px-4">
       <h1 class="text-xl font-semibold">
-        Insert Block
+        插入块
       </h1>
       <Blocks />
     </div>

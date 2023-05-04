@@ -3,7 +3,7 @@ import { useStorage } from '@vueuse/core'
 import { nanoid } from 'nanoid'
 import { findIndex } from 'lodash-es'
 import type { ShotDraft, createShotDto } from '@gp/types'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import type { Block } from '@/types/editor'
 import { BlockEnum } from '@/types/editor'
 import { shotApi } from '@/api'
@@ -19,12 +19,13 @@ export const useEditorStore = defineStore('editor', () => {
       value: 'Hello World',
     },
   ]
+  const router = useRouter()
+  const route = useRoute()
   const draft = useStorage('upload', initialValue)
   const showDrawer = ref(false)
   const currentBlock = ref<Block>(initialValue[0])
   const showCancelModal = ref(false)
   const showContinueModal = ref(false)
-  const router = useRouter()
 
   const toggleDrawer = (block?: Block) => {
     showDrawer.value = !showDrawer.value
@@ -50,18 +51,55 @@ export const useEditorStore = defineStore('editor', () => {
     draft.value.splice(index + 1, 0, block)
   }
 
+  const removeBlock = (id: string) => {
+    const index = findIndex(draft.value, item => item.id === id)
+    if (index === 0)
+      return
+    draft.value.splice(index, 1)
+  }
+
+  const moveBlockUp = (id: string) => {
+    const index = findIndex(draft.value, item => item.id === id)
+    const block = draft.value[index]
+    draft.value.splice(index, 1)
+    draft.value.splice(index - 1, 0, block)
+  }
+
+  const moveBlockDown = (id: string) => {
+    const index = findIndex(draft.value, item => item.id === id)
+    const block = draft.value[index]
+    draft.value.splice(index, 1)
+    draft.value.splice(index + 1, 0, block)
+  }
+
   const resetDraft = () => {
     draft.value = initialValue
   }
 
   const saveDraft = async () => {
-    const draftShot: ShotDraft = {
-      title: draft.value[0].value,
-      cover: draft.value[1].value,
-      content: JSON.stringify(draft.value),
-      state: 'draft',
+    const draftId = route.query.id as string
+    let draftShot: ShotDraft | null = null
+    if (!draftId) {
+      draftShot = {
+        title: draft.value[0].value,
+        cover: draft.value[1].value,
+        content: JSON.stringify(draft.value),
+        user: userUserName,
+        state: 'draft',
+      }
     }
-    const { data } = await shotApi.saveDraft(draftShot)
+    else {
+      draftShot = {
+        _id: draftId,
+        title: draft.value[0].value,
+        cover: draft.value[1].value,
+        content: JSON.stringify(draft.value),
+        user: userUserName,
+        state: 'draft',
+      }
+    }
+
+    await shotApi.saveDraft(draftShot)
   }
 
   const leaveEditor = (save = true) => {
@@ -104,6 +142,9 @@ export const useEditorStore = defineStore('editor', () => {
     pushBlock,
     updateBlock,
     insertBlock,
+    removeBlock,
+    moveBlockUp,
+    moveBlockDown,
     saveDraft,
     leaveEditor,
     resetDraft,

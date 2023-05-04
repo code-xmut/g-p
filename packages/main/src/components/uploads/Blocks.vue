@@ -49,7 +49,7 @@ const headingList = reactive<HeadingType[]>([
   <div class="space-y-4 mt-4">
     <div v-for="h in headingList" :key="h.name">
       <div
-        class="flex items-center hover:text-red-500 cursor-pointer"
+        class="flex items-center hover:text-pink-500 cursor-pointer"
         @click="store.insertBlock(store.currentBlock.id, { id: nanoid(), type: h.type, value: '' })"
       >
         <Icon
@@ -60,7 +60,8 @@ const headingList = reactive<HeadingType[]>([
       </div>
     </div>
 
-    <div class="flex items-center hover:text-red-500 cursor-pointer">
+    <div class="flex items-center hover:text-pink-500 cursor-pointer" 
+      @click="store.insertBlock(store.currentBlock.id, { id: nanoid(), type: BlockEnum.IMG, value: 'http://localhost:3000/uploads/pexels-photo-3703521-1683202677028.jpeg' })">
       <Icon
         icon="mdi:image"
         class="w-4 h-4"
