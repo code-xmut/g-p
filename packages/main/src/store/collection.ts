@@ -43,8 +43,6 @@ export const useCollectionStore = defineStore('collection', () => {
 
   const updateCollectionById = async (d: Partial<Collection>) => {
     const { data } = await collectionsApi.updateCollectionById(collectionId.value, d)
-    if (data)
-      router.go(0)
   }
 
   return {
