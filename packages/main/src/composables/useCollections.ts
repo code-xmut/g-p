@@ -1,9 +1,13 @@
-import type { createCollectionDto } from '@gp/types'
+import type { Collection, createCollectionDto } from '@gp/types'
+import { useRoute, useRouter } from 'vue-router'
 import { useUser } from './useUser'
 import { collectionsApi, shotApi } from '@/api'
 
 export const useCollections = () => {
   const isCollectionEmpty = ref(false)
+  const router = useRouter()
+  const route = useRoute()
+  const collectionId = ref(route.query.id as string)
   const { userId } = useUser()
 
   const getCollections = async () => {
@@ -14,8 +18,37 @@ export const useCollections = () => {
     return data
   }
 
+  const findUserCollections = async () => {
+    return await collectionsApi.findUserCollections(userId)
+  }
+
+  const toCollectionPage = (c: Collection) => {
+    router.push({
+      path: '/collection',
+      query: {
+        id: c._id,
+      },
+    })
+  }
+
+  const findCollectionById = async (CollectionId: string) => {
+    return await collectionsApi.findCollectionById(CollectionId)
+  }
+
+  const updateCollection = async (Collection: Pick<Collection, 'title' | 'description'>) => {
+    const { data } = await collectionsApi.updateCollectionById(collectionId.value, Collection)
+    if (data)
+      router.go(0)
+  }
+
   const setEmptyCollection = (value: boolean) => {
     isCollectionEmpty.value = value
+  }
+
+  const deleteCollectionById = async () => {
+    const { data } = await collectionsApi.deleteCollectionById(collectionId.value)
+    if (data)
+      router.back()
   }
 
   const saveShotToCollection = async (collectionId: string, shotId: string) => {
@@ -52,11 +85,17 @@ export const useCollections = () => {
 
   return {
     isCollectionEmpty,
+    collectionId,
     getCollections,
     saveShotToCollection,
     removeShotFromCollection,
     createCollection,
     setEmptyCollection,
     shotExistCollections,
+    findUserCollections,
+    toCollectionPage,
+    findCollectionById,
+    updateCollection,
+    deleteCollectionById,
   }
 }

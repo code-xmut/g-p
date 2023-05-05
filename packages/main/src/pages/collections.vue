@@ -1,12 +1,21 @@
 <script setup lang="ts">
 import type { Collection } from '@gp/types'
-import { useCollectionStore } from '@/store'
+import { useCollections } from '@/composables';
 
-const store = useCollectionStore()
 const collection = ref<Collection>()
+const showEditCollectionModal = ref(false)
+const showDeleteCollectionModal = ref(false)
+
+const {
+  collectionId,
+  findCollectionById,
+  updateCollection,
+  deleteCollectionById
+} = useCollections();
 
 onMounted(async () => {
-  collection.value = await store.getCollection()
+  const { data } = await findCollectionById(collectionId.value)
+  collection.value = data
 })
 </script>
 
@@ -26,8 +35,8 @@ onMounted(async () => {
     <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center">
       <Avatar class="my-4" />
       <div>
-        <Button class="btn-outline btn-secondary" text="Edit Collection" @click="store.showEditCollectionModal = true" />
-        <Button class="ml-6 btn-outline btn-secondary" text="Delete Collection" @click="store.showDeleteCollectionModal = true" />
+        <Button class="btn-outline btn-secondary" text="编辑收藏夹" @click="showEditCollectionModal = true" />
+        <Button class="ml-6 btn-outline btn-secondary" text="删除收藏夹" @click="showDeleteCollectionModal = true" />
       </div>
     </div>
   </div>
@@ -36,12 +45,13 @@ onMounted(async () => {
       <Shot :shot="s" />
     </li>
   </ul>
-  <CollectionModal v-if="store.collection" />
+  <CollectionModal v-if="collection" v-model:show="showEditCollectionModal" :collection="collection" @submit="updateCollection" />
   <Modal
-    :show="store.showDeleteCollectionModal"
-    title="are you sure you want to delete this collection?"
-    content="this action cannot be undone"
-    @close="store.showDeleteCollectionModal = false"
-    @confirm="store.deleteCollection()"
+    v-model:show="showDeleteCollectionModal"
+    title="确认删除该收藏夹及所有组件?"
+    content="该操作不可撤销"
+    class="w-[30%]"
+    @close="showDeleteCollectionModal = false"
+    @confirm="deleteCollectionById()"
   />
 </template>
