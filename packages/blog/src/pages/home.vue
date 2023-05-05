@@ -1,6 +1,15 @@
 <script setup lang="ts">
+import { onMounted, ref } from 'vue'
 import BlogCard from '../components/home/BlogCard.vue'
 import BlogCategory from '../components/home/BlogCategory.vue'
+import { findBlogs } from '@/api/blog'
+
+const blogs = ref<any[]>([])
+
+onMounted(async () => {
+  const { data } = await findBlogs()
+  blogs.value = data
+})
 </script>
 
 <template>
@@ -17,9 +26,7 @@ import BlogCategory from '../components/home/BlogCategory.vue'
         <BlogCategory />
       </div>
       <div class="xl:order-1 xl:w-2/3">
-        <BlogCard id="123456" />
-        <BlogCard id="456789" />
-        <BlogCard id="789123" />
+        <BlogCard v-for="b in blogs" :id="b._id" :key="b._id" />
       </div>
     </div>
   </div>
