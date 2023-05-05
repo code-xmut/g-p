@@ -89,6 +89,11 @@ const router = createRouter({
           component: () => import('@/pages/search.vue'),
         },
         {
+          path: 'cli',
+          name: 'cli',
+          component: () => import('@/pages/cli.vue'),
+        },
+        {
           path: '/blog:catchAll(.*)',
           name: 'blog',
           component: () => import('@/pages/blog.vue'),

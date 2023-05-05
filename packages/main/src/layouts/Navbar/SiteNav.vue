@@ -11,20 +11,20 @@ const q = ref('')
 const navs = computed(() => {
   return [
     {
-      name: 'Home',
+      name: '灵感',
       children: [
         {
-          name: 'Blog',
+          name: '博客',
           link: '/blog',
         },
       ],
     },
     {
-      name: 'About',
+      name: '关于',
       children: [
         {
-          name: 'About',
-          link: '/about',
+          name: '脚手架教程',
+          link: '/cli',
         },
       ],
     },
