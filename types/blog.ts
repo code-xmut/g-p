@@ -14,6 +14,6 @@ export type Blog = {
   [key: string]: any;
 }
 
-export type createBlogDto = Pick<Blog, "title" | "categories" | "cover" | "content" | 'author'> & { [key: string]: any };
+export type createBlogDto = Pick<Blog, "title" | "cover" | 'description' | "content" | 'author'> & { [key: string]: any };
 
 export type updateBlogDto = Partial<Pick<Blog, "title" | "categories" | "cover" | "content">> & { [key: string]: any };

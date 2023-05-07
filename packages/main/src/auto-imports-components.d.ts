@@ -32,6 +32,7 @@ declare module '@vue/runtime-core' {
     CommentMenus: typeof import('./components/ShotDetail/CommentMenus.vue')['default']
     Comments: typeof import('./components/ShotDetail/CommentMenus.vue')['default']
     CommentsEditor: typeof import('./components/ShotDetail/CommentEditor.vue')['default']
+    ContinueBlogModal: typeof import('./components/uploads/ContinueBlogModal.vue')['default']
     ContinueModal: typeof import('./components/uploads/ContinueModal.vue')['default']
     DarkMode: typeof import('./components/DarkMode.vue')['default']
     DeleteAccountTab: typeof import('./components/Account/Tabs/DeleteAccountTab.vue')['default']

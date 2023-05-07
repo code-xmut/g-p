@@ -14,12 +14,8 @@ import { BlogService } from './blog.service';
 export class BlogController {
   constructor(private readonly blogService: BlogService) {}
 
-  @Post(':author')
-  async createBlog(
-    @Param('author') author: string,
-    @Body() blog: createBlogDto,
-  ) {
-    blog.author = author;
+  @Post()
+  async createBlog(@Body() blog: createBlogDto) {
     return await this.blogService.createBlog(blog);
   }
 
@@ -28,12 +24,17 @@ export class BlogController {
     return await this.blogService.findAll();
   }
 
+  @Get(':id')
+  async findBlogById(@Param('id') id: string) {
+    return await this.blogService.findBlogById(id);
+  }
+
   @Delete(':id')
   async deleteBlogById(@Param('id') id: string) {
     return await this.blogService.deleteBlogById(id);
   }
 
-  @Get(':author')
+  @Get('author/:author')
   async findBlogByAuthor(@Param('author') author: string) {
     return await this.blogService.findBlogByAuthor(author);
   }
