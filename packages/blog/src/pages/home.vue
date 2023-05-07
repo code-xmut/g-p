@@ -26,7 +26,7 @@ onMounted(async () => {
         <BlogCategory />
       </div>
       <div class="xl:order-1 xl:w-2/3">
-        <BlogCard v-for="b in blogs" :id="b._id" :key="b._id" />
+        <BlogCard v-for="b in blogs" :key="b._id" :blog="b" />
       </div>
     </div>
   </div>

@@ -5,5 +5,6 @@ import * as tagApi from './tags'
 import * as collectionsApi from './collection'
 import * as likesApi from './like'
 import * as commentApi from './comment'
+import * as blogApi from './blog'
 
-export { authApi, userApi, shotApi, tagApi, collectionsApi, likesApi, commentApi }
+export { authApi, userApi, shotApi, tagApi, collectionsApi, likesApi, commentApi, blogApi }

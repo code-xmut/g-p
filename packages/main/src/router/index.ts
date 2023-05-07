@@ -98,6 +98,11 @@ const router = createRouter({
           name: 'blog',
           component: () => import('@/pages/blog.vue'),
         },
+        {
+          path: '/detail/blog',
+          name: 'detail-blog',
+          component: () => import('@/pages/blog-detail.vue'),
+        },
       ],
     },
     {

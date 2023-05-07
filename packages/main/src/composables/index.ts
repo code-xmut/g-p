@@ -5,6 +5,7 @@ import { useUser } from './useUser'
 import { useCollections } from './useCollections'
 import { useShot } from './useShot'
 import { useReachBottom } from './useReachBottom'
+import useBlog from './useBlog'
 
 export {
   useRequest,
@@ -14,4 +15,5 @@ export {
   useCollections,
   useShot,
   useReachBottom,
+  useBlog,
 }
