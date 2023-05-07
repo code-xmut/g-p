@@ -8,7 +8,7 @@ export default function useBlog() {
   const blog = ref<Blog>()
   const blogId = route.query.id as string
 
-  const findShotContent = async () => {
+  const findBlogContent = async () => {
     return await blogApi.findBlogById(blogId)
   }
 
@@ -21,7 +21,7 @@ export default function useBlog() {
   return {
     blogId,
     blog,
-    findShotContent,
+    findBlogContent,
     findBlogAuthor,
   }
 }

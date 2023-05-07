@@ -2,11 +2,11 @@ import { defineStore } from 'pinia'
 import { useStorage } from '@vueuse/core'
 import { nanoid } from 'nanoid'
 import { findIndex } from 'lodash-es'
-import type { ShotDraft, createShotDto } from '@gp/types'
+import type { ShotDraft, createBlogDto, createShotDto } from '@gp/types'
 import { useRoute, useRouter } from 'vue-router'
 import type { Block } from '@/types/editor'
 import { BlockEnum } from '@/types/editor'
-import { shotApi } from '@/api'
+import { blogApi, shotApi } from '@/api'
 import { useUser } from '@/composables'
 
 const { userUserName } = useUser()
@@ -22,10 +22,18 @@ export const useEditorStore = defineStore('editor', () => {
   const router = useRouter()
   const route = useRoute()
   const draft = useStorage('upload', initialValue)
+  const draftType = useStorage('draftType', localStorage.getItem('draftType') || 'component')
   const showDrawer = ref(false)
   const currentBlock = ref<Block>(initialValue[0])
   const showCancelModal = ref(false)
   const showContinueModal = ref(false)
+
+  const publishedMessage = computed(() => {
+    if (draftType.value === '博客')
+      return '博客'
+    else
+      return '组件'
+  })
 
   const toggleDrawer = (block?: Block) => {
     showDrawer.value = !showDrawer.value
@@ -112,27 +120,38 @@ export const useEditorStore = defineStore('editor', () => {
   }
 
   const publishShot = async (tags: string[], description: string) => {
-    const shot: createShotDto = {
-      title: draft.value[0].value,
-      cover: draft.value[1].value,
-      description,
-      tags,
-      content: JSON.stringify(draft.value),
-      user: userUserName,
-      serverUrl: 'https://capalot.com',
-      state: 'published',
+    if (draftType.value === '博客') {
+      const blog: createBlogDto = {
+        title: draft.value[0].value,
+        cover: draft.value[1].value,
+        content: JSON.stringify(draft.value),
+        description,
+        author: userUserName,
+      }
+      await blogApi.createBlog(blog)
     }
-    const { data } = await shotApi.createShot(shot)
-    if (data) {
-      showContinueModal.value = false
-      router.push({ name: 'home' })
-      alert('Shot published!')
-      resetDraft()
+    else {
+      const shot: createShotDto = {
+        title: draft.value[0].value,
+        cover: draft.value[1].value,
+        description,
+        tags,
+        content: JSON.stringify(draft.value),
+        user: userUserName,
+        serverUrl: 'https://capalot.com',
+        state: 'published',
+      }
+      await shotApi.createShot(shot)
     }
+    showContinueModal.value = false
+    router.push({ name: 'home' })
+    alert(`成功发布${publishedMessage.value}`)
+    resetDraft()
   }
 
   return {
     draft,
+    draftType,
     currentBlock,
     showDrawer,
     showCancelModal,

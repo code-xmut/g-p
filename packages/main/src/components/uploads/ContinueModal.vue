@@ -18,21 +18,20 @@ onMounted(async () => {
 
 <template>
   <Modal
-    :full-screen="isMobile" :close-icon="isMobile" class="w-screen" title="Final Touches"
+    :full-screen="isMobile" :close-icon="isMobile" class="w-screen md:w-[70%]" title="Final Touches"
     :show="store.showContinueModal" @close="store.showContinueModal = false"
   >
     <template #content>
       <div class="flex flex-col md:flex-row justify-around">
-        <div class="text-center w-full md:w-96">
+        <div class="text-center w-full ml-4 md:w-[50%]">
           <h2 class="text-3xl mb-2">
             {{ store.draft[0].value }}
           </h2>
           <img width="800" height="600" :src="store.draft[1].value" alt="">
         </div>
         <div>
-          <span>description:</span>
-          <Input v-model:value="description" class="mb-2" />
-          <vue-select v-model="selected" multiple :options="options" />
+          <TextArea label="description:" v-model:value="description" class="mb-2" />
+          <vue-select v-if="store.draftType === '组件'" v-model="selected" multiple :options="options" />
         </div>
       </div>
     </template>

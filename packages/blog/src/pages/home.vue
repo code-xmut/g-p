@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import BlogCard from '../components/home/BlogCard.vue'
-import BlogCategory from '../components/home/BlogCategory.vue'
 import { findBlogs } from '@/api/blog'
 
 const blogs = ref<any[]>([])
@@ -22,9 +21,9 @@ onMounted(async () => {
       </h1>
     </div>
     <div class="flex flex-col xl:flex-row justify-between">
-      <div class="xl:order-2 md:mr-28">
+      <!-- <div class="xl:order-2 md:mr-28">
         <BlogCategory />
-      </div>
+      </div> -->
       <div class="xl:order-1 xl:w-2/3">
         <BlogCard v-for="b in blogs" :key="b._id" :blog="b" />
       </div>

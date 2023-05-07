@@ -31,7 +31,7 @@ const toDetail = computed(() => `/detail/blog?id=${props.blog._id}`)
           {{ blog.title }}
         </h3>
       </a>
-      <img v-if="isMobile" width="800" height="600" src="../../assets/image1.jpg" alt="">
+      <img v-if="isMobile" width="800" height="600" :src="blog.cover" alt="">
       <p class="text-gray-400">
         {{ blog.description }}
       </p>

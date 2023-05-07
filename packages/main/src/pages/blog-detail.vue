@@ -5,7 +5,7 @@ import { UserInfo } from '@gp/types/user';
 
 const {
   blog,
-  findShotContent,
+  findBlogContent,
   findBlogAuthor
 } = useBlog();
 
@@ -13,9 +13,9 @@ const blogMD = ref()
 const blogAuthor = ref<UserInfo>()
 
 onMounted(async () => {
-  const { data } = await findShotContent()
-  blog.value = data[0]
-  blogMD.value = convertBlocks2MD(JSON.parse(data[0].content))
+  const { data } = await findBlogContent()
+  blog.value = data
+  blogMD.value = convertBlocks2MD(JSON.parse(data.content))
   blogAuthor.value = await findBlogAuthor()
 })
 </script>
