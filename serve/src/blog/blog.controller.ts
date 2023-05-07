@@ -14,12 +14,8 @@ import { BlogService } from './blog.service';
 export class BlogController {
   constructor(private readonly blogService: BlogService) {}
 
-  @Post(':author')
-  async createBlog(
-    @Param('author') author: string,
-    @Body() blog: createBlogDto,
-  ) {
-    blog.author = author;
+  @Post()
+  async createBlog(@Body() blog: createBlogDto) {
     return await this.blogService.createBlog(blog);
   }
 
