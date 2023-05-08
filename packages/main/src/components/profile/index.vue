@@ -17,7 +17,7 @@ const {
         {{ user.location }}
       </h2>
       <div>
-        <Button class="btn btn-accent" text="Edit" />
+        <Button class="btn btn-accent" :text="$t('profile.edit')" />
         <Button class="btn-ghost ml-4" text="..." />
       </div>
     </div>

@@ -40,7 +40,7 @@ onMounted(() => {
 <template>
   <div @click="onShotClick">
     <div class="card md:h-48 lg:h-72 xl:h-[320px]  w-full cursor-pointer relative group">
-      <img class="rounded-lg h-full object-cover" :src="shot?.cover" alt="Shoes">
+      <img class="rounded-lg h-full object-cover" :src="shot?.cover" alt="Shot">
       <ShotMask
         v-if="!isDraft"
         :collected="shot?.collected"

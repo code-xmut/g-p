@@ -22,6 +22,9 @@ const logged = computed((): boolean => {
     <li>
       <DarkMode />
     </li>
+    <li>
+      <Lang />
+    </li>
     <template v-if="!logged">
       <li>
         <Link

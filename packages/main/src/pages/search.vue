@@ -88,7 +88,7 @@ const search = (_q: string, _qType: 'shots' | 'members') => {
           </template>
         </div>
         <p v-if="!hasNext" class="text-center mt-4 text-sm">
-          您已到达列表末尾
+          {{ $t('nav.reach_bottom') }}
         </p>
       </div>
       <SaveShotModal v-if="shotId" v-model:show="showCollectionModal" :shot-id="shotId" />

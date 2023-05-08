@@ -1,20 +1,22 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 import { useThrottleFn } from '@vueuse/core'
+import {useI18n } from 'vue-i18n';
 import { tagApi } from '@/api'
 
 const emit = defineEmits(['searchByTag', 'searchByTime', 'sortBy'])
+const { t } = useI18n();
 
 const showFilter = ref(false)
 const q = ref('')
 const associatedTags = ref<string[]>([])
 const sortCondition = reactive([
   {
-    label: 'Popular',
+    label: t('nav.popular'),
     value: 'collections',
   },
   {
-    label: 'Newest',
+    label: t('nav.newest'),
     value: 'likes',
   },
 ])
@@ -36,28 +38,28 @@ watchEffect(() => {
 const filterSets = computed(() => {
   return [
     {
-      title: 'TimeFrame',
+      title: t('nav.time_frame'),
       content: [
         {
-          name: '最近24小时',
+          name: t('nav.last_24_hours'),
           hour: 24,
         },
         {
-          name: '最近7天',
+          name: t('nav.last_7_days'),
           hour: 24 * 7,
         },
         {
-          name: '最近1月',
+          name: t('nav.last_month'),
           hour: 24 * 30,
         },
         {
-          name: '最近1年',
+          name: t('nav.last_year'),
           hour: 24 * 365,
         },
       ],
     },
     {
-      title: 'Downloads',
+      title: t('nav.downloads'),
       content: [
         {
           name: 'Most Popular',
@@ -114,7 +116,7 @@ const onSortConditionClick = (condition: string) => {
           </ul>
         </template>
       </Dropdown>
-      <Button text="Filters" class="btn-secondary" @click="showFilter = !showFilter">
+      <Button :text="$t('nav.filters')" class="btn-secondary" @click="showFilter = !showFilter">
         <template #frontIcon>
           <Icon class="w-6 h-6" :icon="showFilter ? 'mdi:filter-variant-remove' : 'mdi:filter-variant'" />
         </template>
@@ -122,7 +124,7 @@ const onSortConditionClick = (condition: string) => {
     </div>
     <div v-show="showFilter" class="flex flex-col lg:flex-row justify-between pt-4 pb-2">
       <div>
-        <p>Tag</p>
+        <p>{{ $t('nav.tag') }}</p>
         <div class="mt-2">
           <Dropdown>
             <Input v-model:value="q" show-icon @keydown.enter="$emit('searchByTag', q)" />

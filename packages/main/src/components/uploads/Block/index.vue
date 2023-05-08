@@ -60,22 +60,22 @@ const onDraftImgClick = (block: Block) => {
           <ul>
             <li @click="store.removeBlock(block.id)">
               <a class="flex items-center">
-                <Icon icon="material-symbols:delete-outline-sharp" />删除块
+                <Icon icon="material-symbols:delete-outline-sharp" />{{ $t('editor.remove') }}
               </a>
             </li>
             <li @click="store.moveBlockUp(block.id)">
               <a class="flex items-center">
-                <Icon icon="mdi:arrow-up" />上移块
+                <Icon icon="mdi:arrow-up" />{{ $t('editor.move_up') }}
               </a>
             </li>
             <li @click="store.moveBlockDown(block.id)">
               <a class="flex items-center">
-                <Icon icon="mdi:arrow-down" />下移块
+                <Icon icon="mdi:arrow-down" />{{ $t('editor.move_down') }}
               </a>
             </li>
             <li v-if="block.type === BlockEnum.IMG" @click="onDraftImgClick(block)">
               <a class="flex items-center">
-                <Icon icon="ic:outline-change-circle" />更换图片
+                <Icon icon="ic:outline-change-circle" />{{ $t('editor.change_img') }}
               </a>
             </li>
           </ul>

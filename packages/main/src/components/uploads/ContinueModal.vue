@@ -18,7 +18,7 @@ onMounted(async () => {
 
 <template>
   <Modal
-    :full-screen="isMobile" :close-icon="isMobile" class="w-screen md:w-[70%]" title="Final Touches"
+    :full-screen="isMobile" :close-icon="isMobile" class="w-screen md:w-[70%]" :title="$t('editor.last_step')"
     :show="store.showContinueModal" @close="store.showContinueModal = false"
   >
     <template #content>
@@ -30,7 +30,7 @@ onMounted(async () => {
           <img width="800" height="600" :src="store.draft[1].value" alt="">
         </div>
         <div>
-          <TextArea label="description:" v-model:value="description" class="mb-2" />
+          <TextArea :label="$t('editor.description')" v-model:value="description" class="mb-2" />
           <vue-select v-if="store.draftType === '组件'" v-model="selected" multiple :options="options" />
         </div>
       </div>
@@ -39,16 +39,16 @@ onMounted(async () => {
       <Button
         v-if="!isMobile"
         class="btn-ghost"
-        text="close"
+        :text="$t('editor.close')"
         @click="store.showContinueModal = false"
       />
       <Button
-        text="save as draft"
+        :text="$t('editor.save_draft')"
         @click="store.saveDraft()"
       />
       <Button
         class="btn-primary"
-        text="publish now"
+        :text="$t('editor.save_draft')"
         @click="store.publishShot(selected, 'now publish')"
       />
     </template>

@@ -1,18 +1,20 @@
 <script setup lang="ts">
 import { useEditorStore } from '@/store';
 import { useRoute } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 
 const store = useEditorStore();
 const route = useRoute()
 const showChooseDraftType = ref(route.path === '/uploads');
+const { t } = useI18n();
 
 const draftTypeOptions = computed(() => [
   {
-    name: '组件',
+    name: t('editor.component'),
     value: 'component',
   },
   {
-    name: '博客',
+    name: t('editor.blog'),
     value: 'blog',
   }
 ])
@@ -27,7 +29,7 @@ const onSelectType = (_title: string, v: string) => {
     <div class="w-full">
       <Buttons />
       <RouterView />
-      <Modal title="选择你要发布的作品类型" @confirm="showChooseDraftType = false" v-model:show="showChooseDraftType"
+      <Modal :title="$t('editor.select_type')" @confirm="showChooseDraftType = false" v-model:show="showChooseDraftType"
         @close="showChooseDraftType = false" class="md:w-[30%]">
         <template #content>
           <Select class="mt-4" :content="draftTypeOptions" @change="onSelectType" />

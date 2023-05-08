@@ -1,29 +1,32 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import Profile from '@/components/Profile/index.vue'
+
+const { t } = useI18n();
 
 const tabs = reactive([
   {
-    name: 'Work',
+    name: t('profile.work'),
     slotName: 'Work',
     routerName: 'work',
   },
   {
-    name: 'Draft',
+    name: t('profile.draft'),
     slotName: 'Draft',
     routerName: 'draft',
   },
   {
-    name: 'Collections',
+    name: t('profile.collections'),
     slotName: 'Collections',
     routerName: 'collections',
   },
   {
-    name: 'Liked shots',
+    name: t('profile.liked_shots'),
     slotName: 'LikedShots',
     routerName: 'liked',
   },
   {
-    name: 'About',
+    name: t('profile.about'),
     slotName: 'About',
     routerName: 'about',
   },

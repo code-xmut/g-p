@@ -19,7 +19,7 @@ onMounted(async () => {
         <p class="text-center px-10 my-4">
           Show off your best work. Get feedback, likes and be a part of a growing community.
         </p>
-        <Button text="Upload your first shot" class="btn-secondary" @click="$router.push('/uploads')" />
+        <Button text="上传你的第一个组件" class="btn-secondary" @click="$router.push('/uploads')" />
       </Card>
     </li>
     <template v-if="shots.length === 0">
