@@ -29,15 +29,6 @@ const navs = computed(() => {
       ],
     },
     {
-      name: 'Contact',
-      children: [
-        {
-          name: 'Contact',
-          link: '/contact',
-        },
-      ],
-    },
-    {
       name: '上传我的组件',
       link: '/uploads',
     },
