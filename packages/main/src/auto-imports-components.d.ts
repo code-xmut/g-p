@@ -59,6 +59,7 @@ declare module '@vue/runtime-core' {
     Home: typeof import('./components/__test__/Home.vue')['default']
     Icon: typeof import('./components/Base/Icon.vue')['default']
     Input: typeof import('./components/Base/Input.vue')['default']
+    Lang: typeof import('./components/lang.vue')['default']
     LikeShotsTab: typeof import('./components/Profile/LikeShotsTab.vue')['default']
     Link: typeof import('./components/Base/Link.vue')['default']
     Login: typeof import('./components/Login/index.vue')['default']

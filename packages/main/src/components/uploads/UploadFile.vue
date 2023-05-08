@@ -41,10 +41,10 @@ const isDragActive = rest.isDragActive
           Drop the files here ...
         </p>
         <p v-else>
-          Drag files here, or
+        {{ $t('editor.drag_file') }}
         </p>
       </div>
-      <Link class="underline underline-offset-1 ml-2 text-pink-500" text="Browser" @click="open" />
+      <Link class="underline underline-offset-1 ml-2 text-pink-500" :text="$t('editor.browser')" @click="open" />
     </div>
   </div>
 </template>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { nanoid } from 'nanoid'
+import { useI18n } from 'vue-i18n';
 import { useEditorStore } from '@/store'
 import { BlockEnum } from '@/types'
 
@@ -10,35 +11,36 @@ interface HeadingType {
 }
 
 const store = useEditorStore()
+const { t } = useI18n();
 
 const headingList = reactive<HeadingType[]>([
   {
-    name: 'Heading 1',
+    name: t('editor.h1'),
     type: BlockEnum.H1,
     icon: 'mdi:format-header-1',
   },
   {
-    name: 'Heading 2',
+    name: t('editor.h2'),
     type: BlockEnum.H2,
     icon: 'mdi:format-header-2',
   },
   {
-    name: 'Heading 3',
+    name:t('editor.h3'),
     type: BlockEnum.H3,
     icon: 'mdi:format-header-3',
   },
   {
-    name: 'Heading 4',
+    name: t('editor.h4'),
     type: BlockEnum.H4,
     icon: 'mdi:format-header-4',
   },
   {
-    name: 'Heading 5',
+    name: t('editor.h5'),
     type: BlockEnum.H5,
     icon: 'mdi:format-header-5',
   },
   {
-    name: 'text',
+    name: t('editor.text'),
     type: BlockEnum.TEXT,
     icon: 'mdi:format-text',
   },
@@ -66,7 +68,7 @@ const headingList = reactive<HeadingType[]>([
         icon="mdi:image"
         class="w-4 h-4"
       />
-      <span class="ml-1">Image</span>
+      <span class="ml-1">{{ $t('editor.img') }}</span>
     </div>
   </div>
 </template>

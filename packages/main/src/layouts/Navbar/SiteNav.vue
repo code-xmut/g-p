@@ -1,35 +1,37 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 import { useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n';
 import SiteNavPc from './SiteNavPc.vue'
 import SiteActionsLogged from './SiteActionsLogged.vue'
 import { useIsMobile } from '@/composables'
 
 const route = useRoute()
 const { isMobile } = useIsMobile()
+const { t } = useI18n();
 const q = ref('')
 const navs = computed(() => {
   return [
     {
-      name: '灵感',
+      name: t('nav.inspiration'),
       children: [
         {
-          name: '博客',
+          name: t('nav.blog'),
           link: '/blog',
         },
       ],
     },
     {
-      name: '关于',
+      name: t('nav.about'),
       children: [
         {
-          name: '脚手架教程',
+          name: t('nav.cli'),
           link: '/cli',
         },
       ],
     },
     {
-      name: '上传我的组件',
+      name: t('nav.upload'),
       link: '/uploads',
     },
   ]

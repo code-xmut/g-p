@@ -62,8 +62,8 @@ const isFullScreen = computed(() => {
         <div v-if="!noActions" class="modal-action">
           <slot v-if="$slots.action" name="action" />
           <template v-else>
-            <Button class="btn-ghost" text="取消" @click="close" />
-            <Button class="btn-primary" text="确认" @click="$emit('confirm')" />
+            <Button class="btn-ghost" :text="$t('editor.cancel')" @click="close" />
+            <Button class="btn-primary" :text="$t('editor.confirm')" @click="$emit('confirm')" />
           </template>
         </div>
       </div>

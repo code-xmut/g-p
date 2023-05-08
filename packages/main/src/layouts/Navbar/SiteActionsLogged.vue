@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import SiteActionsMobile from './SiteActionsMobile.vue'
 import { useUserStore } from '@/store'
 import { useIsMobile, useUser } from '@/composables'
@@ -6,33 +7,34 @@ import { useIsMobile, useUser } from '@/composables'
 const store = useUserStore()
 const { userName, logout } = useUser()
 const { isMobile } = useIsMobile()
+const { t } = useI18n();
 
 const dropdownMenu = computed(() => {
   return [
     {
-      name: 'Profile',
+      name: t('nav.profile'),
       link: `/${userName}`,
     },
     {
-      name: 'Edit Profile',
+      name: t('nav.edit_profile'),
       link: '/account/profile',
     },
     {
-      name: 'Account Settings',
+      name: t('nav.account_settings'),
       link: '/setting',
     },
     {
-      name: 'My Likes',
+      name: t('nav.my_likes'),
       link: `/${userName}/liked`,
       icon: 'mdi:heart',
     },
     {
-      name: 'My Collections',
+      name: t('nav.my_collections'),
       link: `/${userName}/collections`,
       icon: 'material-symbols:create-new-folder',
     },
     {
-      name: 'Sign out',
+      name: t('nav.sign_out'),
       link: '/',
       cb: logout,
     },
@@ -66,7 +68,7 @@ const dropdownMenu = computed(() => {
     </li>
     <li class="hidden lg:block">
       <Button
-        class="ml-4 btn btn-secondary" text="upload"
+        class="ml-4 btn btn-secondary" :text="$t('nav.upload')"
         @click="$router.push({ name: 'uploads' })"
       />
     </li>

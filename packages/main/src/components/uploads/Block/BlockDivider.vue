@@ -18,7 +18,7 @@ const store = useEditorStore()
     <Button
       v-tip="{ content: 'Add more details, images or text', placement: 'top' }"
       class="btn-secondary rounded-full font-normal"
-      text="插入" @click="store.toggleDrawer(block)"
+      :text="$t('editor.insert')" @click="store.toggleDrawer(block)"
     >
       <template #frontIcon>
         <Icon />
