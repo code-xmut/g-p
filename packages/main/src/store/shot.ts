@@ -24,7 +24,8 @@ export const useShotStore = defineStore('collection', () => {
   const toShotDetail = (s: ShotDto) => {
     if (s) {
       shot.value = s
-      router.push(`/shots/${s._id}`)
+      const sId = s._id
+      window.open(`/shots/${sId}`, '_blank')
     }
   }
 
