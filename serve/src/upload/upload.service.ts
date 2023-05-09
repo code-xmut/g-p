@@ -4,6 +4,6 @@ import { Injectable } from '@nestjs/common';
 export class UploadService {
   // upload file then return the file name
   async uploadFile(file: Express.Multer.File) {
-    return `http://localhost:3000/uploads/${file.filename}`;
+    return `http://43.139.14.24:3000/uploads/${file.filename}`;
   }
 }

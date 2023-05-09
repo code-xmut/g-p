@@ -1,6 +1,6 @@
 <script setup lang="ts">
 interface Propps {
-  label: string
+  label?: string
   value?: string
   placeholder?: string
 }
