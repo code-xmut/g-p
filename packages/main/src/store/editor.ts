@@ -108,6 +108,7 @@ export const useEditorStore = defineStore('editor', () => {
     }
 
     await shotApi.saveDraft(draftShot)
+    router.push({ name: 'home' })
   }
 
   const leaveEditor = (save = true) => {
@@ -119,7 +120,7 @@ export const useEditorStore = defineStore('editor', () => {
     router.go(-2)
   }
 
-  const publishShot = async (tags: string[], description: string) => {
+  const publishShot = async (tags: string[], description: string, serverUrl = '') => {
     if (draftType.value === '博客') {
       const blog: createBlogDto = {
         title: draft.value[0].value,
@@ -138,7 +139,7 @@ export const useEditorStore = defineStore('editor', () => {
         tags,
         content: JSON.stringify(draft.value),
         user: userUserName,
-        serverUrl: 'https://capalot.com',
+        serverUrl,
         state: 'published',
       }
       await shotApi.createShot(shot)

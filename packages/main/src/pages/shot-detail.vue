@@ -36,7 +36,7 @@ onMounted(async () => {
       </div>
     </div>
     <div class="hidden md:block">
-      <ShotActions v-if="!store.showCommentDrawer" v-model:show="store.showCommentDrawer" />
+      <ShotActions v-if="!store.showCommentDrawer" v-model:show="store.showCommentDrawer" v-model:detail="store.showShotDetail" />
     </div>
     <FullScreenDrawer v-if="isMobile" v-model:show="store.showCommentDrawer" show-back>
       <DrawerContent />
@@ -45,5 +45,6 @@ onMounted(async () => {
       <DrawerContent />
     </FullContentDrawer>
     <SaveShotModal v-model:show="store.showCollectionModal" :shot-id="store.shotId" />
+    <ShotDetailModal />
   </div>
 </template>

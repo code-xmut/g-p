@@ -4,10 +4,11 @@ import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n';
 import SiteNavPc from './SiteNavPc.vue'
 import SiteActionsLogged from './SiteActionsLogged.vue'
-import { useIsMobile } from '@/composables'
+import { useIsMobile, useUser } from '@/composables'
 
 const route = useRoute()
 const { isMobile } = useIsMobile()
+const { isLogged } = useUser();
 const { t } = useI18n();
 const q = ref('')
 const navs = computed(() => {
@@ -58,7 +59,8 @@ watchEffect(() => {
 <template>
   <div v-if="isMobile" class="text-lg font-semibold text-gray-600">
     <Icon class="w-6 h-6 cursor-pointer lg:hidden" :icon="navIcon" @click="showDrawer = !showDrawer" />
-    <FullScreenDrawer :show="showDrawer" class="z-[60]">
+    <FullScreenDrawer :show="showDrawer" class="z-[60]" 
+      style="height: calc(100vh - 100px);">
       <Input v-model:value="q" class="w-full" show-icon @keydown.enter="$router.push(`/search/${q}`)" />
       <div v-for="d in navs" :key="d.name">
         <Collapse v-if="d.children" link :title="d.name" :content="d.children" />
@@ -67,7 +69,13 @@ watchEffect(() => {
         </RouterLink>
       </div>
       <div class="mt-6">
-        <SiteActionsLogged />
+        <SiteActionsLogged v-if="isLogged" />
+        <p v-else>
+          <Link
+            class="no-underline" text="Sign in"
+            @click="$router.push({ name: 'auth', query: { pattern: 'login' } })"
+          />
+        </p>
       </div>
     </FullScreenDrawer>
   </div>

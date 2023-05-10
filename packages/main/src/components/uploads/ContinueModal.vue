@@ -8,6 +8,7 @@ const { isMobile } = useIsMobile()
 
 const selected = ref<string[]>([])
 const options = ref<string[]>([])
+const severUrl = ref('')
 const description = ref('')
 
 onMounted(async () => {
@@ -31,6 +32,7 @@ onMounted(async () => {
         </div>
         <div>
           <TextArea :label="$t('editor.description')" v-model:value="description" class="mb-2" />
+          <Input class="mb-2" label="组件地址" v-model:value="severUrl" />
           <vue-select v-if="store.draftType === '组件'" v-model="selected" multiple :options="options" />
         </div>
       </div>
@@ -49,7 +51,7 @@ onMounted(async () => {
       <Button
         class="btn-primary"
         :text="$t('editor.publish')"
-        @click="store.publishShot(selected, 'now publish')"
+        @click="store.publishShot(selected, description, severUrl)"
       />
     </template>
   </Modal>

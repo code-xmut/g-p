@@ -25,6 +25,7 @@ watchEffect(() => {
     v-if="show"
     style="height: calc(100vh - 68px);"
     class="w-full overflow-y-scroll absolute bottom-0 bg-white dark:bg-darkBg left-0 p-4 z-50"
+    v-bind="$attrs"
   >
     <div v-if="showBack" class="flex justify-end">
       <Icon icon="ic:twotone-keyboard-arrow-right" class="w-6 h-6 cursor-pointer" @click="$emit('update:show', false)" />

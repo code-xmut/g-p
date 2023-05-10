@@ -1,13 +1,15 @@
 <script setup lang="ts">
 interface Props {
   show: boolean
+  detail: boolean
 }
 
 withDefaults(defineProps<Props>(), {
   show: false,
+  detail: false
 })
 
-const emit = defineEmits(['update:show'])
+const emit = defineEmits(['update:show', 'update:detail'])
 
 const actions = reactive([
   {
@@ -22,6 +24,7 @@ const actions = reactive([
   {
     name: 'info',
     icon: 'mdi-information',
+    cb: () => emit('update:detail', true),
   },
 ])
 </script>

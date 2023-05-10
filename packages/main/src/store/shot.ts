@@ -9,6 +9,7 @@ export const useShotStore = defineStore('collection', () => {
   const router = useRouter()
   const route = useRoute()
   const showCommentDrawer = ref(false)
+  const showShotDetail = ref(false)
   const showCollectionModal = ref(false)
   const comments = ref<CommentDto[]>([])
   const shot = ref<ShotDto | null>(null)
@@ -69,6 +70,7 @@ export const useShotStore = defineStore('collection', () => {
 
   return {
     showCommentDrawer,
+    showShotDetail,
     showCollectionModal,
     shotId,
     setShotId,
