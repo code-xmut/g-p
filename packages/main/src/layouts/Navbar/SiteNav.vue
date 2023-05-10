@@ -4,10 +4,11 @@ import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n';
 import SiteNavPc from './SiteNavPc.vue'
 import SiteActionsLogged from './SiteActionsLogged.vue'
-import { useIsMobile } from '@/composables'
+import { useIsMobile, useUser } from '@/composables'
 
 const route = useRoute()
 const { isMobile } = useIsMobile()
+const { isLogged } = useUser();
 const { t } = useI18n();
 const q = ref('')
 const navs = computed(() => {
@@ -67,7 +68,13 @@ watchEffect(() => {
         </RouterLink>
       </div>
       <div class="mt-6">
-        <SiteActionsLogged />
+        <SiteActionsLogged v-if="isLogged" />
+        <p v-else>
+          <Link
+            class="no-underline" text="Sign in"
+            @click="$router.push({ name: 'auth', query: { pattern: 'login' } })"
+          />
+        </p>
       </div>
     </FullScreenDrawer>
   </div>
