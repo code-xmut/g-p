@@ -22,6 +22,7 @@ const isEditor = computed(() => window.location.href.includes('editor'))
     :show="store.showCancelModal"
     :title="$t('editor.leave')"
     :content="$t('editor.leave_tips')"
+    class="md:w-2/5"
   >
     <template #action>
       <Button :text="$t('editor.cancel')" class="btn-ghost" @click="store.showCancelModal = false" />

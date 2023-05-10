@@ -48,7 +48,7 @@ onMounted(async () => {
       />
       <Button
         class="btn-primary"
-        :text="$t('editor.save_draft')"
+        :text="$t('editor.publish')"
         @click="store.publishShot(selected, 'now publish')"
       />
     </template>
