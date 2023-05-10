@@ -13,7 +13,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <Modal title="详情" class="absolute md:w-[40%]" v-model:show="store.showShotDetail" @close="store.showShotDetail = false">
+  <Modal title="详情" class="absolute md:w-[40%]" v-model:show="store.showShotDetail" @confirm="store.showShotDetail = false" @close="store.showShotDetail = false">
     <template #content>
       <div class="pl-8 md:pl-16 pt-6">
         <p>作者: {{ shot?.user }}</p>

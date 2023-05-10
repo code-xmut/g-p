@@ -5,7 +5,7 @@ import { shotApi } from '@/api'
 const shots = ref<ShotDto[]>([])
 onMounted(async () => {
   const { data } = await shotApi.findUserShots('rich4st')
-  shots.value = data
+  shots.value = data.filter(shot => shot.state = 'published')
 })
 </script>
 
