@@ -15,8 +15,6 @@ const {
 } = useShot()
 const {
   reachBottom,
-  removeScrollListener,
-  addScrollListener,
 } = useReachBottom()
 const condition = ref('')
 

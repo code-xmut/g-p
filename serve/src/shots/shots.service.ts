@@ -32,6 +32,34 @@ export class ShotsService {
     return await this.shotModel.find();
   }
 
+  async findPagePure(
+    page: number,
+    size: number,
+    q?: string,
+    condition = '',
+    sort?: string,
+    order?: string,
+  ) {
+    const total = await this.findShotsTotal();
+    const hasNext = total > page * size;
+    return {
+      shots: await this.shotModel
+        .find({
+          $or: [
+            { title: { $regex: q, $options: 'i' } },
+            { description: { $regex: q, $options: 'i' } },
+            { tags: { $regex: q, $options: 'i' } },
+          ],
+        })
+        .where('state')
+        .equals('published')
+        .sort({ [sort]: order === 'desc' ? 1 : -1 })
+        .skip((page - 1) * size)
+        .limit(size),
+      hasNext,
+    };
+  }
+
   async findPage(
     page: number,
     size: number,

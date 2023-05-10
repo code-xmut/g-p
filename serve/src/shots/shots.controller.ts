@@ -38,7 +38,7 @@ export class ShotsController {
     @Query('sort') sort?: string,
     @Query('order') order?: string,
   ) {
-    return this.shotsService.findPage(page, size, '', '', sort, order);
+    return this.shotsService.findPagePure(page, size, '', '', sort, order);
   }
 
   @Get(':id')

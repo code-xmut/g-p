@@ -23,7 +23,7 @@ watchEffect(() => {
 <template>
   <div
     v-if="show"
-    style="height: calc(100vh - 68px);"
+    style="height: calc(100vh - 90px);"
     class="w-full overflow-y-scroll absolute bottom-0 bg-white dark:bg-darkBg left-0 p-4 z-50"
   >
     <div v-if="showBack" class="flex justify-end">

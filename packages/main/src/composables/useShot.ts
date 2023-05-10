@@ -16,7 +16,7 @@ export const useShot = () => {
   const resetPage = ref(false)
   const hasNext = ref(true)
   const showCollectionModal = ref(false)
-  const { userId } = useUser()
+  const { userId, isLogged } = useUser()
   const router = useRouter()
 
   const likeShot = async (id: string) => {
@@ -53,24 +53,33 @@ export const useShot = () => {
   }, 500)
 
   const loadShotsFN = async (qType = 'shots', condition = '') => {
-    if (resetPage.value === true) {
-      page.value = 0
-      shots.value = []
-      users.value = []
-      hasNext.value = true
-    }
-    page.value += 1
-    if (qType === 'shots') {
-      const { data } = await shotApi.findShotsWithStatusByPage(page.value, size.value, q.value, condition, sort.value)
-      shots.value.push(...data.shots)
+    if (!isLogged.value) {
+      page.value += 1
+      const { data } = await shotApi.findShotsPage(page.value, size.value)
 
+      shots.value.push(...data.shots)
       hasNext.value = data.hasNext
     }
     else {
-      const { data } = await userApi.searchUsers(q.value, page.value, size.value)
-      users.value.push(...data.users)
+      if (resetPage.value === true) {
+        page.value = 0
+        shots.value = []
+        users.value = []
+        hasNext.value = true
+      }
+      page.value += 1
+      if (qType === 'shots') {
+        const { data } = await shotApi.findShotsWithStatusByPage(page.value, size.value, q.value, condition, sort.value)
+        shots.value.push(...data.shots)
 
-      hasNext.value = data.hasNext
+        hasNext.value = data.hasNext
+      }
+      else {
+        const { data } = await userApi.searchUsers(q.value, page.value, size.value)
+        users.value.push(...data.users)
+
+        hasNext.value = data.hasNext
+      }
     }
   }
   const loadShotsOrMembers = useDebounceFn(loadShotsFN, 200)
