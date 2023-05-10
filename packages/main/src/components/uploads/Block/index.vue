@@ -5,6 +5,7 @@ import { BlockEnum } from '@/types/editor'
 import { useEditorStore } from '@/store'
 import { unref } from 'vue'
 import { userApi } from '@/api'
+import { useIsMobile } from '@/composables';
 
 interface Props {
   block: Block
@@ -15,6 +16,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const store = useEditorStore()
 const uploadFileRef = ref<HTMLInputElement | null>(null)
+const { isMobile } = useIsMobile();
 
 const updateBlockValue = useDebounceFn((e: Event) => {
   const target = e.target as HTMLInputElement
@@ -38,6 +40,8 @@ const onDraftImgClick = (block: Block) => {
     }
   })
 }
+
+const blockActionPlacement = computed(() => isMobile.value ? 'bottom' : 'right')
 </script>
 
 <template>
@@ -47,7 +51,7 @@ const onDraftImgClick = (block: Block) => {
       :class="{ 'lg:mx-0': store.showDrawer, 'lg:ml-[10vw]': store.showDrawer, 'lg:mr-[30vw]': store.showDrawer }"
     >
       <input ref="uploadFileRef" hidden type="file" />
-      <Dropdown placement="right">
+      <Dropdown :placement="blockActionPlacement">
         <img v-if="block.type === BlockEnum.IMG" class="py-4 cursor-pointer" :src="block.value" alt="" >
         <textarea
           v-else-if="block.type === BlockEnum.TEXT"
