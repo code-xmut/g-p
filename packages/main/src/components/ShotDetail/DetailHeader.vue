@@ -40,7 +40,7 @@ const store = useShotStore()
     </div>
     <div class="flex justify-between px-4 items-center md:hidden">
       <DetailMenus />
-      <ShotActions v-model:show="store.showCommentDrawer" />
+      <ShotActions v-model:show="store.showCommentDrawer" v-model:detail="store.showShotDetail" />
     </div>
   </div>
 </template>
