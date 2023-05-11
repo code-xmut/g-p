@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useIsMobile } from '@/composables'
 
 const route = useRoute()
@@ -10,6 +10,7 @@ interface IMenu {
   value: string
 }
 
+const router = useRouter()
 const activeMenu = ref()
 const menus = reactive<IMenu[]>([
   {
@@ -24,10 +25,10 @@ const menus = reactive<IMenu[]>([
     name: '安全',
     value: '/account/security',
   },
-  {
-    name: '通知',
-    value: '/account/notifications',
-  },
+  // {
+  //   name: '通知',
+  //   value: '/account/notifications',
+  // },
   {
     name: '删除账户',
     value: '/account/destory',
@@ -39,6 +40,10 @@ const highlightMenu = (value: string) => {
 }
 
 onMounted(() => highlightMenu(route.path))
+
+const switchTab = (_title: string, _value: string, v: string) => {
+  router.push(v)
+}
 </script>
 
 <template>
@@ -63,6 +68,6 @@ onMounted(() => highlightMenu(route.path))
     v-else
     :content="menus"
     placeholder="请选择"
-    @change="$router.push($event)"
+    @change="switchTab"
   />
 </template>

@@ -8,8 +8,8 @@ const {
 
 const forms = computed(() => [
   {
-    key: 'username',
-    label: '用户名',
+    key: 'name',
+    label: '昵称',
   },
   {
     key: 'email',
@@ -18,7 +18,7 @@ const forms = computed(() => [
 ])
 
 const form = reactive({
-  username: user.value.username,
+  name: user.value.name,
   email: user.value.email,
 })
 </script>

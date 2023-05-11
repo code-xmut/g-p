@@ -14,7 +14,8 @@ const emit = defineEmits(['change'])
 const onChange = (e: Event) => {
   const target = e.target as HTMLSelectElement
   const value = target.options[target.selectedIndex].innerText
-  emit('change', props.title, value)
+  const dataV = target.options[target.selectedIndex].dataset.v
+  emit('change', props.title, value, dataV)
 }
 </script>
 

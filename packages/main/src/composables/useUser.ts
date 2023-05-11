@@ -6,6 +6,9 @@ export const useUser = () => {
   const userId = JSON.parse(localStorage.getItem('user') || '{}')._id
   const userName = JSON.parse(localStorage.getItem('user') || '{}').name
   const userUserName = JSON.parse(localStorage.getItem('user') || '{}').username
+  const userBio = JSON.parse(localStorage.getItem('user') || '{}').bio
+  const userLocation = JSON.parse(localStorage.getItem('user') || '{}').location
+  const userCreatedAt = JSON.parse(localStorage.getItem('user') || '{}').createdAt
   const user = ref<UserInfo>(JSON.parse(localStorage.getItem('user') || '{}'))
   const newAvatarUrl = ref('')
   const defaultAvatar = ref('https://cdn.dribbble.com/assets/avatar-default-e370af14535cdbf137637a27ee1a8e451253edc80be429050bc29d59b1f7cda0.gif')
@@ -55,7 +58,7 @@ export const useUser = () => {
     }
   }
 
-  const updateGeneral = async (generalInfo: { username: string; email: string }) => {
+  const updateGeneral = async (generalInfo: { name: string; email: string }) => {
     const { data } = await userApi.updateGeneralInfo(generalInfo, userId)
     if (data) {
       setUserInfo(data)
@@ -99,6 +102,9 @@ export const useUser = () => {
     userId,
     userName,
     userUserName,
+    userBio,
+    userLocation,
+    userCreatedAt,
     isLogged,
     setUserInfo,
     updateUserInfo,
