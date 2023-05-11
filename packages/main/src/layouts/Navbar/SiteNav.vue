@@ -60,7 +60,7 @@ watchEffect(() => {
   <div v-if="isMobile" class="text-lg font-semibold text-gray-600">
     <Icon class="w-6 h-6 cursor-pointer lg:hidden" :icon="navIcon" @click="showDrawer = !showDrawer" />
     <FullScreenDrawer :show="showDrawer" class="z-[60]" 
-      style="height: calc(100vh - 100px);">
+      style="height: calc(100vh - 115px);">
       <Input v-model:value="q" class="w-full" show-icon @keydown.enter="$router.push(`/search/${q}`)" />
       <div v-for="d in navs" :key="d.name">
         <Collapse v-if="d.children" link :title="d.name" :content="d.children" />
