@@ -58,7 +58,7 @@ export const useUser = () => {
     }
   }
 
-  const updateGeneral = async (generalInfo: { username: string; email: string }) => {
+  const updateGeneral = async (generalInfo: { name: string; email: string }) => {
     const { data } = await userApi.updateGeneralInfo(generalInfo, userId)
     if (data) {
       setUserInfo(data)
