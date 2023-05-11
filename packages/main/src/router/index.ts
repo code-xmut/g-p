@@ -39,6 +39,11 @@ const router = createRouter({
               name: 'liked',
               component: () => import('@/components/Profile/LikeShotsTab.vue'),
             },
+            {
+              path: 'about',
+              name: 'about',
+              component: () => import ('@/components/Profile/AboutMeTab.vue'),
+            },
           ],
         },
         {

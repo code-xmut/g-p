@@ -9,6 +9,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AboutMeTab: typeof import('./components/Profile/AboutMeTab.vue')['default']
     Account: typeof import('./components/Account/index.vue')['default']
     AccountHeader: typeof import('./components/Account/AccountHeader.vue')['default']
     AccountMenu: typeof import('./components/Account/AccountMenu.vue')['default']
