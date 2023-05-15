@@ -81,7 +81,7 @@ export const useEditorStore = defineStore('editor', () => {
   }
 
   const resetDraft = () => {
-    draft.value = initialValue
+    draft.value.splice(1, draft.value.length - 1)
   }
 
   const saveDraft = async () => {
@@ -145,9 +145,9 @@ export const useEditorStore = defineStore('editor', () => {
       await shotApi.createShot(shot)
     }
     showContinueModal.value = false
+    resetDraft()
     router.push({ name: 'home' })
     alert(`成功发布${publishedMessage.value}`)
-    resetDraft()
   }
 
   return {
