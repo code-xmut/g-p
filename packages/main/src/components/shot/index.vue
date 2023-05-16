@@ -52,7 +52,7 @@ onMounted(() => {
       <Avatar :user-name="shot?.user" />
       <div class="flex space-x-2">
         <Action :text="shot?.likes" />
-        <Action icon="mdi:eye-outline" :text="shot?.collections" />
+        <Action icon="mdi:tag" :text="shot?.collections" />
       </div>
     </div>
   </div>
