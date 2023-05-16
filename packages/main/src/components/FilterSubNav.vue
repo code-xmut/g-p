@@ -105,7 +105,7 @@ const onSortConditionClick = (condition: string) => {
   <div class="px-[3vw]">
     <div class="pt-8 flex justify-between items-center">
       <Dropdown>
-        <Button text="Popular" />
+        <Button text="排序" />
         <template #content>
           <ul class="flex flex-col space-y-2">
             <li v-for="s in sortCondition" :key="s.label" @click="onSortConditionClick(s.value)">
