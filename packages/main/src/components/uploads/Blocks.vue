@@ -63,7 +63,7 @@ const headingList = reactive<HeadingType[]>([
     </div>
 
     <div class="flex items-center hover:text-pink-500 cursor-pointer" 
-      @click="store.insertBlock(store.currentBlock.id, { id: nanoid(), type: BlockEnum.IMG, value: 'http://localhost:3000/uploads/pexels-photo-3703521-1683202677028.jpeg' })">
+      @click="store.insertBlock(store.currentBlock.id, { id: nanoid(), type: BlockEnum.IMG, value: 'https://images.pexels.com/photos/1481581/pexels-photo-1481581.jpeg?auto=compress&cs=tinysrgb&w=1600' })">
       <Icon
         icon="mdi:image"
         class="w-4 h-4"
