@@ -33,7 +33,7 @@ const isDragActive = rest.isDragActive
     class="rounded-tl-lg rounded-tr-lg border-t-2 border-l-2 border-r-2 border-dashed border-gray-500 h-[60vh] flex flex-col
       justify-center items-center md:px-[10vw]"
   >
-    <img class="w-48 h-48 mb-10" src="@/assets/images/image2.jpg" alt="">
+    <img class="w-48 h-48 mb-10" src="@/assets/images/picture-default.png" alt="">
     <div class="flex">
       <div v-bind="getRootProps()">
         <input v-bind="getInputProps()">
