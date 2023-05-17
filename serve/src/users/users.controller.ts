@@ -65,6 +65,16 @@ export class UsersController {
     return this.usersService.updatePassword(PasswordInfo, id);
   }
 
+  @Put('recover/security')
+  async recoverPassword(
+    @Body() PasswordInfo: { email: string; newPassword: string },
+  ) {
+    return this.usersService.recoverPassword(
+      PasswordInfo.email,
+      PasswordInfo.newPassword,
+    );
+  }
+
   @Delete('destory')
   async deleteUserById(@Req() req: any) {
     return this.usersService.deleteUserById(req.header.id);

@@ -88,6 +88,17 @@ export class UsersService {
       .countDocuments();
   }
 
+  async recoverPassword(Email: string, Password: string) {
+    const user = await this.userModel.findOne({ email: Email });
+    if (user) {
+      user.password = Password;
+      await user.save();
+      return true;
+    }
+
+    return false;
+  }
+
   async findUsersByName(
     name: string,
     page = 1,
