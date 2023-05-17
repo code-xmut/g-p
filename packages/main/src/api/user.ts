@@ -27,3 +27,6 @@ export const deleteUser = () => <Promise<AxiosResponse<UserInfo>>>Delete('/users
 
 export const searchUsers = (q: string, page = 1, size = 6) =>
   <Promise<AxiosResponse<UserPageDocument>>>get(`/users/search/${q}?page=${page}&size=${size}`)
+
+export const recoverPassword = (email: string, newPassword: string) =>
+  <Promise<AxiosResponse<boolean>>>Put('/users/recover/security', { email, newPassword })
