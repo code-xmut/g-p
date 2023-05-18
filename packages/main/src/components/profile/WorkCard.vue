@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import type { ShotDto } from '@gp/types'
 import { shotApi } from '@/api'
+import { useUser } from '@/composables';
+
+const { userUserName } = useUser();
 
 const shots = ref<ShotDto[]>([])
 onMounted(async () => {
-  const { data } = await shotApi.findUserShots('rich4st')
-  shots.value = data.filter(shot => shot.state = 'published')
+  const { data } = await shotApi.findUserShots(userUserName)
+  shots.value = data.filter(shot => shot.state === 'published')
 })
 </script>
 

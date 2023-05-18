@@ -2,6 +2,7 @@
 import type { ShotDto } from '@gp/types'
 import { useRouter } from 'vue-router'
 import { useShotStore } from '@/store'
+import { userApi } from '@/api';
 
 interface ShotProps {
   shot: ShotDto
@@ -14,6 +15,7 @@ defineEmits(['save', 'like'])
 const router = useRouter()
 const store = useShotStore()
 const { toShotDetail } = store
+const userAvatar = ref('')
 
 const toDetailPage = () => {
   store.toShotDetail(props.shot)
@@ -31,9 +33,11 @@ const onShotClick = () => {
     toDetailPage()
 }
 
-onMounted(() => {
+onMounted(async () => {
   if (!toShotDetail)
     router.go(0)
+  const { data } = await userApi.getUser(props.shot.user);
+  userAvatar.value = data.avatar
 })
 </script>
 
@@ -49,7 +53,7 @@ onMounted(() => {
       />
     </div>
     <div v-if="!isDraft" class="mt-2 flex justify-between items-center">
-      <Avatar :user-name="shot?.user" />
+      <Avatar :user-name="shot?.user" :src="userAvatar" />
       <div class="flex space-x-2">
         <Action :text="shot?.likes" />
         <Action icon="mdi:tag" :text="shot?.collections" />
